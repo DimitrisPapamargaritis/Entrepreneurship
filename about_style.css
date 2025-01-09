@@ -64,10 +64,9 @@ footer {
     background-color: #302728;
     color: white;
     text-align: center;
-    padding: 10px;
     bottom: 0;
     position: absolute;
-    width: 99%;
+    width: 100%;
 }
 body {
     overflow: hidden;
