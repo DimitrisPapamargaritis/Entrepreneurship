@@ -1,0 +1,108 @@
+* {
+margin: 0;
+padding: 0;
+box-sizing: border-box;
+}
+
+body, html {
+height: 100%;
+font-family: Arial, sans-serif;
+}
+/*----------------------------------------------------NAVBAR----------------------------*/
+
+/* Navbar */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 50px;
+    background-color: #fff;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.navbar .logo img {
+    width: 120px;
+}
+
+.nav-links {
+    display: flex;
+    list-style: none;
+}
+
+.nav-links li {
+    margin: 0 15px;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: #333;
+    font-weight: 500;
+}
+
+.auth-buttons .btn {
+    padding: 10px 20px;
+    margin-left: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.login-btn {
+    background-color: #eee;
+}
+
+.signup-btn {
+    background-color: #302728;
+    color: #fff;
+}
+
+/*----------------------------------------------------------------------------------*/
+.place-photo{
+    margin: 10px 0 10px 0;
+    border-radius: 5%;
+    height: 200px;
+    width: auto;
+}
+.li{
+    margin: 10px;
+}
+.container {
+display: flex;
+height: 100%;
+}
+
+/* Left side for the map */
+.map {
+flex: 1;
+height: 100vh; /* Full height */
+}
+
+/* Right side for the list of places */
+.places-list {
+/* flex: 1; */
+width: 30%;
+background-color: #f4f4f4;
+padding: 20px;
+overflow-y: auto;
+}
+
+.places-list h2 {
+margin-bottom: 20px;
+}
+
+.places-list ul {
+list-style: none;
+}
+
+.places-list li {
+background-color: #fff;
+margin: 10px 0;
+padding: 15px;
+border-radius: 8px;
+box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.places-list li:hover {
+background-color: #e6e6e6;
+}
