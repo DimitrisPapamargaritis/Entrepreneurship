@@ -5,7 +5,7 @@
 }
 
 body {
-    background-color: #080710;
+    background-color: #302728;
 }
 
 .background {
@@ -25,13 +25,13 @@ body {
 }
 
 .shape:first-child {
-    background: linear-gradient(#1845ad, #23a2f6);
+    background: linear-gradient(#275366, #76e4fe);
     left: -80px;
     top: -80px;
 }
 
 .shape:last-child {
-    background: linear-gradient(to right, #1845ad, #23a2f6);
+    background: linear-gradient(#275366, #76e4fe);
     right: -30px;
     bottom: -80px;
 }

@@ -5,7 +5,7 @@ body {
 }
 
 header {
-    background-color: #333;
+    background-color: #302728;
     color: white;
     padding: 10px 20px;
 }
@@ -94,7 +94,7 @@ header .nav-links a.active {
 }
 
 footer {
-    background-color: #333;
+    background-color: #302728;
     color: white;
     text-align: center;
     padding: 10px;
