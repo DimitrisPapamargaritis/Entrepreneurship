@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home | SpacePin</title>
+    <link rel="stylesheet" href="home_style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+</head>
+<body>
+    <header class="navbar">
+        <div class="logo">
+            <img src="logo.png" alt="App Logo">
+        </div>
+        <nav>
+            <ul class="nav-links">
+                <li><a href="home.html">Home</a></li>
+                <li><a href="#">Explore</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="#">Contact</a></li>
+            </ul>
+        </nav>
+        <div class="auth-buttons">
+            <button class="btn login-btn" onclick="window.location.href='login.html'">Log In</button> </a>
+            <button class="btn signup-btn" onclick="window.location.href='signup.html'">Sign Up</button>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Find your next coworking space</h1>
+            <p>Explore unique offices, caffe, and more — all in one place.</p>
+            <div class="search-bar">
+                <input type="text" placeholder="Where are you going?" class="search-input">
+                <button class="btn search-btn"><i class="fas fa-search"></i> Search</button>
+            </div>
+        </div>
+    </section>
+
+    <section class="popular-destinations">
+        <h2>Popular Places</h2>
+        <div class="destination-grid">
+            <div class="destination-card">
+                <img src="img/destination1.jpg" alt="Destination 1">
+                <h3>Cozy Bean</h3>
+                <div class="star-review">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star-half-alt"></i> <!-- Example of a half star -->
+                </div>
+                <p>3.5 kilometers away</p>
+            </div>
+            <div class="destination-card">
+                <img src="img/destination2.jpg" alt="Destination 2">
+                <h3>Lisa Caffe</h3>
+                <div class="star-review">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star-half-alt"></i> <!-- Example of a half star -->
+                </div>
+                <p>1.2 kilometers away</p>
+            </div>
+            <div class="destination-card">
+                <img src="img/destination3.jpg" alt="Destination 3">
+                <h3>Artist</h3>
+                <div class="star-review">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                </div>
+                <p>800 meters away</p>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2025 SpacePin. All rights reserved.</p>
+    </footer>
+</body>
+</html>

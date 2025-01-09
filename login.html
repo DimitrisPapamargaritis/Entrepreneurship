@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Login | SpacePin</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+</head>
+<body>
+    <div class="background">
+        <div class="shape"></div>
+        <div class="shape"></div>
+    </div>
+    <form method="post" action="login.php">
+        <div class="logo-container">
+            <img src="logo.png" alt="Logo" class="logo">
+        </div>
+
+        <label for="username">Username</label>
+        <input type="text" placeholder="Email or Phone" id="username" name="username">
+
+        <label for="password">Password</label>
+        <input type="password" placeholder="Password" id="password" name="password">
+
+        <!-- Forgot Password Button -->
+        <div class="forgot-password-container">
+            <a href="forgot-password.php" class="forgot-password">Forgot password?</a>
+        </div>
+
+        <!-- Login Button -->
+        <button type="button" onclick="window.location.href='home.html'">Log In</button>
+
+        <!-- Sign Up Button -->
+        <button type="button" class="signup-btn" onclick="window.location.href='signup.html'">Sign Up</button>
+
+        <div class="social">
+            <div class="go"><i class="fab fa-google"></i></div>
+            <div class="fb"><i class="fab fa-facebook"></i></div>
+        </div>
+    </form>
+</body>
+</html>

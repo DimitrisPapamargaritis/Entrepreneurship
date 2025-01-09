@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Sign Up Form</title>
+    <link rel="stylesheet" href="signup_style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+</head>
+<body>
+    <div class="background">
+        <div class="shape"></div>
+        <div class="shape"></div>
+    </div>
+    <form method="post" action="signup.php" id="signup-form">
+        <div class="logo-container">
+            <img src="logo.png" alt="Logo" class="logo">
+        </div>
+
+        <label for="email">Email</label>
+        <input type="email" placeholder="Enter your email" id="email" name="email" required>
+
+        <label for="password">Password</label>
+        <input type="password" placeholder="Enter your password" id="password" name="password" required>
+
+        <label for="confirm-password">Confirm Password</label>
+        <input type="password" placeholder="Confirm your password" id="confirm-password" name="confirm-password" required>
+
+        <button type="submit" id="signup-button">Sign Up</button>
+    </form>
+
+    <script>
+        const signupForm = document.getElementById("signup-form");
+        signupForm.addEventListener("submit", function(event) {
+            const password = document.getElementById("password").value;
+            const confirmPassword = document.getElementById("confirm-password").value;
+
+            if (password !== confirmPassword) {
+                event.preventDefault();
+                alert("Passwords do not match!");
+            }
+        });
+    </script>
+</body>
+</html>
