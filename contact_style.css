@@ -98,4 +98,15 @@ footer {
     color: white;
     text-align: center;
     padding: 10px;
+    bottom: 0;
+    position: absolute;
+    width: 99%;
+}
+body {
+    overflow: hidden;
+}
+
+/* For specific elements, if needed */
+.scrollable-element {
+    overflow: hidden;
 }
