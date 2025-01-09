@@ -54,7 +54,7 @@ body {
 }
 
 .signup-btn {
-    background-color: #1845ad;
+    background-color: #302728;
     color: #fff;
 }
 
@@ -109,7 +109,7 @@ body {
 }
 
 .search-btn {
-    background-color: #1845ad;
+    background-color: #302728;
     color: #fff;
     padding: 10px 20px;
     border: none;
@@ -164,7 +164,7 @@ body {
 footer {
     text-align: center;
     padding: 20px;
-    background-color: #1845ad;
+    background-color: #302728;
     color: #fff;
     font-size: 14px;
 }
