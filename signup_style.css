@@ -101,3 +101,8 @@ button {
     border-radius: 5px;
     cursor: pointer;
 }
+.logo{
+    width: 130px;
+    display: block;
+    margin: 0 auto;
+}
