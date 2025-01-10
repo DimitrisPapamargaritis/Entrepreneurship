@@ -40,23 +40,49 @@ body {
     font-weight: 500;
 }
 
-.auth-buttons .btn {
-    padding: 10px 20px;
-    margin-left: 10px;
-    border: none;
+.auth-buttons {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.auth-buttons .dropdown {
+    display: none;
+    position: absolute;
+    top: 100%;
+    right: 0;
+    background-color: #fff;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     border-radius: 5px;
+    overflow: hidden;
+    z-index: 1000;
+}
+
+.auth-buttons .dropdown a {
+    display: block;
+    padding: 10px 20px;
+    text-decoration: none;
+    color: #333;
+    font-weight: 500;
+}
+
+.auth-buttons .dropdown a:hover {
+    background-color: #f1f1f1;
+}
+
+.auth-buttons .dropdown-toggle {
+    background: none;
+    border: none;
     cursor: pointer;
-    font-weight: bold;
-}
-
-.login-btn {
-    background-color: #eee;
-}
-
-.signup-btn {
-    background-color: #302728;
+    font-size: 24px;
     color: #fff;
 }
+
+.auth-buttons .dropdown-toggle:focus + .dropdown,
+.auth-buttons .dropdown:hover {
+    display: block;
+}
+
 
 /* Hero Section */
 .hero {
@@ -225,6 +251,51 @@ footer {
 
 /* Responsive Design */
 @media (max-width: 768px) {
+    .navbar {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        padding: 15px 20px;
+        width: 100%;
+    }
+
+    .navbar .logo {
+        order: 1;
+    }
+
+    .navbar .logo img {
+        width: 50px; /* Smaller logo size for mobile */
+    }
+
+    .menu-toggle {
+        order: 2;
+        display: block;
+        cursor: pointer;
+        font-size: 24px;
+        margin-left: auto;
+    }
+
+    .auth-buttons {
+        order: 3;
+        display: flex;
+        align-items: center;
+        margin-left: 10px;
+    }
+
+    .nav-links {
+        display: none;
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .nav-links.active {
+        display: flex;
+    }
+
+    .nav-links li {
+        margin: 10px 0;
+    }
+
     .footer-container {
         flex-direction: column;
         align-items: center;
@@ -266,5 +337,3 @@ footer {
         font-size: 0.8em;
     }
 }
-
-
