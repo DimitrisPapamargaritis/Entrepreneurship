@@ -10,6 +10,7 @@ body {
     align-items: center;
     padding: 15px 50px;
     background-color: #302728;
+    color: #fff;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
@@ -196,6 +197,52 @@ footer {
 
 /* Responsive Design */
 @media (max-width: 768px) {
+    .navbar {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        padding: 15px 20px;
+        width: 100%;
+    }
+
+    .navbar .logo {
+        order: 1;
+        float: left;
+    }
+
+    .menu-toggle {
+        order: 2;
+        display: block;
+        cursor: pointer;
+        font-size: 24px;
+        margin-left: auto;
+    }
+
+    .auth-buttons {
+        order: 3;
+        margin-left: 10px;
+    }
+
+    .nav-links {
+        display: none;
+        flex-direction: column;
+        width: 100%;
+        background-color: #302728;
+        position: absolute;
+        top: 90px;
+        left: 0;
+        padding: 10px 0;
+        z-index: 1000; /* Ensure the dropdown menu is above other elements */
+    }
+
+    .nav-links.active {
+        display: flex;
+    }
+
+    .nav-links li {
+        margin: 10px 0;
+        text-align: center;
+    }
     .footer-container {
         flex-direction: column;
         align-items: center;
@@ -216,7 +263,40 @@ footer {
         font-size: 0.95em;
     }
 }
+
+@media (min-width: 769px) {
+    .menu-toggle {
+        display: none;
+    }
+}
+
 @media (max-width: 480px) {
+    .navbar {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        padding: 15px 20px;
+        width: 100%;
+    }
+
+    .navbar .logo {
+        order: 1;
+        float: left;
+    }
+
+    .menu-toggle {
+        order: 3;
+        display: block;
+        cursor: pointer;
+        font-size: 24px;
+        margin-left: auto;
+    }
+
+    .auth-buttons {
+        order: 3;
+        margin-left: 10px;
+    }
+
     footer {
         padding: 15px 10px;
     }
@@ -238,7 +318,8 @@ footer {
     }
 }
 
-/* For specific elements, if needed */
-.scrollable-element {
-    overflow: hidden;
+@media (min-width: 769px) {
+    .menu-toggle {
+        display: none;
+    }
 }
