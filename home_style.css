@@ -17,12 +17,12 @@ body {
     justify-content: space-between;
     align-items: center;
     padding: 15px 50px;
-    background-color: #fff;
+    background-color: #302728;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 .navbar .logo img {
-    width: 120px;
+    width: 50px;
 }
 
 .nav-links {
@@ -36,7 +36,7 @@ body {
 
 .nav-links a {
     text-decoration: none;
-    color: #333;
+    color: #fff;
     font-weight: 500;
 }
 
@@ -163,7 +163,7 @@ body {
 /* Footer */
 
 footer {
-    background-color: #333;
+    background-color: #302728;
     color: #fff;
     padding: 20px 0;
 }
