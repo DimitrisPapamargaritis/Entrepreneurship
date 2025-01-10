@@ -18,6 +18,7 @@ body {
     align-items: center;
     padding: 15px 50px;
     background-color: #302728;
+    color: #fff;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
@@ -83,10 +84,9 @@ body {
     display: block;
 }
 
-
 /* Hero Section */
 .hero {
-    height: 70vh;
+    height: 60vh;
     background: url('img/hero-bg.jpg') no-repeat center center/cover;
     display: flex;
     align-items: center;
@@ -111,12 +111,12 @@ body {
 }
 
 .hero h1 {
-    font-size: 48px;
+    font-size: 36px;
     margin-bottom: 20px;
 }
 
 .hero p {
-    font-size: 18px;
+    font-size: 16px;
     margin-bottom: 30px;
 }
 
@@ -129,7 +129,8 @@ body {
 
 .search-input {
     padding: 10px;
-    width: 300px;
+    width: 100%;
+    max-width: 300px;
     border: none;
     border-radius: 5px;
 }
@@ -158,7 +159,8 @@ body {
 
 .destination-grid {
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    align-items: center;
     gap: 20px;
 }
 
@@ -168,7 +170,8 @@ body {
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     overflow: hidden;
     text-align: center;
-    width: 300px;
+    width: 100%;
+    max-width: 300px;
 }
 
 .destination-card img {
@@ -187,7 +190,6 @@ body {
 }
 
 /* Footer */
-
 footer {
     background-color: #302728;
     color: #fff;
@@ -208,19 +210,18 @@ footer {
     text-align: center;
 }
 
-.footer-logo img.logo {
-    width: 80px;
-    margin-bottom: 10px;
+.footer-logo img {
+    width: 50px;
 }
 
 .footer-section {
     flex: 1 1 200px;
-    margin: 10px;
+    text-align: center;
+    margin: 20px 0;
 }
 
 .footer-section h3 {
-    margin-bottom: 10px;
-    font-size: 1.2em;
+    font-size: 1em;
 }
 
 .footer-section ul {
@@ -229,6 +230,7 @@ footer {
 }
 
 .footer-section ul li {
+    font-size: 0.9em;
     margin-bottom: 8px;
 }
 
@@ -245,11 +247,11 @@ footer {
 .footer-bottom {
     text-align: center;
     margin-top: 20px;
-    font-size: 0.9em;
+    font-size: 0.8em;
     color: #bbb;
 }
 
-/* Responsive Design */
+/* Responsive Styles */
 @media (max-width: 768px) {
     .navbar {
         flex-direction: row;
@@ -261,10 +263,7 @@ footer {
 
     .navbar .logo {
         order: 1;
-    }
-
-    .navbar .logo img {
-        width: 50px; /* Smaller logo size for mobile */
+        float: left;
     }
 
     .menu-toggle {
@@ -277,8 +276,6 @@ footer {
 
     .auth-buttons {
         order: 3;
-        display: flex;
-        align-items: center;
         margin-left: 10px;
     }
 
@@ -286,6 +283,12 @@ footer {
         display: none;
         flex-direction: column;
         width: 100%;
+        background-color: #302728;
+        position: absolute;
+        top: 90px;
+        left: 0;
+        padding: 10px 0;
+        z-index: 1000; /* Ensure the dropdown menu is above other elements */
     }
 
     .nav-links.active {
@@ -294,34 +297,14 @@ footer {
 
     .nav-links li {
         margin: 10px 0;
-    }
-
-    .footer-container {
-        flex-direction: column;
-        align-items: center;
-    }
-
-    .footer-logo,
-    .footer-section {
-        flex: 1 1 100%;
         text-align: center;
-        margin: 20px 0;
     }
 
-    .footer-logo img.logo {
-        width: 60px;
-    }
-
-    .footer-section ul li {
-        font-size: 0.95em;
-    }
-}
-@media (max-width: 480px) {
     footer {
         padding: 15px 10px;
     }
 
-    .footer-logo img.logo {
+    .footer-logo img {
         width: 50px;
     }
 
@@ -335,5 +318,65 @@ footer {
 
     .footer-bottom {
         font-size: 0.8em;
+    }
+}
+
+@media (min-width: 769px) {
+    .menu-toggle {
+        display: none;
+    }
+}
+
+@media (max-width: 480px) {
+    .navbar {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        padding: 15px 20px;
+        width: 100%;
+    }
+
+    .navbar .logo {
+        order: 1;
+        float: left;
+    }
+
+    .menu-toggle {
+        order: 3;
+        display: block;
+        cursor: pointer;
+        font-size: 24px;
+        margin-left: auto;
+    }
+
+    .auth-buttons {
+        order: 3;
+        margin-left: 10px;
+    }
+
+    footer {
+        padding: 15px 10px;
+    }
+
+    .footer-logo img {
+        width: 50px;
+    }
+
+    .footer-section h3 {
+        font-size: 1em;
+    }
+
+    .footer-section ul li {
+        font-size: 0.9em;
+    }
+
+    .footer-bottom {
+        font-size: 0.8em;
+    }
+}
+
+@media (min-width: 769px) {
+    .menu-toggle {
+        display: none;
     }
 }

@@ -3,16 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home | Collabrew</title>
+    <title>Home | SpacePin</title>
     <link rel="stylesheet" href="home_style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <script src="https://kit.fontawesome.com/4722d8ab06.js" crossorigin="anonymous"></script>
+    <script src="index.js" defer></script>
 </head>
 <body>
     <header class="navbar">
         <div class="logo">
             <a href="index.html"><img src="img/logo.png" alt="App Logo"></a>
         </div>
+        <div class="menu-toggle"><i class="fa-solid fa-bars" style="color: #ffffff;"></i></div>
         <nav>
             <ul class="nav-links">
                 <li><a href="index.html">Home</a></li>
@@ -22,12 +24,10 @@
             </ul>
         </nav>
         <div class="auth-buttons">
-            <div class="auth-buttons">
-                <button class="dropdown-toggle"><i class="fa-solid fa-circle-user" style="color: #ffffff;"></i></button>
-                <div class="dropdown">
-                    <a href="login.html">Login</a>
-                    <a href="signup.html">Sign-Up</a>
-                </div>
+            <button class="dropdown-toggle"><i class="fas fa-user"></i></button>
+            <div class="dropdown">
+                <a href="login.html">Login</a>
+                <a href="signup.html">Sign-Up</a>
             </div>
         </div>
     </header>
@@ -111,7 +111,7 @@
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>&copy; 2025 CollaBrew. All rights reserved.</p>
+                <p>&copy; 2025 Collabrew. All rights reserved.</p>
             </div>
         </footer>
 </body>
