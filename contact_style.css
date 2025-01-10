@@ -80,7 +80,7 @@ header .nav-links a.active {
 }
 
 .contact button {
-    background-color: #ffcc00;
+    background-color: #302728;
     border: none;
     padding: 10px 20px;
     font-size: 18px;
@@ -96,7 +96,7 @@ header .nav-links a.active {
 /* Footer */
 
 footer {
-    background-color: #333;
+    background-color: #302728;
     color: #fff;
     padding: 20px 0;
 }
