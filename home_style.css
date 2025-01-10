@@ -325,6 +325,13 @@ footer {
     .menu-toggle {
         display: none;
     }
+    
+    .destination-grid {
+        flex-direction: row;
+        justify-content: center;
+        flex-wrap: wrap; /* Ensures content wraps if it doesn't fit in one row */
+        gap: 20px;
+    }
 }
 
 @media (max-width: 480px) {
