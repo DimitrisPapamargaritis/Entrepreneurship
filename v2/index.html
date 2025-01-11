@@ -34,6 +34,30 @@
     <link rel="stylesheet" type="text/css" href="./assets/fontawsome/css/fontawesome.min.css" />
     <link rel="stylesheet" type="text/css" href="./assets/fontawsome/css/all.min.css" />
 
+    <style>
+        .background {
+            background: var(--light);
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            background-attachment: fixed;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+
+        }
+
+        .header {
+            align-content: center;
+            background-color: rgba(48, 39, 40, 0.6);
+            outline: 0px;
+            min-height: 60vh;
+        }
+
+        .boxed.light {
+            color: var(--dark)
+        }
+    </style>
 </head>
 
 <body>
@@ -76,7 +100,7 @@
             <div class="content">
                 <main>
 
-                    <div class="full-width header">
+                    <div class="header">
                         <div class="boxed transparent align-center">
                             <img src="./assets/media/branding/collabrew_logo_800x800.png" alt="Collabrew Logo"
                                 rel="preload" width="220px" height="220px">
@@ -90,7 +114,7 @@
                         </div>
                     </div>
 
-                    <div class="boxed align-center">
+                    <div class="boxed light transparent align-center">
                         <h3>Popular Places</h3>
                         <div class="row">
                             <div class="column col-30">
