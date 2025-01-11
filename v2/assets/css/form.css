@@ -13,6 +13,23 @@ input {
     font-family: var(--page-font);
 }
 
+::-webkit-input-placeholder {
+    font-size: 0.9rem;
+    font-family: var(--page-font);
+}
+:-moz-placeholder {
+    font-size: 0.9rem;
+    font-family: var(--page-font);
+}
+::-moz-placeholder {
+    font-size: 0.9rem;
+    font-family: var(--page-font);
+}
+:-ms-input-placeholder {
+    font-size: 0.9rem;
+    font-family: var(--page-font);
+}
+
 .form-input {
     width: 320px;
     padding: 5px;
