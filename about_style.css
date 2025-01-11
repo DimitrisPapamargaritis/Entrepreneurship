@@ -88,6 +88,7 @@ body {
 .about {
     text-align: center;
     padding: 50px 20px;
+    padding-bottom: 20%;
 }
 
 .about h1 {
@@ -113,7 +114,6 @@ footer {
     background-color: #302728;
     color: #fff;
     padding: 20px 0;
-    position: absolute;
 }
 
 .footer-container {
@@ -130,18 +130,19 @@ footer {
     text-align: center;
 }
 
-.footer-logo img {
-    width: 50px;
+.footer-logo img.logo {
+    width: 80px;
+    margin-bottom: 10px;
 }
 
 .footer-section {
     flex: 1 1 200px;
-    text-align: center;
-    margin: 20px 0;
+    margin: 10px;
 }
 
 .footer-section h3 {
-    font-size: 1em;
+    margin-bottom: 10px;
+    font-size: 1.2em;
 }
 
 .footer-section ul {
@@ -150,7 +151,6 @@ footer {
 }
 
 .footer-section ul li {
-    font-size: 0.9em;
     margin-bottom: 8px;
 }
 
@@ -167,7 +167,7 @@ footer {
 .footer-bottom {
     text-align: center;
     margin-top: 20px;
-    font-size: 0.8em;
+    font-size: 0.9em;
     color: #bbb;
 }
 
@@ -219,24 +219,25 @@ footer {
         text-align: center;
     }
 
-    .footer-container {
-        flex-direction: column;
-        align-items: center;
+     footer {
+        
+        padding: 15px 10px;
     }
 
-    .footer-logo,
-    .footer-section {
-        flex: 1 1 100%;
-        text-align: center;
-        margin: 20px 0;
+    .footer-logo img {
+        width: 50px;
     }
 
-    .footer-logo img.logo {
-        width: 60px;
+    .footer-section h3 {
+        font-size: 1em;
     }
 
     .footer-section ul li {
-        font-size: 0.95em;
+        font-size: 0.9em;
+    }
+
+    .footer-bottom {
+        font-size: 0.8em;
     }
 }
 
@@ -265,7 +266,7 @@ footer {
         padding: 15px 10px;
     }
 
-    .footer-logo img.logo {
+    .footer-logo img {
         width: 50px;
     }
 
