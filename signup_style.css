@@ -11,7 +11,7 @@ body {
 
 .background {
     width: 430px;
-    height: 620px;
+    height: 520px;
     position: absolute;
     transform: translate(-50%, -50%);
     left: 50%;
@@ -32,7 +32,7 @@ body {
 }
 
 .shape:last-child {
-    background: linear-gradient(to right, #ff512f, #f09819);
+    background: linear-gradient(#275366, #76e4fe);
     right: -30px;
     bottom: -80px;
 }
@@ -46,7 +46,7 @@ form {
     top: 50%;
     left: 50%;
     border-radius: 10px;
-    backdrop-filter: blur(10px);
+    backdrop-filter: blur(5px); /* Reduced blur */
     border: 2px solid rgba(255, 255, 255, 0.1);
     box-shadow: 0 0 40px rgba(8, 7, 16, 0.6);
     padding: 50px 35px;
@@ -69,7 +69,7 @@ form h3 {
 
 label {
     display: block;
-    margin-top: 20px;
+    margin-top: 30px;
     font-size: 16px;
     font-weight: 500;
 }
@@ -101,8 +101,101 @@ button {
     border-radius: 5px;
     cursor: pointer;
 }
-.logo{
-    width: 130px;
+
+.logo {
+    width: 50px;
     display: block;
     margin: 0 auto;
+}
+
+.logo img {
+    height: 50px;
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+    .background {
+        width: 100%;
+        height: auto;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+    }
+
+    form {
+        width: 90%;
+        height: auto;
+        padding: 30px 20px;
+        backdrop-filter: blur(3px); /* Further reduced blur */
+    }
+
+    form h3 {
+        font-size: 28px;
+    }
+
+    label {
+        margin-top: 20px;
+        font-size: 14px;
+    }
+
+    input {
+        height: 45px;
+        font-size: 12px;
+    }
+
+    button {
+        padding: 12px 0;
+        font-size: 16px;
+    }
+
+    .logo {
+        width: 100px; /* Adjusted width for mobile */
+    }
+
+    .logo img {
+        height: 100px; /* Adjusted height for mobile */
+    }
+}
+
+@media (max-width: 480px) {
+    .background {
+        width: 100%;
+        height: auto;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+    }
+
+    form {
+        width: 100%;
+        padding: 20px 10px;
+        backdrop-filter: blur(2px); /* Even less blur */
+    }
+
+    form h3 {
+        font-size: 24px;
+    }
+
+    label {
+        margin-top: 15px;
+        font-size: 14px;
+    }
+
+    input {
+        height: 45px;
+        font-size: 12px;
+    }
+
+    button {
+        padding: 12px 0;
+        font-size: 16px;
+    }
+
+    .logo {
+        width: 80px; /* Adjusted width for smaller mobile screens */
+    }
+
+    .logo img {
+        height: 80px; /* Adjusted height for smaller mobile screens */
+    }
 }
