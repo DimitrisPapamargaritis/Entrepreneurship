@@ -11,6 +11,10 @@ body {
     color: #333;
 }
 
+main{
+    background: url(img/contact_bg.jpg) no-repeat center center / cover;
+}
+
 .navbar {
     display: flex;
     justify-content: space-between;
