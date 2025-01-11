@@ -16,7 +16,7 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 15px 50px;
+    padding: 8px 50px;
     background-color: #302728;
     color: #fff;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
@@ -193,7 +193,7 @@ body {
 footer {
     background-color: #302728;
     color: #fff;
-    padding: 20px 0;
+    padding: 10px 0;
 }
 
 .footer-container {
@@ -208,6 +208,7 @@ footer {
 .footer-logo {
     flex: 1 1 200px;
     text-align: center;
+    margin-top: 10px;
 }
 
 .footer-logo img {
