@@ -173,3 +173,71 @@ button {
     background-color: #080710;
     color: #ffffff;
 }
+@media (max-width: 768px) {
+    .background {
+        width: 100%;
+        height: auto;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+    }
+
+    form {
+        width: 90%;
+        height: auto;
+        padding: 30px 20px;
+    }
+
+    form h3 {
+        font-size: 28px;
+    }
+
+    label {
+        margin-top: 20px;
+        font-size: 14px;
+    }
+
+    input {
+        height: 45px;
+        font-size: 12px;
+    }
+
+    button {
+        padding: 12px 0;
+        font-size: 16px;
+    }
+}
+
+@media (max-width: 480px) {
+    .background {
+        width: 100%;
+        height: auto;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+    }
+
+    form {
+        width: 95%;
+        padding: 20px 15px;
+    }
+
+    form h3 {
+        font-size: 24px;
+    }
+
+    label {
+        margin-top: 15px;
+        font-size: 12px;
+    }
+
+    input {
+        height: 40px;
+        font-size: 10px;
+    }
+
+    button {
+        padding: 10px 0;
+        font-size: 14px;
+    }
+}
