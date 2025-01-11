@@ -385,6 +385,81 @@ hr.split-line.white {
     margin-inline-start: 5px;
 }
 
+/* Social box layout properties */
+.social-box {
+  display: block;
+  margin-top: 20px;
+  font-size: 24px;
+}
+
+.social-box a {
+  margin: auto 5px;
+  color: var(--white);
+}
+
+.social-box.dark a {
+  color: var(--dark);
+}
+
+.social-box.sb-bg-white {
+  padding: 10px;
+  background-color: var(--white);
+}
+
+.social-box.sb-bg-white a {
+  color: var(--dark);
+}
+
+.social-box.sb-bg-dark {
+  padding: 10px;
+  background-color: var(--dark);
+}
+
+.social-box.sb-bg-dark a {
+  color: var(--white);
+}
+
+.social-box a:hover {
+  transition: 0.3s;
+}
+
+.social-box .fab:hover,
+.social-box .fa-solid:hover {
+  color: var(--light-gray);
+  transition: 0.3s;
+  transform: scale(1.2);
+}
+
+/* Social on hover colors */
+.social-box .fa-facebook:hover {
+  color: var(--facebook-color);
+}
+
+.social-box .fa-instagram:hover {
+  color: var(--instagram-color);
+}
+
+.social-box .fa-x-twitter:hover {
+  color: var(--x-color);
+}
+
+.social-box .fa-mastodon:hover {
+  color: var(--mastodon-color);
+}
+.social-box .fa-github:hover {
+  color: var(--github-color);
+}
+
+/* Author image layout properties */
+.team-member img {
+  display: block;
+  margin: 20px auto;
+  border: solid 8px var(--dark);
+  border-radius: 50%;
+  height: 160px;
+  width: 160px;
+}
+
 /* Mobile devices properties */
 @media (max-width: 1200px) {
     .boxed.narrow {
