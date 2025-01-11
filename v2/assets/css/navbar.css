@@ -1,0 +1,382 @@
+/* Navbar CSS */
+
+/* Import Globaly Defined Variables from Theme */
+@import "./theme.css";
+
+/*
+    Full Navbar - 18 Top padding, 18 Bottom padding, 60 Logo (18+18+60 = 96)
+    Shrinked Navbar - 11 Top padding, 11 Bottom padding, 50 Logo (11+11+50 = 72)
+*/
+
+/* Navbar properties */
+nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    margin: 0;
+    padding: 18px 0;
+    color: var(--white);
+    background-color: var(--dark);
+    font-family: var(--navbar-font);
+    font-size: var(--navbar-font-size);
+    transition: var(--short-transition);
+    z-index: 10;
+}
+
+nav.shrink {
+    padding: 11px 0;
+}
+
+nav.border {
+    border-bottom: solid 1px var(--white);
+}
+
+nav.transparent {
+    background-image: linear-gradient(rgba(50, 50, 50, 1), rgba(50, 50, 50, 0.0));
+    background-color: transparent;
+    border-style: hidden;
+    transition: var(--short-transition);
+}
+
+/* NavBar content properties */
+nav .content {
+    display: flex;
+    margin: 0 auto;
+    align-items: center;
+    justify-content: space-between;
+    max-width: 80%;
+}
+
+nav .content h1 {
+    font-size: 24px;
+}
+
+nav .content h3 {
+    display: none;
+}
+
+/* Navbvar logo properties */
+nav .logo img{
+    display: flex;
+    transition: var(--long-transition);
+    max-height: 60px;
+}
+
+nav .logo img.shrink {
+    transition: var(--long-transition);
+    max-height: 50px;
+}
+
+/* Mobile menu hamburger toggle */
+nav .toggle-box {
+    display: none;
+    width: 30px;
+    height: 20px;
+    margin: auto 5px;
+    cursor: pointer;
+}
+
+nav .toggle {
+    display: none;
+    width: 30px;
+    height: 20px;
+    margin: 0;
+    padding: 0;
+    transition: var(--long-transition);
+    cursor: pointer;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+nav .toggle.active {
+    height: 3px;
+    margin: 10px auto;
+    transition: var(--long-transition);
+}
+
+nav .toggle-bar {
+    width: 100%;
+    height: 3px;
+    background-color: var(--white);
+    border-radius: 3px;
+}
+
+/* Navbar menu properties */
+nav .menu {
+    display: flex;
+    margin: 0 0 0 auto;
+    padding: 0;
+    list-style: none;
+}
+
+nav .menu li {
+    margin: auto 15px;
+    transition: var(--long-transition);
+    padding: 10px 0px;
+}
+
+nav .menu li:hover {
+    transition: var(--long-transition);
+    transform: scale(1.05);
+    text-shadow: none;
+}
+
+nav .menu li .fa {
+    margin-right: 5px;
+}
+
+nav .menu a {
+    color: var(--white);
+    transition: var(--long-transition);
+    text-decoration: none;
+}
+
+nav .menu a:hover {
+    color: var(--light-gray);
+    transition: var(--long-transition);
+}
+
+nav .menu .btn {
+    border: 1px solid var(--light);
+    border-radius: 5px;
+    padding: 10px 20px;
+    color: var(--light);
+    background-color: var(--dark);
+    font-size: var(--navbar-font-size);
+    display: inline-block;
+    cursor: pointer;
+}
+
+nav .dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+nav .dropdown .activate {
+    display: block;
+}
+  
+nav .dropdown-menu {
+    display: none;
+    position: absolute;
+    list-style-type: none;
+    margin: 0px;
+    padding: 0px;
+    width: 240px;
+    background-color: var(--dark);
+    border: 1px solid var(--white);
+    border-radius: 5px;
+}
+  
+nav .dropdown-menu a {
+    color: var(--white);
+    text-decoration: none;
+    display: block;
+}
+
+nav .dropdown:hover .dropdown-menu {display: inline;}
+
+/* Navbar social menu properties */
+nav .social-icons {
+    display: flex;
+}
+
+nav .social-icons a {
+    margin-left: 12px;
+    color: var(--white);
+    font-size: 20px;
+}
+
+.social-icons .fab:hover {
+    transition: var(--long-transition);
+    transform: scale(1.25);
+}
+
+/* Navbar Social On Hover Colors */
+.social-icons .fa-facebook:hover {
+    color: var(--facebook-color);
+}
+
+.social-icons .fa-instagram:hover {
+    color: var(--instagram-color);
+}
+
+.social-icons .fa-x-twitter:hover {
+    color: var(--x-color);
+}
+
+.social-icons .fa-mastodon:hover {
+    color: var(--mastodon-color);
+}
+
+/* Navbar content area properties */
+header {
+    display: contents;
+}
+
+
+
+/* Mobile devices properties */
+@media (max-width: 992px) {
+
+    /*
+        Full Navbar = 15 Top Padding, 150Bottom Padding, 50 Image (15+15+50 = 80)
+        Shrinked Navbar = 10 Top Padding, 10 Bottom Padding, 40 Image (10+10+40 = 60)
+    */
+    nav .dropdown-menu {
+        display: none;
+        position: relative;
+        list-style-type: none;
+        background-color: transparent;
+        border: none;
+    }
+
+    /* Navbar properties */
+    nav {
+        padding: 15px 0;
+    }
+
+    nav.shrink {
+        padding: 10px 0;
+    }
+
+    /* NavBar content properties */
+    nav .content {
+        max-width: 90%;
+    }
+
+    /* Navbvar logo properties */
+    nav .logo img {
+        max-height: 50px;
+    }
+
+    nav .logo img.shrink {
+        max-height: 40px;
+    }
+
+    /* Mobile menu hamburger toggle */
+    nav .toggle-box {
+        display: flex;
+    }
+
+    nav .toggle {
+        display: flex;
+    }
+
+    .toggle-bar {
+        width: 100%;
+        height: 3px;
+        background-color: var(--white);
+        border-radius: 3px;
+    }
+
+    /* Navbar menu properties */
+    nav .menu {
+        position: absolute;
+        top: 80px;  /* Full Navbar = 15 Top Padding, 15 Bottom Padding, 50 Image (15+15+50 = 80) */
+        left: 0;
+        width: 100%;
+        margin: -5px 0;
+        padding: 15px 0;
+        background-color: var(--dark);
+        flex-direction: column;
+        text-align: center;
+        visibility: hidden;
+        transition: opacity var(--long-transition), visibility 0s var(--long-transition);
+        opacity: 0;
+    }
+
+    nav .menu.active {
+        visibility: visible;
+        transition: opacity var(--short-transition);
+        opacity: 1;
+    }
+
+    nav .menu.shrink {
+        top: 60px;  /* Shrinked Navbar = 10 Top Padding, 10 Bottom Padding, 40 Image (10+10+40 = 60) */
+    }
+
+    nav .menu li {
+        margin: 5px 0;
+    }
+
+    nav .menu a {
+        color: var(--white);
+        transition: var(--long-transition);
+        text-decoration: none;
+    }
+
+    nav .menu .btn {
+        border: 1px solid var(--light);
+        border-radius: 5px;
+        padding: 10px 80px;
+        margin: 10px auto;
+    }
+
+
+    /* Navbar social menu properties */
+    nav .social-box {
+        margin: 0 auto;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    nav .social-icons {
+        position: fixed;
+        top: 255px;
+        left: 0;
+        width: 100%;
+        padding: 20px 0;
+        background-color: var(--dark);
+        border-bottom: var(--white) solid 1px;
+        text-align: center;
+        visibility: hidden;
+        transition: opacity var(--long-transition), visibility 0s var(--long-transition);
+        opacity: 0;
+    }
+
+    nav .social-icons.shrink {
+        top: 235px;
+    }
+
+    nav .social-icons.active {
+        visibility: visible;
+        transition: opacity 0.15s;
+        opacity: 1;
+    }
+
+    nav .social-icons a {
+        margin-left: 12px;
+        color: var(--white);
+        font-size: 20px;
+    }
+
+    .social-icons .fab:hover {
+        transition: var(--long-transition);
+        transform: scale(1.25);
+    }
+
+    /* Navbar Social On Hover Colors */
+    .social-icons .fa-facebook:hover {
+        color: var(--facebook-color);
+    }
+
+    .social-icons .fa-instagram:hover {
+        color: var(--instagram-color);
+    }
+
+    .social-icons .fa-x-twitter:hover {
+        color: var(--x-color);
+    }
+
+    .social-icons .fa-mastodon:hover {
+        color: var(--mastodon-color);
+    }
+
+    /* Navbar content area properties */
+    header {
+        display: contents;
+    }
+
+}

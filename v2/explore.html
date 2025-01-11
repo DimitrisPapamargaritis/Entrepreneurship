@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- Primary Meta Tags -->
+    <link rel="shortcut icon" type="image/x-icon" href="./assets/media/branding/collabrew_icon_128x128.png" />
+    <meta name="title" content="Collabrew ">
+    <meta name="description" content="Find your next co-working space!">
+    <meta name="keywords" content="Collabrew, Co-Working Space, Workplace">
+    <meta name="theme-color" content="#302728">
+
+    <!-- Open Graph / Facebook Meta Properties -->
+    <meta property="og:title" content="Collabrew" />
+    <meta property="og:description" content="Find your next co-working space!" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://example.com" />
+    <meta property="og:image" cont ent="https://example.com/assets/media/branding/collabrew_logo.png" />
+
+    <!-- Twitter Meta Properties -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://example.com/">
+    <meta property="twitter:title" content="Collabrew">
+    <meta property="twitter:description" content="Find your next co-working space!">
+    <meta property="twitter:image" content="https://example.com/assets/media/branding/collabrew_logo.png">
+
+    <!-- Title -->
+    <title>Explore Places | Collabrew</title>
+
+    <!-- CSS Stylesheets -->
+    <link rel="stylesheet" type="text/css" href="./assets/css/style.css" />
+    <link rel="stylesheet" type="text/css" href="./assets/fontawsome/css/fontawesome.min.css" />
+    <link rel="stylesheet" type="text/css" href="./assets/fontawsome/css/all.min.css" />
+
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+
+    <style>
+        #map {
+            height: 100vh;
+            width: auto;
+            background-color: #224f62;
+        }
+
+    </style>
+</head>
+
+<body>
+
+    <nav class="border">
+        <div class="content">
+            <header>
+                <a class="logo" href="./">
+                    <img src="./assets/media/branding/collabrew_icon_800x800.png" alt="Collabrew Logo" />
+                </a>
+                <h1>Collabrew</h1>
+                <h3>Find your next co-working space!</h3>
+
+                <ul class="menu">
+                    <li><a href="./index.html">Home</a></li>
+                    <li><a href="./explore.html">Explore</a></li>
+                    <li><a href="./about.html">About</a></li>
+                    <li><a href="./contact.html">Contact</a></li>
+                    <li class="btn">
+                        <a href="./auth.html">Σύνδεση / Εγγραφή</a>
+                    </li>
+                </ul>
+
+            </header>
+            <!-- Mobile Menu Toggle Icon -->
+            <div class="toggle-box">
+                <div class="toggle">
+                    <div class="toggle-bar"></div>
+                    <div class="toggle-bar"></div>
+                    <div class="toggle-bar"></div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="background"></div>
+
+    <div class="page">
+        <div class="container">
+            <div class="content">
+                <main>
+
+                    <!-- Left Side: List of Places -->
+
+                    <div class="row">
+                        <div class="column col-30" style="overflow-y: auto; height: 100vh;">
+                            <div class="boxed">
+                                <h4>Available Places</h4>
+                            </div>
+
+                            <a href="#" id="link-location-1">
+                                <div class="row col-element hover-opacity itemlist column">
+                                    <div class="column col-30">
+                                        <img src="./assets/media/destination1.jpg" alt="Place 1 Image" height="160px"
+                                            loading="lazy">
+                                    </div>
+                                    <div class="column col-70">
+                                        <h5>Place 1</h5>
+                                        <p>Distance: 1.2 km away</p>
+                                        <p>Rating:
+                                            <i class="fa fa-solid fa-star"></i>
+                                            <i class="fa fa-solid fa-star"></i>
+                                            <i class="fa fa-solid fa-star"></i>
+                                            <i class="fa fa-solid fa-star"></i>
+                                            <i class="fa fa-solid fa-star"></i>
+                                        </p>
+                                    </div>
+                                </div>
+                            </a>
+
+                            <a href="#" id="link-location-2">
+                                <div class="row col-element hover-opacity itemlist column">
+                                    <div class="column col-30">
+                                        <img src="./assets/media/destination1.jpg" alt="Place 1 Image" height="160px"
+                                            loading="lazy">
+                                    </div>
+                                    <div class="column col-70">
+                                        <h5>Place 1</h5>
+                                        <p>Distance: 1.2 km away</p>
+                                        <p>Rating:
+                                            <i class="fa fa-solid fa-star"></i>
+                                            <i class="fa fa-solid fa-star"></i>
+                                            <i class="fa fa-solid fa-star"></i>
+                                            <i class="fa fa-solid fa-star"></i>
+                                            <i class="fa fa-solid fa-star"></i>
+                                        </p>
+                                    </div>
+                                </div>
+                            </a>
+
+                            <div class="row col-element hover-opacity itemlist column">
+                                <div class="column col-30">
+                                    <img src="./assets/media/destination1.jpg" alt="Place 1 Image" height="160px"
+                                        loading="lazy">
+                                </div>
+                                <div class="column col-70">
+                                    <p>Distance: 1.2 km away</p>
+                                    <p>Rating:
+                                        <i class="fa fa-solid fa-star"></i>
+                                        <i class="fa fa-solid fa-star"></i>
+                                        <i class="fa fa-solid fa-star"></i>
+                                        <i class="fa fa-solid fa-star"></i>
+                                        <i class="fa fa-solid fa-star"></i>
+                                    </p>
+                                </div>
+                            </div>
+
+                            <div class="row col-element hover-opacity itemlist column">
+                                <div class="column col-30">
+                                    <img src="./assets/media/destination1.jpg" alt="Place 1 Image" height="160px"
+                                        loading="lazy">
+                                </div>
+                                <div class="column col-70">
+                                    <p>Distance: 1.2 km away</p>
+                                    <p>Rating:
+                                        <i class="fa fa-solid fa-star"></i>
+                                        <i class="fa fa-solid fa-star"></i>
+                                        <i class="fa fa-solid fa-star"></i>
+                                        <i class="fa fa-solid fa-star"></i>
+                                        <i class="fa fa-solid fa-star"></i>
+                                    </p>
+                                </div>
+                            </div>
+
+                            <div class="row col-element hover-opacity itemlist column">
+                                <div class="column col-30">
+                                    <img src="./assets/media/destination1.jpg" alt="Place 1 Image" height="160px"
+                                        loading="lazy">
+                                </div>
+                                <div class="column col-70">
+                                    <p>Distance: 1.2 km away</p>
+                                    <p>Rating:
+                                        <i class="fa fa-solid fa-star"></i>
+                                        <i class="fa fa-solid fa-star"></i>
+                                        <i class="fa fa-solid fa-star"></i>
+                                        <i class="fa fa-solid fa-star"></i>
+                                        <i class="fa fa-solid fa-star"></i>
+                                    </p>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <!-- Right Side: Map -->
+                        <div class="column col-70">
+                            <div class="" id="map"></div>
+                        </div>
+                    </div>
+
+                </main>
+            </div>
+        </div>
+    </div>
+
+    <script src="./assets/js/jquery.min.js"></script>
+    <script src="./assets/js/fadeElement.js"></script>
+
+    <footer>
+
+        <div class="row boxed">
+            <div class="column col-30 align-center">
+                <img src="./assets/media/branding/collabrew_logo_800x800.png" alt="Collabrew Logo" width="180px" />
+                <p>Our mission is help people discover their new workplace.</p>
+
+            </div>
+
+            <div class="column col-30 align-center">
+                <h4>Get in Touch</h4>
+                <p>
+                    Email: contact@example.com<br>
+                    Phone: +30 2101234567<br>
+                    Address: Larisis 1, Larissa, Greece
+                </p>
+            </div>
+
+            <div class="column col-30 align-center">
+                <h4>Info</h4>
+                <p>
+                    <a href="./legal/terms.html">Terms of Service</a><br>
+                    <a href="./legal/privacy.html">Privacy Policy</a><br>
+                    <a href="./about.html">Company</a>
+                </p>
+            </div>
+        </div>
+
+        </div>
+        <p>
+            <br>&copy <span id="CurrentYear"></span> Collabrew - All rights reserved. <br>
+        </p>
+
+    </footer>
+
+    <script src="./assets/js/navbarEvents.js"></script>
+    <script src="./assets/js/getYear.js"></script>
+
+
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    <script src="./assets/js/map/map.js"></script>
+
+</body>
+
+</html>

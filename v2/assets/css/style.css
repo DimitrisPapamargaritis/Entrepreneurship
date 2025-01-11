@@ -1,0 +1,531 @@
+/* Import Globaly Defined Variables from Theme */
+@import "./theme.css";
+
+/* Import Header & Footer CSS */
+@import "./navbar.css";
+@import "./form.css";
+@import "./footer.css";
+
+html,
+body {
+    /* Remove browser's margin & padding */
+    margin: 0;
+    padding: 0;
+    /* Default text color, background collor & font */
+    color: var(--white);
+    font-family: var(--page-font), Arial, sans-serif;
+    font-size: var(--font-size);
+    background: var(--darker);
+}
+
+/* Changing text selection colors */
+::-moz-selection {
+    color: var(--white);
+    background: var(--blue);
+}
+
+::selection {
+    color: var(--white);
+    background: var(--blue);
+}
+
+a::-moz-selection {
+    background: var(--blue);
+}
+
+a::selection {
+    background: var(--blue);
+}
+
+/* Setting fixed background image */
+.background {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background-attachment: fixed;
+    background-image: url("./../media/background.png");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    opacity: 80%;
+}
+
+/* Default font, font size & font color */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+    font-family: var(--page-font);
+    margin: 10px;
+    line-height: 150%;
+}
+
+h1 {
+    font-size: 2.2rem;
+    font-weight: 700;
+}
+
+h2 {
+    font-size: 2rem;
+    font-weight: 700;
+}
+
+h3 {
+    font-size: 1.8rem;
+    font-weight: 700;
+}
+
+h4 {
+    font-size: 1.6rem;
+    font-weight: 400;
+}
+
+h5 {
+    font-size: 1.4rem;
+    font-weight: 400;
+}
+
+h6 {
+    font-size: 1.2rem;
+    font-weight: 400;
+}
+
+p {
+    font-size: 1rem;
+    font-weight: 400;
+}
+
+/* Default link colors & decorations */
+a {
+    color: var(--blue-light);
+    transition: var(--short-transition);
+    text-decoration: none;
+}
+
+a:hover {
+    color: var(--blue);
+    transition: var(--short-transition);
+    text-decoration: none;
+}
+
+/* Page area properties */
+.page {
+    padding: 96px 0px 0px 0px;
+    min-height: calc(100vh - 96px);
+}
+
+/* Container layout properties */
+.container {
+    display: flex;
+}
+
+.container.center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: calc(100vh - 96px);
+}
+
+/* Content layout properties */
+.content {
+    width: 100%;
+    z-index: 0;
+}
+
+/* Page layout properties */
+.boxed {
+    width: 80%;
+    margin: 40px auto;
+    padding: 20px;
+    background-color: var(--dark);
+    border-radius: 5px;
+}
+
+.boxed.narrow {
+    width: 50%;
+    margin: 40px auto;
+    padding: 20px;
+    background-color: var(--dark);
+    border-radius: 5px;
+}
+
+.boxed.transparent {
+    background-color: transparent;
+}
+
+.full-width {
+    width: auto;
+    margin: 20px;
+    border-radius: 5px;
+    padding: 0;
+}
+
+.header {
+    position: relative;
+    overflow: hidden;
+    background-color: rgba(48, 39, 40, 0.8);
+    outline: 1px solid white;
+    outline-offset: -1px;
+}
+
+.header::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-image: url("../media/header.png");
+    background-position: center;
+    background-repeat: repeat;
+    background-size: contain;
+    z-index: -1;
+}
+
+/* Column layout properties */
+.row {
+    display: flex;
+    justify-content: center;
+}
+
+.column {
+    padding: 0;
+    margin-right: 10px;
+}
+
+.col-center {
+    align-self: center;
+}
+
+.col-right {
+    text-align: right;
+}
+
+.col-left {
+    text-align: left;
+}
+
+.col-70 {
+    width: 70%;
+}
+
+.col-50 {
+    width: 50%;
+}
+
+.col-30 {
+    width: 30%;
+}
+
+/* Item list layout properties */
+.col-element {
+    margin: 20px 10px;
+    padding: 20px;
+    color: var(--dark);
+    background-color: var(--light);
+    transition: 0.3s;
+    border-radius: 5px;
+}
+
+.col-element img {
+    width: 100%;
+    margin: 0;
+    aspect-ratio: 16 / 9;
+    border-radius: 5px;
+    object-fit: cover;
+}
+
+.hover-opacity:hover {
+    transition: 0.3s;
+    opacity: 60%;
+}
+
+.device-img {
+    transition: 0.3s;
+    border-radius: 5px;
+}
+
+.device-img img {
+    aspect-ratio: 16 / 9;
+    border-radius: 5px;
+    object-fit: cover;
+    width: 100%;
+}
+
+.itemlist h1,
+.itemlist h2,
+.itemlist h3,
+.itemlist h4,
+.itemlist h5,
+.itemlist h6,
+.itemlist p {
+    margin: 5px;
+    line-height: 125%;
+}
+
+.itemlist h1 {
+    font-size: 2.1rem;
+}
+
+.itemlist h2 {
+    font-size: 1.9rem;
+}
+
+.itemlist h3 {
+    font-size: 1.7rem;
+}
+
+.itemlist h4 {
+    font-size: 1.5rem;
+}
+
+.itemlist h5 {
+    font-size: 1.3rem;
+}
+
+.itemlist h6 {
+    font-size: 1.1rem;
+}
+
+.itemlist p {
+    font-size: 0.9rem;
+}
+
+/* Text layout properties */
+.align-center {
+    text-align: center;
+}
+
+.align-left {
+    text-align: left;
+}
+
+.align-right {
+    text-align: right;
+}
+
+.bold {
+    font-weight: 900;
+}
+
+/* Other properties */
+.msgDisplay {
+    color: var(--blue-light);
+}
+
+.text-content {
+    text-align: justify;
+}
+
+.btn {
+    border: 1px solid var(--light);
+    border-radius: 5px;
+    margin: 10px;
+    padding: 10px 20px;
+    color: var(--light);
+    background-color: var(--dark);
+    font-size: 1rem;
+    display: inline-block;
+    cursor: pointer;
+}
+
+.btn.pagelink {
+    margin: 0px;
+    margin-left: 5px;
+    padding: 10px;
+}
+
+.col-element .btn {
+    margin: 5px;
+}
+
+.btn:hover {
+    transition: var(--long-transition);
+    transform: scale(1.05);
+    text-shadow: none;
+    border-color: var(--light-gray);
+    color: var(--light-gray);
+}
+
+.search-box {
+    width: 50%;
+    padding: 10px;
+    margin: 5px;
+    border: 1px solid var(--light);
+    border-radius: 5px;
+}
+
+/* Split-line layout properties */
+hr.split-line {
+    width: 80%;
+    height: 3px;
+    margin: 20px auto;
+    border: 0;
+    background-color: var(--darker);
+    border-radius: 3px;
+}
+
+hr.split-line.white {
+    background-color: var(--white);
+}
+
+.col-element hr {
+    margin: 10px auto;
+}
+
+.itemlist hr {
+    width: 50%;
+    border: 0;
+    background-color: var(--darker);
+    height: 2px;
+    border-radius: 2px;
+    margin-inline-start: 5px;
+}
+
+/* Mobile devices properties */
+@media (max-width: 1200px) {
+    .boxed.narrow {
+        width: 60%;
+        margin: 20px auto;
+        padding: 10px 15px;
+    }
+}
+
+/* Mobile devices properties */
+@media (max-width: 992px) {
+    /* Default font size */
+    h1 {
+        font-size: 1.8rem;
+    }
+
+    h2 {
+        font-size: 1.65rem;
+    }
+
+    h3 {
+        font-size: 1.5rem;
+    }
+
+    h4 {
+        font-size: 1.35rem;
+    }
+
+    h5 {
+        font-size: 1.2rem;
+    }
+
+    h6 {
+        font-size: 1.05rem;
+    }
+
+    p {
+        font-size: 0.9rem;
+    }
+
+    /* Page area properties */
+    .page {
+        padding: 80px 0px 0px 0px;
+        min-height: calc(100vh - 80px);
+    }
+
+    /* Container & content layout properties */
+    .container.center {
+        min-height: calc(100vh - 80px);
+    }
+
+    /* Page layout properties */
+    .boxed {
+        width: 90%;
+        margin: 20px auto;
+        padding: 10px;
+    }
+
+    .boxed.narrow {
+        width: 70%;
+        margin: 20px auto;
+        padding: 10px;
+    }
+
+    .full-width {
+        width: 100%;
+        margin: 0;
+        padding: 0;
+    }
+
+    /* Column layout properties */
+    .row {
+        display: block;
+    }
+
+    .column {
+        width: 100%;
+        margin: 10px 0;
+    }
+
+    /* Post card layout properties */
+    .col-element {
+        margin: 10px auto;
+        padding: 10px;
+        text-align: center;
+    }
+
+    .col-element img {
+        margin-bottom: 10px;
+    }
+
+    .itemlist h1,
+    .itemlist h2,
+    .itemlist h3,
+    .itemlist h4,
+    .itemlist h5,
+    .itemlist h6,
+    .itemlist p {
+        margin: 5px;
+        line-height: 125%;
+    }
+
+    .itemlist h1 {
+        font-size: 1.5rem;
+    }
+
+    .itemlist h2 {
+        font-size: 1.4rem;
+    }
+
+    .itemlist h3 {
+        font-size: 1.3rem;
+    }
+
+    .itemlist h4 {
+        font-size: 1.2rem;
+    }
+
+    .itemlist h5 {
+        font-size: 1.1rem;
+    }
+
+    .itemlist h6 {
+        font-size: 1rem;
+    }
+
+    .itemlist p {
+        font-size: 0.9rem;
+    }
+
+    /* Split-line layout properties */
+    hr.split-line {
+        margin: 20px auto;
+    }
+}
+
+/* Mobile devices properties */
+@media (max-width: 768px) {
+    .boxed.narrow {
+        width: 90%;
+        margin: 20px auto;
+        padding: 10px 15px;
+    }
+}

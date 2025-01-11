@@ -1,0 +1,49 @@
+/* Navbar CSS */
+
+/* Import Globaly Defined Variables from Theme */
+@import "./theme.css";
+
+label {
+    display: inline-block;
+    margin-top: 5px;
+}
+
+input {
+    font-size: 0.9rem;
+    font-family: var(--page-font);
+}
+
+.form-input {
+    width: 320px;
+    padding: 5px;
+    margin: 5px;
+    border: 1px solid var(--light);
+    border-radius: 5px;
+}
+
+.form-input-symbol {
+    width: 295px;
+    padding: 5px;
+    margin: 5px;
+    border: 1px solid var(--light);
+    border-radius: 5px;
+}
+
+.form-input-short {
+    width: 180px;
+    padding: 5px;
+    margin: 5px;
+    border: 1px solid var(--light);
+    border-radius: 5px;
+}
+
+.hidden-element {
+    transition: var(--long-transition);
+    display: none;
+    border: 1px solid var(--light);
+    border-radius: 5px;
+}
+
+:disabled {
+    background-color: var(--light-gray);
+}

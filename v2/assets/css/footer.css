@@ -1,0 +1,19 @@
+/* Footer CSS */
+
+/* Import Globaly Defined Variables from Theme */
+@import "./theme.css";
+
+/* Footer properties */
+footer {
+    position: relative;
+    padding: 10px 5px;
+    background-color: var(--dark);
+}
+
+footer p {
+    text-align: center;
+}
+
+@media (max-width: 992px) {
+
+}

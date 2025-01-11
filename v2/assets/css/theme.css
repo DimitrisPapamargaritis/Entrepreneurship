@@ -1,0 +1,37 @@
+/* Globaly Defined CSS Variables */
+:root {
+    --dark: #302728;
+    --darker: #221d1e;
+    --blue-light: #31a5ed;
+    --blue: #224f62;
+    --light-gray: #c9c9c9;
+    --light: #fafafa;
+    --white: #ffffff;
+  
+    --font-size: 18px;
+    --navbar-font-size: 16px;
+  
+    --navbar-font: 'Comfortaa';
+    --heading-font: 'Comfortaa';
+    --page-font: 'Comfortaa';
+    --cards-font: 'Comfortaa';
+
+    --font-1: 'Comfortaa';
+
+    --short-transition: 0.15s;
+    --long-transition: 0.3s;
+  
+    --facebook-color: #0165E1;
+    --instagram-color: #E1306C;
+    --x-color: #787878;
+    --mastodon-color: #6364FF;
+  }
+
+  @font-face {
+    font-family: "Comfortaa";
+    src: url('../fonts/comfortaa/Comfortaa-Bold.ttf'),
+      url('../fonts/comfortaa/Comfortaa-Regular.ttf'),
+      url('../fonts/comfortaa/Comfortaa-Medium.ttf'),
+      url('../fonts/comfortaa/Comfortaa-SemiBold.ttf'),
+      url('../fonts/comfortaa/Comfortaa-Bold.ttf');
+  }
