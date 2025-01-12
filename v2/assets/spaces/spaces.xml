@@ -1,0 +1,34 @@
+      <locations>
+        <location>
+          <id>1</id>
+          <name>Wisedog</name>
+          <latitude>39.640774</latitude>
+          <longitude>22.414129</longitude>
+          <rating>5</rating>
+          <image>./assets/media/destination1.jpg</image>
+          <message>
+          <![CDATA[
+            <p>Wisedog<br>
+            <a href="https://maps.app.goo.gl/VUYdSewFA2abau9d9">Get directions</a>
+            </p>
+            <img src="./assets/spaces/images/1.png" alt="Wisedog" class="popup-img" style="width:280px;">
+          ]]>
+          </message>
+        </location>
+        <location>
+          <id>2</id>
+          <name>Ron</name>
+          <latitude>39.638247</latitude>
+          <longitude>22.413358</longitude>
+          <rating>4</rating>
+          <image>./assets/media/destination2.jpg</image>
+          <message>
+          <![CDATA[
+            <p>Ron<br>
+            <a href="https://maps.app.goo.gl/UdPsWZTpnQk4ztAN8">Get directions</a>
+            </p>
+            <img src="./assets/spaces/images/2.png" alt="Ron" class="popup-img" style="width:280px;">
+          ]]>
+          </message>
+          </location>
+      </locations>
