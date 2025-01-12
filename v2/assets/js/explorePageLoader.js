@@ -149,7 +149,7 @@ function generateLocationList(xmlDoc) {
 
                 // Create the main row div
                 var rowDiv = document.createElement("div");
-                rowDiv.className = "row col-element hover-opacity itemlist column";
+                rowDiv.className = "row col-element hover-opacity itemlist";
 
                 // Create the image column
                 var imgCol = document.createElement("div");
