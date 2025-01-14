@@ -31,6 +31,7 @@ document.addEventListener("DOMContentLoaded", function () {
         const popularPlacesContainer = document.querySelector(".row");
 
         topRatedLocations.forEach((location) => {
+            const id = location.getElementsByTagName("id")[0].textContent;
             const name = location.getElementsByTagName("name")[0].textContent;
             const image = location.getElementsByTagName("image")[0].textContent;
             const rating = parseFloat(location.getElementsByTagName("rating")[0].textContent);
@@ -47,6 +48,10 @@ document.addEventListener("DOMContentLoaded", function () {
 
             const colElementDiv = document.createElement("div");
             colElementDiv.className = "col-element hover-opacity";
+            colElementDiv.style.cursor = "pointer";
+            colElementDiv.addEventListener("click", () => {
+                window.location.href = `./explore.html?space=${encodeURIComponent(id)}`;
+            });
 
             const imgElement = document.createElement("img");
             imgElement.src = image;
