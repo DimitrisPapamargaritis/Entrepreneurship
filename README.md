@@ -1,2 +1,2 @@
 Website Link: https://dimitrispapamargaritis.github.io/Entrepreneurship/
-![alt text](velopoulos.png)
+Website Link v2: https://dimitrispapamargaritis.github.io/Entrepreneurship/v2
