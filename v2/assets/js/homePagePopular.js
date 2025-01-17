@@ -28,7 +28,25 @@ document.addEventListener("DOMContentLoaded", function () {
         });
 
         const topRatedLocations = locations.slice(0, 3); // Get top 3 rated locations
-        const popularPlacesContainer = document.querySelector(".row");
+
+        // Ensure a div with class "row" exists
+        let rowContainer = document.querySelector(".row");
+        if (!rowContainer) {
+            rowContainer = document.createElement("div");
+            rowContainer.className = "row";
+            document.body.appendChild(rowContainer); // Append to body or another parent element
+        }
+
+        // Create a div with id="popular-places" inside the row container
+        let popularPlacesContainer = document.getElementById("popular-places");
+        if (!popularPlacesContainer) {
+            popularPlacesContainer = document.createElement("div");
+            popularPlacesContainer.id = "popular-places";
+            rowContainer.appendChild(popularPlacesContainer);
+        }
+
+        // Clear any existing content in the popularPlacesContainer
+        popularPlacesContainer.innerHTML = "";
 
         topRatedLocations.forEach((location) => {
             const id = location.getElementsByTagName("id")[0].textContent;
@@ -90,10 +108,7 @@ document.addEventListener("DOMContentLoaded", function () {
         const R = 6371; // Radius of the Earth in kilometers
         const dLat = degreesToRadians(lat2 - lat1);
         const dLon = degreesToRadians(lon2 - lon1);
-        const a =
-            Math.sin(dLat / 2) * Math.sin(dLat / 2) +
-            Math.cos(degreesToRadians(lat1)) * Math.cos(degreesToRadians(lat2)) *
-            Math.sin(dLon / 2) * Math.sin(dLon / 2);
+        const a = Math.sin(dLat / 2) * Math.sin(dLat / 2) + Math.cos(degreesToRadians(lat1)) * Math.cos(degreesToRadians(lat2)) * Math.sin(dLon / 2) * Math.sin(dLon / 2);
         const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
         return R * c;
     }
