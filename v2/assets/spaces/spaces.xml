@@ -53,13 +53,13 @@
           <latitude>39.64038864153555</latitude>
           <longitude>22.41405311305898</longitude>
           <rating>4.7</rating>
-          <image>./assets/spaces/images/4.jpg</image>
+          <image>./assets/spaces/images/4.png</image>
           <message>
           <![CDATA[
             <p>Connectiva<br>
             <a href="https://maps.app.goo.gl/YUW3adv4oXYFU7ar8">Get directions</a>
             </p>
-            <img src="./assets/spaces/images/4.jpg" style="width:280px;">
+            <img src="./assets/spaces/images/4.png" style="width:280px;">
           ]]>
           </message>
           </location>
@@ -69,13 +69,13 @@
           <latitude>39.64091457011043</latitude>
           <longitude>22.412560025731555</longitude>
           <rating>4.4</rating>
-          <image>./assets/spaces/images/5.jpg</image>
+          <image>./assets/spaces/images/5.png</image>
           <message>
           <![CDATA[
             <p>Noe'L<br>
             <a href="https://maps.app.goo.gl/rom7DBLrfPCJLk8UA">Get directions</a>
             </p>
-            <img src="./assets/spaces/images/5.jpg" style="width:280px;">
+            <img src="./assets/spaces/images/5.png" style="width:280px;">
           ]]>
           </message>
           </location>

@@ -28,7 +28,14 @@ document.addEventListener("DOMContentLoaded", function () {
         });
 
         const topRatedLocations = locations.slice(0, 3); // Get top 3 rated locations
-        const popularPlacesContainer = document.querySelector(".row");
+        const popularPlacesContainer = document.getElementById("popular-places");
+
+        if (!popularPlacesContainer) {
+            console.error("Container with id 'popular-places' not found!");
+            return;
+        }
+
+        popularPlacesContainer.innerHTML = ""; // Clear existing content
 
         topRatedLocations.forEach((location) => {
             const id = location.getElementsByTagName("id")[0].textContent;
@@ -43,46 +50,20 @@ document.addEventListener("DOMContentLoaded", function () {
                 distance = calculateDistance(userLat, userLng, latitude, longitude).toFixed(2) + " kilometers away";
             }
 
-            const columnDiv = document.createElement("div");
-            columnDiv.className = "column col-30";
+            const locationHTML = `
+                <div class="column col-30">
+                    <div class="col-element hover-opacity" style="cursor: pointer;" onclick="window.location.href='./explore.html?space=${encodeURIComponent(id)}'">
+                        <img src="${image}" alt="${name} Image">
+                        <h3>${name}</h3>
+                        <div class="star-review">
+                            ${generateStarsHTML(rating)}
+                        </div>
+                        <p>${distance}</p>
+                    </div>
+                </div>
+            `;
 
-            const colElementDiv = document.createElement("div");
-            colElementDiv.className = "col-element hover-opacity";
-            colElementDiv.style.cursor = "pointer";
-            colElementDiv.addEventListener("click", () => {
-                window.location.href = `./explore.html?space=${encodeURIComponent(id)}`;
-            });
-
-            const imgElement = document.createElement("img");
-            imgElement.src = image;
-            imgElement.alt = `${name} Image`;
-
-            const nameElement = document.createElement("h3");
-            nameElement.textContent = name;
-
-            const starReviewDiv = document.createElement("div");
-            starReviewDiv.className = "star-review";
-            for (let i = 0; i < Math.floor(rating); i++) {
-                const starIcon = document.createElement("i");
-                starIcon.className = "fa fa-solid fa-star";
-                starReviewDiv.appendChild(starIcon);
-            }
-            if (rating % 1 !== 0) {
-                const halfStarIcon = document.createElement("i");
-                halfStarIcon.className = "fa fa-solid fa-star-half-alt";
-                starReviewDiv.appendChild(halfStarIcon);
-            }
-
-            const distanceElement = document.createElement("p");
-            distanceElement.textContent = distance;
-
-            colElementDiv.appendChild(imgElement);
-            colElementDiv.appendChild(nameElement);
-            colElementDiv.appendChild(starReviewDiv);
-            colElementDiv.appendChild(distanceElement);
-
-            columnDiv.appendChild(colElementDiv);
-            popularPlacesContainer.appendChild(columnDiv);
+            popularPlacesContainer.insertAdjacentHTML("beforeend", locationHTML);
         });
     }
 
@@ -90,15 +71,27 @@ document.addEventListener("DOMContentLoaded", function () {
         const R = 6371; // Radius of the Earth in kilometers
         const dLat = degreesToRadians(lat2 - lat1);
         const dLon = degreesToRadians(lon2 - lon1);
-        const a =
-            Math.sin(dLat / 2) * Math.sin(dLat / 2) +
-            Math.cos(degreesToRadians(lat1)) * Math.cos(degreesToRadians(lat2)) *
-            Math.sin(dLon / 2) * Math.sin(dLon / 2);
+        const a = Math.sin(dLat / 2) * Math.sin(dLat / 2) + Math.cos(degreesToRadians(lat1)) * Math.cos(degreesToRadians(lat2)) * Math.sin(dLon / 2) * Math.sin(dLon / 2);
         const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
         return R * c;
     }
 
     function degreesToRadians(degrees) {
         return degrees * (Math.PI / 180);
+    }
+
+    function generateStarsHTML(rating) {
+        const fullStars = Math.floor(rating);
+        const hasHalfStar = rating % 1 !== 0;
+        let starsHTML = "";
+
+        for (let i = 0; i < fullStars; i++) {
+            starsHTML += `<i class="fa fa-solid fa-star"></i>`;
+        }
+        if (hasHalfStar) {
+            starsHTML += `<i class="fa fa-solid fa-star-half-alt"></i>`;
+        }
+
+        return starsHTML;
     }
 });
