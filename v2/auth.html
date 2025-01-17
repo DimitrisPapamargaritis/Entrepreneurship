@@ -17,23 +17,58 @@
     <meta property="og:description" content="Find your next co-working space!" />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://example.com" />
-    <meta property="og:image" cont ent="https://dimitrispapamargaritis.github.io/Entrepreneurship/v2/assets/media/branding/collabrew_logo_bg.png" />
+    <meta property="og:image" cont
+        ent="https://dimitrispapamargaritis.github.io/Entrepreneurship/v2/assets/media/branding/collabrew_logo_bg.png" />
 
     <!-- Twitter Meta Properties -->
     <meta property="twitter:card" content="summary_large_image">
     <meta property="twitter:url" content="https://example.com/">
     <meta property="twitter:title" content="Collabrew">
     <meta property="twitter:description" content="Find your next co-working space!">
-    <meta property="twitter:image" content="https://dimitrispapamargaritis.github.io/Entrepreneurship/v2/assets/media/branding/collabrew_logo_bg.png">
+    <meta property="twitter:image"
+        content="https://dimitrispapamargaritis.github.io/Entrepreneurship/v2/assets/media/branding/collabrew_logo_bg.png">
 
     <!-- Title -->
-    <title>Log-in | Collabrew</title>
+    <title>Collabrew - Find your next co-working space!"</title>
 
     <!-- CSS Stylesheets -->
     <link rel="stylesheet" type="text/css" href="./assets/css/style.css" />
     <link rel="stylesheet" type="text/css" href="./assets/fontawsome/css/fontawesome.min.css" />
     <link rel="stylesheet" type="text/css" href="./assets/fontawsome/css/all.min.css" />
 
+    <!-- Scripts -->
+    <script src="./assets/js/homePagePopular.js"></script>
+
+    <style>
+        .background {
+            background: var(--light);
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            background-attachment: fixed;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+
+        }
+
+        .header {
+            align-content: center;
+            background-color: rgba(48, 39, 40, 0.6);
+            outline: 0px;
+            min-height: 60vh;
+        }
+
+        .boxed.light {
+            color: var(--dark)
+        }
+
+        .column:hover {
+            transition-duration: 0.8s;
+            box-shadow: 8px 10px 10px 9px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+    <script src="./index.js" defer></script>
 </head>
 
 <body>
@@ -70,5 +105,77 @@
     </nav>
 
     <div class="background"></div>
+
+    <div class="page">
+        <div class="container">
+            <div class="content">
+                <main>
+
+                    <div class="header">
+                        <div class="boxed transparent align-center">
+                            <img src="./assets/media/branding/collabrew_logo_800x800.png" alt="Collabrew Logo"
+                                rel="preload" width="220px" height="220px">
+                            <h3>Find your next co-working space!</h3>
+
+                            <form action="#">
+                                <input type="text" id="search" name="search" class="search-box" aria-label="Search"
+                                    placeholder="Where are you going next?">
+                                <span class="btn"><i class="fa-solid fa-magnifying-glass"></i>
+                                    <input type="submit" value="Search"></span>
+                            </form>
+                        </div>
+                    </div>
+
+                    <div class="boxed light transparent align-center">
+                        <h3>Popular Places</h3>
+                        <div class="row">
+                            <!-- Top-rated places will be inserted here by JavaScript -->
+                        </div>
+                    </div>
+
+                </main>
+            </div>
+        </div>
+    </div>
+
     <script src="./assets/js/jquery.min.js"></script>
     <script src="./assets/js/fadeElement.js"></script>
+
+    <footer>
+        <div class="row boxed">
+            <div class="column col-30 align-center">
+                <img src="./assets/media/branding/collabrew_logo_800x800.png" alt="Collabrew Logo" width="180px" />
+                <p>Our mission is help people discover their new workplace.</p>
+
+            </div>
+
+            <div class="column col-30 align-center">
+                <h4>Get in Touch</h4>
+                <p>
+                    Email: contact@example.com<br>
+                    Phone: +30 2101234567<br>
+                    Address: Larisis 1, Larissa, Greece
+                </p>
+            </div>
+
+            <div class="column col-30 align-center">
+                <h4>Info</h4>
+                <p>
+                    <a href="./legal/terms.html">Terms of Service</a><br>
+                    <a href="./legal/privacy.html">Privacy Policy</a><br>
+                    <a href="./about.html">Company</a>
+                </p>
+            </div>
+        </div>
+
+        </div>
+        <p>
+            <br>&copy <span id="CurrentYear"></span> Collabrew - All rights reserved. <br>
+        </p>
+    </footer>
+
+    <script src="./assets/js/navbarEvents.js"></script>
+    <script src="./assets/js/getYear.js"></script>
+
+</body>
+</html>
