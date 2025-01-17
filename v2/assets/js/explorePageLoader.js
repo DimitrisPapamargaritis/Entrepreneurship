@@ -74,6 +74,7 @@ function generateMapPoints(xmlDoc) {
     // Loop through each location and add a marker to the map
     for (var i = 0; i < locations.length; i++) {
         var id = locations[i].getElementsByTagName("id")[0].textContent;
+        var name = locations[i].getElementsByTagName("name")[0].textContent;
         var latitude = parseFloat(locations[i].getElementsByTagName("latitude")[0].textContent);
         var longitude = parseFloat(locations[i].getElementsByTagName("longitude")[0].textContent);
         var message = locations[i].getElementsByTagName("message")[0].textContent;
@@ -117,169 +118,135 @@ function generateLocationList(xmlDoc) {
 
     var locationsList = document.getElementById("locations-list");
 
-    // Get the user's current location
-    navigator.geolocation.getCurrentPosition(
-        function (position) {
-            const userLatitude = position.coords.latitude;
-            const userLongitude = position.coords.longitude;
-            const userLatLng = L.latLng(userLatitude, userLongitude);
+    // Function to generate the list HTML
+    function createLocationList(locationsToDisplay, sortBy) {
+        locationsList.innerHTML = ''; // Clear previous list
+        locationsToDisplay.forEach(location => {
+            var id = location.getElementsByTagName("id")[0].textContent;
+            var name = location.getElementsByTagName("name")[0].textContent;
+            var latitude = parseFloat(location.getElementsByTagName("latitude")[0].textContent);
+            var longitude = parseFloat(location.getElementsByTagName("longitude")[0].textContent);
+            var rating = parseInt(location.getElementsByTagName("rating")[0].textContent, 10);
+            var image = location.getElementsByTagName("image")[0].textContent;
+            console.log(`LIST - Processing location: ${id}, ${name}`);
 
-            // Loop through each location and create the corresponding HTML element
-            for (var i = 0; i < locations.length; i++) {
-                // Safely retrieve each field and handle missing elements
-                var id = locations[i].getElementsByTagName("id")[0].textContent;
-                var name = locations[i].getElementsByTagName("name")[0].textContent;
-                var latitude = parseFloat(locations[i].getElementsByTagName("latitude")[0].textContent);
-                var longitude = parseFloat(locations[i].getElementsByTagName("longitude")[0].textContent);
-                var rating = parseInt(locations[i].getElementsByTagName("rating")[0].textContent, 10);
-                var image = locations[i].getElementsByTagName("image")[0].textContent;
-                console.log(`LIST - Processing location: ${id}, ${name}`);
 
-                // Create LatLng object for the location
-                const locationLatLng = L.latLng(latitude, longitude);
+            // Create the main anchor element
+            var link = document.createElement("a");
+            link.href = `explore.html?space=${id}&sort=${sortBy}`; // Include sort parameter
+            link.style.textDecoration = "none";
+            link.style.color = "inherit";
 
-                // Calculate the distance from the user's location (in km)
-                const distance = userLatLng.distanceTo(locationLatLng) / 1000; // Convert meters to kilometers
+            // Create the main row div
+            var rowDiv = document.createElement("div");
+            rowDiv.className = "row col-element hover-opacity itemlist";
 
-                // Create the main anchor element
-                var link = document.createElement("a");
-                link.href = `?space=${id}`;
-                link.style.textDecoration = "none";
-                link.style.color = "inherit";
+            // Create the image column
+            var imgCol = document.createElement("div");
+            imgCol.className = "column col-30";
+            var imgElement = document.createElement("img");
+            imgElement.src = image;
+            imgElement.alt = `${name} Image`;
+            imgElement.height = 100;
+            imgCol.appendChild(imgElement);
 
-                // Create the main row div
-                var rowDiv = document.createElement("div");
-                rowDiv.className = "row col-element hover-opacity itemlist";
+            // Create the text column
+            var textCol = document.createElement("div");
+            textCol.className = "column col-70";
 
-                // Create the image column
-                var imgCol = document.createElement("div");
-                imgCol.className = "column col-30";
-                var imgElement = document.createElement("img");
-                imgElement.src = image;
-                imgElement.alt = `${name} Image`;
-                imgElement.height = 100;
-                imgCol.appendChild(imgElement);
+            // Add the name
+            var nameElement = document.createElement("h5");
+            nameElement.textContent = name;
+            textCol.appendChild(nameElement);
 
-                // Create the text column
-                var textCol = document.createElement("div");
-                textCol.className = "column col-70";
+            // Add the dynamically calculated distance
+            var distanceElement = document.createElement("p");
+            distanceElement.textContent = `Distance: ${location.distance.toFixed(2)} km`; // Display distance with 2 decimal places
+            textCol.appendChild(distanceElement);
 
-                // Add the name
-                var nameElement = document.createElement("h5");
-                nameElement.textContent = name;
-                textCol.appendChild(nameElement);
-
-                // Add the dynamically calculated distance
-                var distanceElement = document.createElement("p");
-                distanceElement.textContent = `Distance: ${distance.toFixed(2)} km`; // Display distance with 2 decimal places
-                textCol.appendChild(distanceElement);
-
-                // Add the rating
-                var ratingElement = document.createElement("p");
-                ratingElement.textContent = "Rating: ";
-                // Add solid stars (for the given rating)
-                for (let j = 0; j < rating; j++) {
-                    const solidStar = document.createElement("i");
-                    solidStar.className = "fa fa-solid fa-star";
-                    ratingElement.appendChild(solidStar);
-                }
-
-                // Add regular stars (to make up the remaining up to 5)
-                for (let j = rating; j < 5; j++) {
-                    const regularStar = document.createElement("i");
-                    regularStar.className = "fa fa-regular fa-star";
-                    ratingElement.appendChild(regularStar);
-                }
-
-                textCol.appendChild(ratingElement);
-
-                // Append the columns to the row
-                rowDiv.appendChild(imgCol);
-                rowDiv.appendChild(textCol);
-
-                // Append the row to the link
-                link.appendChild(rowDiv);
-
-                // Append the link to the locations list container
-                locationsList.appendChild(link);
+            // Add the rating
+            var ratingElement = document.createElement("p");
+            ratingElement.textContent = "Rating: ";
+            for (let j = 0; j < rating; j++) {
+                const solidStar = document.createElement("i");
+                solidStar.className = "fa fa-solid fa-star";
+                ratingElement.appendChild(solidStar);
             }
-        },
-        function (error) {
-            // If geolocation fails, set distance to "Unknown" for all locations
-
-            // Loop through each location and create the corresponding HTML element
-            for (var i = 0; i < locations.length; i++) {
-                // Safely retrieve each field and handle missing elements
-                var id = locations[i].getElementsByTagName("id")[0].textContent;
-                var name = locations[i].getElementsByTagName("name")[0].textContent;
-                var latitude = parseFloat(locations[i].getElementsByTagName("latitude")[0].textContent);
-                var longitude = parseFloat(locations[i].getElementsByTagName("longitude")[0].textContent);
-                var rating = parseInt(locations[i].getElementsByTagName("rating")[0].textContent, 10);
-                var image = locations[i].getElementsByTagName("image")[0].textContent;
-                console.log(`LIST - Processing location: ${id}, ${name}`);
-
-                // Create the main anchor element
-                var link = document.createElement("a");
-                link.href = `?space=${id}`;
-                link.style.textDecoration = "none";
-                link.style.color = "inherit";
-
-                // Create the main row div
-                var rowDiv = document.createElement("div");
-                rowDiv.className = "row col-element hover-opacity itemlist column";
-
-                // Create the image column
-                var imgCol = document.createElement("div");
-                imgCol.className = "column col-30";
-                var imgElement = document.createElement("img");
-                imgElement.src = image;
-                imgElement.alt = `${name} Image`;
-                imgElement.height = 100;
-                imgCol.appendChild(imgElement);
-
-                // Create the text column
-                var textCol = document.createElement("div");
-                textCol.className = "column col-70";
-
-                // Add the name
-                var nameElement = document.createElement("h5");
-                nameElement.textContent = name;
-                textCol.appendChild(nameElement);
-
-                // Add the dynamically calculated distance
-                var distanceElement = document.createElement("p");
-                distanceElement.textContent = `Distance: Unknown`;
-                textCol.appendChild(distanceElement);
-
-                // Add the rating
-                var ratingElement = document.createElement("p");
-                ratingElement.textContent = "Rating: ";
-                // Add solid stars (for the given rating)
-                for (let j = 0; j < rating; j++) {
-                    const solidStar = document.createElement("i");
-                    solidStar.className = "fa fa-solid fa-star";
-                    ratingElement.appendChild(solidStar);
-                }
-
-                // Add regular stars (to make up the remaining up to 5)
-                for (let j = rating; j < 5; j++) {
-                    const regularStar = document.createElement("i");
-                    regularStar.className = "fa fa-regular fa-star";
-                    ratingElement.appendChild(regularStar);
-                }
-
-                textCol.appendChild(ratingElement);
-
-                // Append the columns to the row
-                rowDiv.appendChild(imgCol);
-                rowDiv.appendChild(textCol);
-
-                // Append the row to the link
-                link.appendChild(rowDiv);
-
-                // Append the link to the locations list container
-                locationsList.appendChild(link);
+            for (let j = rating; j < 5; j++) {
+                const regularStar = document.createElement("i");
+                regularStar.className = "fa fa-regular fa-star";
+                ratingElement.appendChild(regularStar);
             }
-        }
-    );
+            textCol.appendChild(ratingElement);
+
+            // Append the columns to the row
+            rowDiv.appendChild(imgCol);
+            rowDiv.appendChild(textCol);
+
+            // Append the row to the link
+            link.appendChild(rowDiv);
+
+            // Append the link to the locations list container
+            locationsList.appendChild(link);
+        });
+    }
+
+    // Function to sort locations by distance
+    function sortByDistance(userLatLng) {
+        var locationsArray = Array.from(locations);
+        locationsArray.forEach(location => {
+            var lat = parseFloat(location.getElementsByTagName("latitude")[0].textContent);
+            var lng = parseFloat(location.getElementsByTagName("longitude")[0].textContent);
+            var locationLatLng = L.latLng(lat, lng);
+
+            // Calculate the distance (in km) from the user's location
+            location.distance = userLatLng.distanceTo(locationLatLng) / 1000; // Convert meters to kilometers
+        });
+
+        // Sort locations by calculated distance
+        locationsArray.sort(function (a, b) {
+            return a.distance - b.distance;
+        });
+
+        // Return the sorted list
+        createLocationList(locationsArray, 1); // 1 for distance sorting
+    }
+
+    // Function to sort locations by rating
+    function sortByRating() {
+        var locationsArray = Array.from(locations);
+
+        // Sort locations by rating, highest to lowest
+        locationsArray.sort(function (a, b) {
+            var ratingA = parseInt(a.getElementsByTagName("rating")[0].textContent, 10);
+            var ratingB = parseInt(b.getElementsByTagName("rating")[0].textContent, 10);
+            return ratingB - ratingA;
+        });
+
+        // Return the sorted list
+        createLocationList(locationsArray, 2); // 2 for rating sorting
+    }
+
+    // Get user's geolocation for sorting by distance
+    navigator.geolocation.getCurrentPosition(function (position) {
+        const userLatitude = position.coords.latitude;
+        const userLongitude = position.coords.longitude;
+        const userLatLng = L.latLng(userLatitude, userLongitude);
+
+        // Initially sort by distance
+        sortByDistance(userLatLng);
+
+        // Event listener for dropdown changes
+        document.getElementById("sort-options").addEventListener("change", function (event) {
+            if (event.target.value === "distance") {
+                sortByDistance(userLatLng);
+            } else if (event.target.value === "rating") {
+                sortByRating();
+            }
+        });
+    }, function (error) {
+        // Fallback if geolocation fails
+        alert("Unable to retrieve your location. Using default sorting.");
+        sortByRating(); // Default to sorting by rating if geolocation fails
+    });
 }

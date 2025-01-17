@@ -17,14 +17,16 @@
     <meta property="og:description" content="Find your next co-working space!" />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://example.com" />
-    <meta property="og:image" cont ent="https://dimitrispapamargaritis.github.io/Entrepreneurship/v2/assets/media/branding/collabrew_logo_bg.png" />
+    <meta property="og:image" cont
+        ent="https://dimitrispapamargaritis.github.io/Entrepreneurship/v2/assets/media/branding/collabrew_logo_bg.png" />
 
     <!-- Twitter Meta Properties -->
     <meta property="twitter:card" content="summary_large_image">
     <meta property="twitter:url" content="https://example.com/">
     <meta property="twitter:title" content="Collabrew">
     <meta property="twitter:description" content="Find your next co-working space!">
-    <meta property="twitter:image" content="https://dimitrispapamargaritis.github.io/Entrepreneurship/v2/assets/media/branding/collabrew_logo_bg.png">
+    <meta property="twitter:image"
+        content="https://dimitrispapamargaritis.github.io/Entrepreneurship/v2/assets/media/branding/collabrew_logo_bg.png">
 
     <!-- Title -->
     <title>Explore Spaces | Collabrew</title>
@@ -96,8 +98,16 @@
 
                     <div class="row">
                         <div class="column col-30" style="overflow-y: auto; height: 100vh;">
-                            <div class="boxed">
+                            <div class="full-width">
                                 <h4>Available Places</h4>
+                                <!-- Sorting Dropdown -->
+                                <div id="sorting-dropdown">
+                                    <label for="sort-options">Sort by:</label>
+                                    <select id="sort-options">
+                                        <option value="distance" selected>By distance</option>
+                                        <option value="rating">By rating</option>
+                                    </select>
+                                </div>
                             </div>
 
                             <div id="locations-list"></div>
@@ -177,9 +187,8 @@
     <script src="./assets/js/navbarEvents.js"></script>
     <script src="./assets/js/getYear.js"></script>
 
-
     <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
     <script src="./assets/js/explorePageLoader.js"></script>
-
 </body>
+
 </html>
