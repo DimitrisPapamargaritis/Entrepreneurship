@@ -21,13 +21,13 @@
           <latitude>39.63934</latitude>
           <longitude>22.412840</longitude>
           <rating>4.6</rating>
-          <image>https://lh5.googleusercontent.com/p/AF1QipNxihQ3Ft2k88s21ZaSMOooAotvA_zUel8SJA1i=w408-h405-k-no</image>
+          <image>./assets/spaces/images/2.png</image>
           <message>
           <![CDATA[
             <p>Broadway<br>
             <a href="https://maps.app.goo.gl/fwuXAHxSeFEGRj9UA">Get directions</a>
             </p>
-            <img src="https://lh5.googleusercontent.com/p/AF1QipNxihQ3Ft2k88s21ZaSMOooAotvA_zUel8SJA1i=w408-h405-k-no" style="width:280px;">
+            <img src="./assets/spaces/images/2.png" style="width:280px;">
           ]]>
           </message>
           </location>
@@ -37,13 +37,13 @@
           <latitude>39.638247</latitude>
           <longitude>22.413358</longitude>
           <rating>4.9</rating>
-          <image>./assets/spaces/images/2.png</image>
+          <image>./assets/spaces/images/3.png</image>
           <message>
           <![CDATA[
             <p>Ron<br>
             <a href="https://maps.app.goo.gl/UdPsWZTpnQk4ztAN8">Get directions</a>
             </p>
-            <img src="./assets/spaces/images/2.png" alt="Ron" class="popup-img" style="width:280px;">
+            <img src="./assets/spaces/images/3.png" alt="Ron" class="popup-img" style="width:280px;">
           ]]>
           </message>
           </location>
@@ -53,13 +53,13 @@
           <latitude>39.64038864153555</latitude>
           <longitude>22.41405311305898</longitude>
           <rating>4.7</rating>
-          <image>https://lh5.googleusercontent.com/p/AF1QipN1aoz-hXNE21fB1HzlMQN2A73OHwEz5l_mndaw=w466-h240-k-no</image>
+          <image>./assets/spaces/images/4.jpg</image>
           <message>
           <![CDATA[
             <p>Connectiva<br>
             <a href="https://maps.app.goo.gl/YUW3adv4oXYFU7ar8">Get directions</a>
             </p>
-            <img src="https://lh5.googleusercontent.com/p/AF1QipN1aoz-hXNE21fB1HzlMQN2A73OHwEz5l_mndaw=w466-h240-k-no" style="width:280px;">
+            <img src="./assets/spaces/images/4.jpg" style="width:280px;">
           ]]>
           </message>
           </location>
