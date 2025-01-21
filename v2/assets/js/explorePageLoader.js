@@ -67,18 +67,20 @@ fetch(spacesXml)
     });
 
 function generateMapPoints(xmlDoc) {
-    var locations = xmlDoc.getElementsByTagName("location");
-    console.log("MAP - Number of locations found:", locations.length);
+    var spaces = xmlDoc.getElementsByTagName("space");
+    console.log("MAP - Number of spaces found:", spaces.length);
     var markers = [];
 
     // Loop through each location and add a marker to the map
-    for (var i = 0; i < locations.length; i++) {
-        var id = locations[i].getElementsByTagName("id")[0].textContent;
-        var name = locations[i].getElementsByTagName("name")[0].textContent;
-        var latitude = parseFloat(locations[i].getElementsByTagName("latitude")[0].textContent);
-        var longitude = parseFloat(locations[i].getElementsByTagName("longitude")[0].textContent);
-        var message = locations[i].getElementsByTagName("message")[0].textContent;
-        console.log(`MAP - Processing location: ${id}, ${name}`);
+    for (var i = 0; i < spaces.length; i++) {
+        var id = spaces[i].getElementsByTagName("id")[0].textContent;
+        var name = spaces[i].getElementsByTagName("name")[0].textContent;
+        var latitude = parseFloat(spaces[i].getElementsByTagName("latitude")[0].textContent);
+        var longitude = parseFloat(spaces[i].getElementsByTagName("longitude")[0].textContent);
+        var gmap_url = spaces[i].getElementsByTagName("gmap-url")[0].textContent;
+        var gmap_id = spaces[i].getElementsByTagName("gmap-id")[0].textContent;
+        var image = spaces[i].getElementsByTagName("image")[0].textContent;
+        console.log(`MAP - Processing space: ${id}, ${name}`);
 
         // Define a custom icon
         const customIcon = L.icon({
@@ -89,6 +91,18 @@ function generateMapPoints(xmlDoc) {
         });
 
         // Create a marker and add it to the map
+        var message = `
+            <div id="map-popup">
+            <h5>${name}</h5>
+            <p>
+              <a href="./space/${id}.html" style="color: #fafafa;">
+              More Information</a>
+              <a href="https://maps.app.goo.gl/${gmap_id}" style="color: #fafafa;">
+              Get directions</a>
+              <img src="${image}" alt="${name} Image">
+            </p>
+            </div>
+          `;
         var marker = L.marker([latitude, longitude], { icon: customIcon }).addTo(map).bindPopup(message);
 
         // Store the marker along with its ID for later lookup
@@ -108,27 +122,27 @@ function generateMapPoints(xmlDoc) {
 }
 
 function generateLocationList(xmlDoc) {
-    var locations = xmlDoc.getElementsByTagName("location");
-    console.log("LIST - Number of locations found:", locations.length);
+    var spaces = xmlDoc.getElementsByTagName("space");
+    console.log("LIST - Number of spaces found:", spaces.length);
 
-    if (locations.length === 0) {
-        console.warn("No locations found in the XML file.");
+    if (spaces.length === 0) {
+        console.warn("No spaces found in the XML file.");
         return;
     }
 
-    var locationsList = document.getElementById("locations-list");
+    var spacesList = document.getElementById("locations-list");
 
     // Function to generate the list HTML
-    function createLocationList(locationsToDisplay, sortBy) {
-        locationsList.innerHTML = ''; // Clear previous list
-        locationsToDisplay.forEach(location => {
-            var id = location.getElementsByTagName("id")[0].textContent;
-            var name = location.getElementsByTagName("name")[0].textContent;
-            var latitude = parseFloat(location.getElementsByTagName("latitude")[0].textContent);
-            var longitude = parseFloat(location.getElementsByTagName("longitude")[0].textContent);
-            var rating = parseInt(location.getElementsByTagName("rating")[0].textContent, 10);
-            var image = location.getElementsByTagName("image")[0].textContent;
-            console.log(`LIST - Processing location: ${id}, ${name}`);
+    function createLocationList(spacesToDisplay, sortBy) {
+        spacesList.innerHTML = ''; // Clear previous list
+        spacesToDisplay.forEach(space => {
+            var id = space.getElementsByTagName("id")[0].textContent;
+            var name = space.getElementsByTagName("name")[0].textContent;
+            var latitude = parseFloat(space.getElementsByTagName("latitude")[0].textContent);
+            var longitude = parseFloat(space.getElementsByTagName("longitude")[0].textContent);
+            var rating = parseInt(space.getElementsByTagName("rating")[0].textContent, 10);
+            var image = space.getElementsByTagName("image")[0].textContent;
+            console.log(`LIST - Processing space: ${id}, ${name}`);
 
 
             // Create the main anchor element
@@ -161,7 +175,7 @@ function generateLocationList(xmlDoc) {
 
             // Add the dynamically calculated distance
             var distanceElement = document.createElement("p");
-            distanceElement.textContent = `Distance: ${location.distance.toFixed(2)} km`; // Display distance with 2 decimal places
+            distanceElement.textContent = `Distance: ${space.distance.toFixed(2)} km`; // Display distance with 2 decimal places
             textCol.appendChild(distanceElement);
 
             // Add the rating
@@ -186,45 +200,45 @@ function generateLocationList(xmlDoc) {
             // Append the row to the link
             link.appendChild(rowDiv);
 
-            // Append the link to the locations list container
-            locationsList.appendChild(link);
+            // Append the link to the spaces list container
+            spacesList.appendChild(link);
         });
     }
 
-    // Function to sort locations by distance
+    // Function to sort spaces by distance
     function sortByDistance(userLatLng) {
-        var locationsArray = Array.from(locations);
-        locationsArray.forEach(location => {
-            var lat = parseFloat(location.getElementsByTagName("latitude")[0].textContent);
-            var lng = parseFloat(location.getElementsByTagName("longitude")[0].textContent);
+        var spacesArray = Array.from(spaces);
+        spacesArray.forEach(space => {
+            var lat = parseFloat(space.getElementsByTagName("latitude")[0].textContent);
+            var lng = parseFloat(space.getElementsByTagName("longitude")[0].textContent);
             var locationLatLng = L.latLng(lat, lng);
 
             // Calculate the distance (in km) from the user's location
-            location.distance = userLatLng.distanceTo(locationLatLng) / 1000; // Convert meters to kilometers
+            space.distance = userLatLng.distanceTo(locationLatLng) / 1000; // Convert meters to kilometers
         });
 
-        // Sort locations by calculated distance
-        locationsArray.sort(function (a, b) {
+        // Sort spaces by calculated distance
+        spacesArray.sort(function (a, b) {
             return a.distance - b.distance;
         });
 
         // Return the sorted list
-        createLocationList(locationsArray, 1); // 1 for distance sorting
+        createLocationList(spacesArray, 1); // 1 for distance sorting
     }
 
-    // Function to sort locations by rating
+    // Function to sort spaces by rating
     function sortByRating() {
-        var locationsArray = Array.from(locations);
+        var spacesArray = Array.from(spaces);
 
-        // Sort locations by rating, highest to lowest
-        locationsArray.sort(function (a, b) {
+        // Sort spaces by rating, highest to lowest
+        spacesArray.sort(function (a, b) {
             var ratingA = parseInt(a.getElementsByTagName("rating")[0].textContent, 10);
             var ratingB = parseInt(b.getElementsByTagName("rating")[0].textContent, 10);
             return ratingB - ratingA;
         });
 
         // Return the sorted list
-        createLocationList(locationsArray, 2); // 2 for rating sorting
+        createLocationList(spacesArray, 2); // 2 for rating sorting
     }
 
     // Get user's geolocation for sorting by distance

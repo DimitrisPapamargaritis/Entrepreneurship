@@ -1,112 +1,62 @@
-      <locations>
-        <location>
+      <spaces>
+        <space>
           <id>1</id>
           <name>Wisedog</name>
-          <latitude>39.640774</latitude>
-          <longitude>22.414129</longitude>
+          <location>
+            <latitude>39.640774</latitude>
+            <longitude>22.414129</longitude>
+          </location>
           <rating>4.7</rating>
           <image>./assets/spaces/images/1.png</image>
-          <message>
-          <![CDATA[
-            <div id="map-popup">
-            <h5>Wisedog</h5>
-            <p>
-              <a href="./space/1.html" style="color: #fafafa;">
-              More Information</a>
-              <a href="https://maps.app.goo.gl/VUYdSewFA2abau9d9" style="color: #fafafa;">
-              Get directions</a>
-              <img src="./assets/spaces/images/1.png" alt="Wisedog">
-            </p>
-            </div>
-          ]]>
-          </message>
-        </location>
-        <location>
+          <gmap-url>https://maps.app.goo.gl/VUYdSewFA2abau9d9</gmap-url>
+          <gmap-id>VUYdSewFA2abau9d9</gmap-id>
+        </space>
+        <space>
           <id>2</id>
           <name>Broadway</name>
-          <latitude>39.63934</latitude>
-          <longitude>22.412840</longitude>
+          <location>
+            <latitude>39.63934</latitude>
+            <longitude>22.412840</longitude>
+          </location>
           <rating>4.6</rating>
           <image>./assets/spaces/images/2.png</image>
-          <message>
-          <![CDATA[
-            <div id="map-popup">
-            <h5>Broadway</h5>
-            <p>
-              <a href="./space/2.html" style="color: #fafafa;">
-              More Information</a>
-              <a href="https://maps.app.goo.gl/VUYdSewFA2abau9d9" style="color: #fafafa;">
-              Get directions</a>
-              <img src="./assets/spaces/images/2.png" alt="Broadway">
-            </p>
-            </div>
-          ]]>
-          </message>
-          </location>
-        <location>
+          <gmap-url>https://maps.app.goo.gl/edjBEMwSwbVyWEq87</gmap-url>
+          <gmap-id>edjBEMwSwbVyWEq87</gmap-id>
+        </space>
+        <space>
           <id>3</id>
           <name>Ron</name>
-          <latitude>39.638247</latitude>
-          <longitude>22.413358</longitude>
+          <location>
+            <latitude>39.638247</latitude>
+            <longitude>22.413358</longitude>
+          </location>
           <rating>4.9</rating>
           <image>./assets/spaces/images/3.png</image>
-          <message>
-          <![CDATA[
-            <div id="map-popup">
-            <h5>Ron</h5>
-            <p>
-              <a href="./space/3.html" style="color: #fafafa;">
-              More Information</a>
-              <a href="https://maps.app.goo.gl/VUYdSewFA2abau9d9" style="color: #fafafa;">
-              Get directions</a>
-              <img src="./assets/spaces/images/3.png" alt="Ron">
-            </p>
-            </div>
-          ]]>
-          </message>
-          </location>
-          <location>
+          <gmap-url>https://maps.app.goo.gl/VUYdSewFA2abau9d9</gmap-url>
+          <gmap-id>VUYdSewFA2abau9d9</gmap-id>
+          </space>
+          <space>
           <id>4</id>
           <name>Connectiva</name>
-          <latitude>39.64038864153555</latitude>
-          <longitude>22.41405311305898</longitude>
+          <location>
+            <latitude>39.640388</latitude>
+            <longitude>22.414053</longitude>
+          </location>
           <rating>4.7</rating>
           <image>./assets/spaces/images/4.png</image>
-          <message>
-          <![CDATA[
-            <div id="map-popup">
-            <h5>Connectiva</h5>
-            <p>
-              <a href="./space/4.html" style="color: #fafafa;">
-              More Information</a>
-              <a href="https://maps.app.goo.gl/VUYdSewFA2abau9d9" style="color: #fafafa;">
-              Get directions</a>
-              <img src="./assets/spaces/images/4.png" alt="Connectiva">
-            </p>
-            </div>
-          ]]>
-          </message>
-          </location>
-          <location>
+          <gmap-url>https://maps.app.goo.gl/ksWGsxu1mCpNVrFd9</gmap-url>
+          <gmap-id>ksWGsxu1mCpNVrFd9</gmap-id>
+          </space>
+          <space>
           <id>5</id>
           <name>Noe'L</name>
-          <latitude>39.64091457011043</latitude>
-          <longitude>22.412560025731555</longitude>
+          <location>
+            <latitude>39.640914</latitude>
+            <longitude>22.412560</longitude>
+          </location>
           <rating>4.4</rating>
           <image>./assets/spaces/images/5.png</image>
-          <message>
-          <![CDATA[
-            <div id="map-popup">
-            <h5>Noe'L</h5>
-            <p>
-              <a href="./space/5.html" style="color: #fafafa;">
-              More Information</a>
-              <a href="https://maps.app.goo.gl/VUYdSewFA2abau9d9" style="color: #fafafa;">
-              Get directions</a>
-              <img src="./assets/spaces/images/5.png" alt="Noe'L">
-            </p>
-            </div>
-          ]]>
-          </message>
-          </location>
-      </locations>
+          <gmap-url>https://maps.app.goo.gl/4qAc4XMiD2Le3Cb8A</gmap-url>
+          <gmap-id>4qAc4XMiD2Le3Cb8A</gmap-id>
+          </space>
+      </spaces>

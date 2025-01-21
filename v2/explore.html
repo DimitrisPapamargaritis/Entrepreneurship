@@ -86,6 +86,30 @@
             font-size: 1rem;
             display: inline-block;
             cursor: pointer;
+
+        }
+
+        #map-popup a:hover {
+            transition: var(--long-transition);
+            transform: scale(1.05);
+            text-shadow: none;
+            border-color: var(--light-gray);
+            color: var(--light-gray);
+        }
+
+        #map-popup a>input {
+            background: none;
+            color: var(--light);
+            padding: 0;
+            border: 0;
+            cursor: pointer;
+        }
+
+        #map-popup a>input:hover {
+            transition: var(--long-transition);
+            text-shadow: none;
+            border-color: var(--light-gray);
+            color: var(--light-gray);
         }
     </style>
 </head>

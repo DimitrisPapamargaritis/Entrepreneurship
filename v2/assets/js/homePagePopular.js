@@ -20,14 +20,14 @@ document.addEventListener("DOMContentLoaded", function () {
         });
 
     function displayTopRatedPlaces(xmlDoc, userLat = null, userLng = null) {
-        const locations = Array.from(xmlDoc.getElementsByTagName("location"));
-        locations.sort((a, b) => {
+        const spaces = Array.from(xmlDoc.getElementsByTagName("space"));
+        spaces.sort((a, b) => {
             const ratingA = parseFloat(a.getElementsByTagName("rating")[0].textContent);
             const ratingB = parseFloat(b.getElementsByTagName("rating")[0].textContent);
             return ratingB - ratingA;
         });
 
-        const topRatedLocations = locations.slice(0, 3); // Get top 3 rated locations
+        const topRatedSpaces = spaces.slice(0, 3); // Get top 3 rated spaces
 
         // Ensure a div with class "row" exists
         let rowContainer = document.querySelector(".row");
@@ -48,13 +48,13 @@ document.addEventListener("DOMContentLoaded", function () {
         // Clear any existing content in the popularPlacesContainer
         popularPlacesContainer.innerHTML = "";
 
-        topRatedLocations.forEach((location) => {
-            const id = location.getElementsByTagName("id")[0].textContent;
-            const name = location.getElementsByTagName("name")[0].textContent;
-            const image = location.getElementsByTagName("image")[0].textContent;
-            const rating = parseFloat(location.getElementsByTagName("rating")[0].textContent);
-            const latitude = parseFloat(location.getElementsByTagName("latitude")[0].textContent);
-            const longitude = parseFloat(location.getElementsByTagName("longitude")[0].textContent);
+        topRatedSpaces.forEach((space) => {
+            const id = space.getElementsByTagName("id")[0].textContent;
+            const name = space.getElementsByTagName("name")[0].textContent;
+            const image = space.getElementsByTagName("image")[0].textContent;
+            const rating = parseFloat(space.getElementsByTagName("rating")[0].textContent);
+            const latitude = parseFloat(space.getElementsByTagName("latitude")[0].textContent);
+            const longitude = parseFloat(space.getElementsByTagName("longitude")[0].textContent);
             let distance = "Unknown distance";
 
             if (userLat !== null && userLng !== null) {
