@@ -1,7 +1,6 @@
 document.addEventListener("DOMContentLoaded", function () {
     const spacesXml = "./assets/spaces/spaces.xml";
 
-    // Fetch XML data
     fetch(spacesXml)
         .then((response) => response.text())
         .then((data) => {
@@ -20,11 +19,8 @@ document.addEventListener("DOMContentLoaded", function () {
             );
         });
 
-    // Display top-rated places
     function displayTopRatedPlaces(xmlDoc, userLat = null, userLng = null) {
         const spaces = Array.from(xmlDoc.getElementsByTagName("space"));
-
-        // Sort spaces by rating in descending order
         spaces.sort((a, b) => {
             const ratingA = parseFloat(a.getElementsByTagName("rating")[0].textContent);
             const ratingB = parseFloat(b.getElementsByTagName("rating")[0].textContent);
@@ -41,7 +37,7 @@ document.addEventListener("DOMContentLoaded", function () {
             document.body.appendChild(rowContainer); // Append to body or another parent element
         }
 
-        // Create or get the popular-places container
+        // Create a div with id="popular-places" inside the row container
         let popularPlacesContainer = document.getElementById("popular-places");
         if (!popularPlacesContainer) {
             popularPlacesContainer = document.createElement("div");
@@ -49,10 +45,9 @@ document.addEventListener("DOMContentLoaded", function () {
             rowContainer.appendChild(popularPlacesContainer);
         }
 
-        // Clear existing content
+        // Clear any existing content in the popularPlacesContainer
         popularPlacesContainer.innerHTML = "";
 
-        // Generate top-rated space elements
         topRatedSpaces.forEach((space) => {
             const id = space.getElementsByTagName("id")[0].textContent;
             const name = space.getElementsByTagName("name")[0].textContent;
@@ -66,7 +61,6 @@ document.addEventListener("DOMContentLoaded", function () {
                 distance = calculateDistance(userLat, userLng, latitude, longitude).toFixed(2) + " kilometers away";
             }
 
-            // Create column for each space
             const columnDiv = document.createElement("div");
             columnDiv.className = "column col-30";
 
@@ -84,44 +78,32 @@ document.addEventListener("DOMContentLoaded", function () {
             const nameElement = document.createElement("h3");
             nameElement.textContent = name;
 
-            const starReviewDiv = createStarRating(rating);
+            const starReviewDiv = document.createElement("div");
+            starReviewDiv.className = "star-review";
+            for (let i = 0; i < Math.floor(rating); i++) {
+                const starIcon = document.createElement("i");
+                starIcon.className = "fa fa-solid fa-star";
+                starReviewDiv.appendChild(starIcon);
+            }
+            if (rating % 1 !== 0) {
+                const halfStarIcon = document.createElement("i");
+                halfStarIcon.className = "fa fa-solid fa-star-half-alt";
+                starReviewDiv.appendChild(halfStarIcon);
+            }
 
             const distanceElement = document.createElement("p");
             distanceElement.textContent = distance;
 
-            // Append elements to colElementDiv
             colElementDiv.appendChild(imgElement);
             colElementDiv.appendChild(nameElement);
             colElementDiv.appendChild(starReviewDiv);
             colElementDiv.appendChild(distanceElement);
 
-            // Append column to the popular places container
             columnDiv.appendChild(colElementDiv);
             popularPlacesContainer.appendChild(columnDiv);
         });
     }
 
-    // Create star rating elements
-    function createStarRating(rating) {
-        const starReviewDiv = document.createElement("div");
-        starReviewDiv.className = "star-review";
-
-        for (let i = 0; i < Math.floor(rating); i++) {
-            const starIcon = document.createElement("i");
-            starIcon.className = "fa fa-solid fa-star";
-            starReviewDiv.appendChild(starIcon);
-        }
-
-        if (rating % 1 !== 0) {
-            const halfStarIcon = document.createElement("i");
-            halfStarIcon.className = "fa fa-solid fa-star-half-alt";
-            starReviewDiv.appendChild(halfStarIcon);
-        }
-
-        return starReviewDiv;
-    }
-
-    // Calculate distance between two geocoordinates
     function calculateDistance(lat1, lon1, lat2, lon2) {
         const R = 6371; // Radius of the Earth in kilometers
         const dLat = degreesToRadians(lat2 - lat1);
@@ -131,7 +113,6 @@ document.addEventListener("DOMContentLoaded", function () {
         return R * c;
     }
 
-    // Convert degrees to radians
     function degreesToRadians(degrees) {
         return degrees * (Math.PI / 180);
     }
