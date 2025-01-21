@@ -8,10 +8,16 @@
           <image>./assets/spaces/images/1.png</image>
           <message>
           <![CDATA[
-            <p>Wisedog<br>
-            <a href="https://maps.app.goo.gl/VUYdSewFA2abau9d9">Get directions</a>
+            <div id="map-popup">
+            <h5>Wisedog</h5>
+            <p>
+              <a href="./space/1.html" style="color: #fafafa;">
+              More Information</a>
+              <a href="https://maps.app.goo.gl/VUYdSewFA2abau9d9" style="color: #fafafa;">
+              Get directions</a>
+              <img src="./assets/spaces/images/1.png" alt="Wisedog">
             </p>
-            <img src="./assets/spaces/images/1.png" alt="Wisedog" class="popup-img" style="width:280px;">
+            </div>
           ]]>
           </message>
         </location>
@@ -24,10 +30,16 @@
           <image>./assets/spaces/images/2.png</image>
           <message>
           <![CDATA[
-            <p>Broadway<br>
-            <a href="https://maps.app.goo.gl/fwuXAHxSeFEGRj9UA">Get directions</a>
+            <div id="map-popup">
+            <h5>Broadway</h5>
+            <p>
+              <a href="./space/2.html" style="color: #fafafa;">
+              More Information</a>
+              <a href="https://maps.app.goo.gl/VUYdSewFA2abau9d9" style="color: #fafafa;">
+              Get directions</a>
+              <img src="./assets/spaces/images/2.png" alt="Broadway">
             </p>
-            <img src="./assets/spaces/images/2.png" style="width:280px;">
+            </div>
           ]]>
           </message>
           </location>
@@ -40,10 +52,16 @@
           <image>./assets/spaces/images/3.png</image>
           <message>
           <![CDATA[
-            <p>Ron<br>
-            <a href="https://maps.app.goo.gl/UdPsWZTpnQk4ztAN8">Get directions</a>
+            <div id="map-popup">
+            <h5>Ron</h5>
+            <p>
+              <a href="./space/3.html" style="color: #fafafa;">
+              More Information</a>
+              <a href="https://maps.app.goo.gl/VUYdSewFA2abau9d9" style="color: #fafafa;">
+              Get directions</a>
+              <img src="./assets/spaces/images/3.png" alt="Ron">
             </p>
-            <img src="./assets/spaces/images/3.png" alt="Ron" class="popup-img" style="width:280px;">
+            </div>
           ]]>
           </message>
           </location>
@@ -56,10 +74,16 @@
           <image>./assets/spaces/images/4.png</image>
           <message>
           <![CDATA[
-            <p>Connectiva<br>
-            <a href="https://maps.app.goo.gl/YUW3adv4oXYFU7ar8">Get directions</a>
+            <div id="map-popup">
+            <h5>Connectiva</h5>
+            <p>
+              <a href="./space/4.html" style="color: #fafafa;">
+              More Information</a>
+              <a href="https://maps.app.goo.gl/VUYdSewFA2abau9d9" style="color: #fafafa;">
+              Get directions</a>
+              <img src="./assets/spaces/images/4.png" alt="Connectiva">
             </p>
-            <img src="./assets/spaces/images/4.png" style="width:280px;">
+            </div>
           ]]>
           </message>
           </location>
@@ -72,10 +96,16 @@
           <image>./assets/spaces/images/5.png</image>
           <message>
           <![CDATA[
-            <p>Noe'L<br>
-            <a href="https://maps.app.goo.gl/rom7DBLrfPCJLk8UA">Get directions</a>
+            <div id="map-popup">
+            <h5>Noe'L</h5>
+            <p>
+              <a href="./space/5.html" style="color: #fafafa;">
+              More Information</a>
+              <a href="https://maps.app.goo.gl/VUYdSewFA2abau9d9" style="color: #fafafa;">
+              Get directions</a>
+              <img src="./assets/spaces/images/5.png" alt="Noe'L">
             </p>
-            <img src="./assets/spaces/images/5.png" style="width:280px;">
+            </div>
           ]]>
           </message>
           </location>
