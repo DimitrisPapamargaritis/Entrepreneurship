@@ -182,6 +182,7 @@ a:hover {
     background-position: center;
     background-repeat: repeat;
     background-size: contain;
+    background-attachment: fixed;
     z-index: -1;
 }
 
