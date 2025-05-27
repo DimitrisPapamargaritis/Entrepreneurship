@@ -65,19 +65,19 @@
                 <main>
                     <div class="boxed">
                         <div class="align-left">
-                            <h2 class="align-center">Space: Wisedog</h2>
+                            <h2 class="align-center">Space: {SPACE_NAME}</h2>
                             <a href="../explore.html" class="btn"><i class="fa-solid fa-arrow-left"></i> More Spaces</a>
                         </div>
                         <div class="row">
                             <div class="column col-30">
                                 <div class="col-element">
                                     <h5 class="align-center">Info</h5>
-                                    <img src="../assets/spaces/images/1.png" alt="Wisedog Image" />
+                                    <img src="../assets/spaces/images/{SPACE_IMAGE}" alt="{SPACE_NAME} Image" />
                                     <p>
-                                        <i class="fa-solid fa-location-dot"></i> <a href="https://maps.app.goo.gl/VUYdSewFA2abau9d9" style="color: var(--dark);">Σκυλοσόφου 3, Λάρισα 412 21</a><br>
-                                        <i class="fa-solid fa-phone"></i> <a href="tel:+30 2410258626" style="color: var(--dark);">+30 2410258626</a><br>
-                                        <i class="fa-solid fa-clock"></i> Δε-Κυρ 10:00πμ - 12:30πμ <br>
-                                        <i class="fa-solid fa-bars"></i> Wifi (50mbps), Θέσεις με μπρίζες<br>
+                                        <i class="fa-solid fa-location-dot"></i> <a href="{SPACE_ADDRESS_LINK}" style="color: var(--dark);">{SPACE_ADDRESS}</a><br>
+                                        <i class="fa-solid fa-phone"></i> <a href="tel:{SPACE_PHONE}" style="color: var(--dark);">{SPACE_PHONE}</a><br>
+                                        <i class="fa-solid fa-clock"></i> {SPACE_HOURS} <br>
+                                        <i class="fa-solid fa-bars"></i> {SPACE_FEATURES}<br>
                                     </p>
                                 </div>
                             </div>
@@ -85,7 +85,7 @@
                                 <div class="col-element">
                                     <h5 class="align-center">Map Location</h5>
                                     <div class="align-center">
-                                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3072.3980694396737!2d22.4141269!3d39.640755!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1358889127c431e3%3A0x22cfc2360a1dddf0!2sWISEDOG!5e0!3m2!1sel!2sgr!4v1737509412247!5m2!1sel!2sgr" id="map-embed" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                                        <iframe src="{SPACE_MAP_EMBED_URL}" id="map-embed" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
                                     </div>
                                 </div>
                             </div>
@@ -140,8 +140,8 @@
         document.getElementById('book-seat-btn').onclick = function () {
             document.getElementById('qrcode').innerHTML = "";
             const bookingData = {
-                spaceId: 1,
-                spaceName: "Wisedog",
+                spaceId: {SPACE_ID},
+                spaceName: "{SPACE_NAME}",
                 timestamp: new Date().toISOString()
             };
             new QRCode(document.getElementById('qrcode'), {

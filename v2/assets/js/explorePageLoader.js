@@ -258,3 +258,42 @@ function generateLocationList(xmlDoc) {
 // Initialize everything
 setGeolocation();
 loadSpacesData();
+
+// Make sure QRCode.js is loaded in explore.html (see HTML snippet below).
+
+function createPopupContent(place) {
+    return `
+        <div id="map-popup">
+            <h5>${place.name}</h5>
+            <img src="${place.image}" alt="${place.name}" width="180" />
+            <p>${place.description || ''}</p>
+            <a id="book-seat-btn" style="margin-top:10px;">Book a Seat</a>
+            <div id="qrcode" style="margin-top:10px;"></div>
+        </div>
+    `;
+}
+
+// When creating a marker and binding a popup:
+marker.bindPopup(createPopupContent(place));
+
+// After the popup opens, attach the event listener:
+marker.on('popupopen', function(e) {
+    const btn = document.getElementById('book-seat-btn');
+    if (btn) {
+        btn.onclick = function() {
+            // Clear previous QR code
+            document.getElementById('qrcode').innerHTML = "";
+            // Generate QR code with booking info
+            const bookingData = {
+                spaceId: place.id,
+                spaceName: place.name,
+                timestamp: new Date().toISOString()
+            };
+            new QRCode(document.getElementById('qrcode'), {
+                text: JSON.stringify(bookingData),
+                width: 160,
+                height: 160
+            });
+        };
+    }
+});

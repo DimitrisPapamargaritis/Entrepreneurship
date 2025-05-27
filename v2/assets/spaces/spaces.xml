@@ -1,62 +1,92 @@
-      <spaces>
-        <space>
-          <id>1</id>
-          <name>Wisedog</name>
-          <location>
-            <latitude>39.640774</latitude>
-            <longitude>22.414129</longitude>
-          </location>
-          <rating>4.7</rating>
-          <image>./assets/spaces/images/1.png</image>
-          <gmap-url>https://maps.app.goo.gl/VUYdSewFA2abau9d9</gmap-url>
-          <gmap-id>VUYdSewFA2abau9d9</gmap-id>
-        </space>
-        <space>
-          <id>2</id>
-          <name>Broadway</name>
-          <location>
-            <latitude>39.63934</latitude>
-            <longitude>22.412840</longitude>
-          </location>
-          <rating>4.6</rating>
-          <image>./assets/spaces/images/2.png</image>
-          <gmap-url>https://maps.app.goo.gl/edjBEMwSwbVyWEq87</gmap-url>
-          <gmap-id>edjBEMwSwbVyWEq87</gmap-id>
-        </space>
-        <space>
-          <id>3</id>
-          <name>Ron</name>
-          <location>
-            <latitude>39.638247</latitude>
-            <longitude>22.413358</longitude>
-          </location>
-          <rating>4.9</rating>
-          <image>./assets/spaces/images/3.png</image>
-          <gmap-url>https://maps.app.goo.gl/ov4v8ToTx4HY9Dzi6</gmap-url>
-          <gmap-id>ov4v8ToTx4HY9Dzi6</gmap-id>
-          </space>
-          <space>
-          <id>4</id>
-          <name>Connectiva</name>
-          <location>
-            <latitude>39.640388</latitude>
-            <longitude>22.414053</longitude>
-          </location>
-          <rating>4.7</rating>
-          <image>./assets/spaces/images/4.png</image>
-          <gmap-url>https://maps.app.goo.gl/ksWGsxu1mCpNVrFd9</gmap-url>
-          <gmap-id>ksWGsxu1mCpNVrFd9</gmap-id>
-          </space>
-          <space>
-          <id>5</id>
-          <name>Noe'L</name>
-          <location>
-            <latitude>39.640914</latitude>
-            <longitude>22.412560</longitude>
-          </location>
-          <rating>4.4</rating>
-          <image>./assets/spaces/images/5.png</image>
-          <gmap-url>https://maps.app.goo.gl/4qAc4XMiD2Le3Cb8A</gmap-url>
-          <gmap-id>4qAc4XMiD2Le3Cb8A</gmap-id>
-          </space>
-      </spaces>
+<spaces>
+  <space>
+    <id>1</id>
+    <name>Wisedog</name>
+    <location>
+      <latitude>39.640774</latitude>
+      <longitude>22.414129</longitude>
+    </location>
+    <rating>4.7</rating>
+    <image>./assets/spaces/images/1.png</image>
+    <gmap-url>https://maps.app.goo.gl/VUYdSewFA2abau9d9</gmap-url>
+    <gmap-id>VUYdSewFA2abau9d9</gmap-id>
+    <address>Σκυλοσόφου 3, Λάρισα 412 21</address>
+    <addressLink>https://maps.app.goo.gl/VUYdSewFA2abau9d9</addressLink>
+    <phone>+30 2410258626</phone>
+    <hours>Δε-Κυρ 10:00πμ - 12:30πμ</hours>
+    <features>Wifi (50mbps), Θέσεις με μπρίζες</features>
+    <mapEmbed>https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3072.3980694396737!2d22.4141269!3d39.640755!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1358889127c431e3%3A0x22cfc2360a1dddf0!2sWISEDOG!5e0!3m2!1sel!2sgr!4v1737509412247!5m2!1sel!2sgr</mapEmbed>
+  </space>
+  <space>
+    <id>2</id>
+    <name>Broadway</name>
+    <location>
+      <latitude>39.63934</latitude>
+      <longitude>22.412840</longitude>
+    </location>
+    <rating>4.6</rating>
+    <image>./assets/spaces/images/2.png</image>
+    <gmap-url>https://maps.app.goo.gl/edjBEMwSwbVyWEq87</gmap-url>
+    <gmap-id>edjBEMwSwbVyWEq87</gmap-id>
+    <address>Λεωφόρος Καραμανλή 12, Λάρισα 412 22</address>
+    <addressLink>https://maps.app.goo.gl/edjBEMwSwbVyWEq87</addressLink>
+    <phone>+30 2410258000</phone>
+    <hours>Δε-Κυρ 09:00πμ - 11:00μμ</hours>
+    <features>Wifi (100mbps), Meeting Rooms</features>
+    <mapEmbed>https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3072.3980694396737!2d22.4141269!3d39.640755!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1358889127c431e3%3A0x22cfc2360a1dddf0!2sBroadway!5e0!3m2!1sel!2sgr!4v1737509412247!5m2!1sel!2sgr</mapEmbed>
+  </space>
+  <space>
+    <id>3</id>
+    <name>Ron</name>
+    <location>
+      <latitude>39.638247</latitude>
+      <longitude>22.413358</longitude>
+    </location>
+    <rating>4.9</rating>
+    <image>./assets/spaces/images/3.png</image>
+    <gmap-url>https://maps.app.goo.gl/ov4v8ToTx4HY9Dzi6</gmap-url>
+    <gmap-id>ov4v8ToTx4HY9Dzi6</gmap-id>
+    <address>Οδός Ρον 5, Λάρισα 412 23</address>
+    <addressLink>https://maps.app.goo.gl/ov4v8ToTx4HY9Dzi6</addressLink>
+    <phone>+30 2410258001</phone>
+    <hours>Δε-Κυρ 08:00πμ - 10:00μμ</hours>
+    <features>Wifi (80mbps), Quiet Zone</features>
+    <mapEmbed>https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3072.3980694396737!2d22.413358!3d39.638247!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1358889127c431e3%3A0x22cfc2360a1dddf0!2sRon!5e0!3m2!1sel!2sgr!4v1737509412247!5m2!1sel!2sgr</mapEmbed>
+  </space>
+  <space>
+    <id>4</id>
+    <name>Connectiva</name>
+    <location>
+      <latitude>39.640388</latitude>
+      <longitude>22.414053</longitude>
+    </location>
+    <rating>4.7</rating>
+    <image>./assets/spaces/images/4.png</image>
+    <gmap-url>https://maps.app.goo.gl/ksWGsxu1mCpNVrFd9</gmap-url>
+    <gmap-id>ksWGsxu1mCpNVrFd9</gmap-id>
+    <address>Σύνδεσμος 7, Λάρισα 412 24</address>
+    <addressLink>https://maps.app.goo.gl/ksWGsxu1mCpNVrFd9</addressLink>
+    <phone>+30 2410258002</phone>
+    <hours>Δε-Κυρ 07:00πμ - 09:00μμ</hours>
+    <features>Wifi (120mbps), Open Space</features>
+    <mapEmbed>https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3072.3980694396737!2d22.414053!3d39.640388!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1358889127c431e3%3A0x22cfc2360a1dddf0!2sConnectiva!5e0!3m2!1sel!2sgr!4v1737509412247!5m2!1sel!2sgr</mapEmbed>
+  </space>
+  <space>
+    <id>5</id>
+    <name>Noe'L</name>
+    <location>
+      <latitude>39.640914</latitude>
+      <longitude>22.412560</longitude>
+    </location>
+    <rating>4.4</rating>
+    <image>./assets/spaces/images/5.png</image>
+    <gmap-url>https://maps.app.goo.gl/4qAc4XMiD2Le3Cb8A</gmap-url>
+    <gmap-id>4qAc4XMiD2Le3Cb8A</gmap-id>
+    <address>Νοέλ 9, Λάρισα 412 25</address>
+    <addressLink>https://maps.app.goo.gl/4qAc4XMiD2Le3Cb8A</addressLink>
+    <phone>+30 2410258003</phone>
+    <hours>Δε-Κυρ 10:00πμ - 12:00πμ</hours>
+    <features>Wifi (60mbps), Coffee Bar</features>
+    <mapEmbed>https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3072.3980694396737!2d22.412560!3d39.640914!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1358889127c431e3%3A0x22cfc2360a1dddf0!2sNoe'L!5e0!3m2!1sel!2sgr!4v1737509412247!5m2!1sel!2sgr</mapEmbed>
+  </space>
+</spaces>
