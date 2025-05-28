@@ -153,7 +153,7 @@
             timestamp: booking.timestamp,
             username: username
         });
-        const qrUrl = `${window.location.origin}v2/auth/scanned.html?data=${encodeURIComponent(qrData)}`;
+        const qrUrl = `${window.location.origin}/v2/auth/scanned.html?data=${encodeURIComponent(qrData)}`;
         new QRCode(document.getElementById('qrcode'), {
             text: qrUrl,
             width: 180,
