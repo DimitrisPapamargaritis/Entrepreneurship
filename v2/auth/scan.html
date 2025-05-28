@@ -72,12 +72,12 @@
             margin-bottom: 1.5rem;
             color: #444;
         }
-        #qr-reader {
+        #reader {
             width: 100%;
             min-height: 300px;
             margin: 0 auto 1rem auto;
         }
-        #scan-result {
+        #result {
             margin-top: 1rem;
             color: #27ae60;
             font-weight: bold;
@@ -114,28 +114,30 @@
         </a>
         <h2>Scan Your Booking QR</h2>
         <p>Show your QR code to the camera to check in.</p>
-        <div id="qr-reader"></div>
-        <div id="scan-result"></div>
+        <div id="reader"></div>
+        <div id="result"></div>
         <a href="../index.html" class="btn"><i class="fa-solid fa-house"></i> Back to Home</a>
     </div>
     <script>
-        function onScanSuccess(decodedText, decodedResult) {
-            qrScanner.clear();
-            window.location.href = `./v2/auth/scanned.html?data=${encodeURIComponent(decodedText)}`;
+        function success(result) {
+            // Redirect to scanned.html with the QR data
+            window.location.href = `scanned.html?data=${encodeURIComponent(result)}`;
         }
-        function onScanFailure(error) {
+
+        function error(err) {
             // Optionally handle scan errors
+            // console.error(err);
         }
-        const qrScanner = new Html5Qrcode("qr-reader");
-        qrScanner.start(
-            { facingMode: "environment" },
-            {
-                fps: 10,
-                qrbox: 250
+
+        const scanner = new Html5QrcodeScanner('reader', { 
+            qrbox: {
+                width: 250,
+                height: 250,
             },
-            onScanSuccess,
-            onScanFailure
-        );
+            fps: 20,
+        });
+
+        scanner.render(success, error);
     </script>
 </body>
 </html>
