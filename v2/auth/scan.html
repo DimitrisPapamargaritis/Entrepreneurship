@@ -121,7 +121,7 @@
     <script>
         function onScanSuccess(decodedText, decodedResult) {
             qrScanner.clear();
-            window.location.href = `../scanned.html?data=${encodeURIComponent(decodedText)}`;
+            window.location.href = `./v2/auth/scanned.html?data=${encodeURIComponent(decodedText)}`;
         }
         function onScanFailure(error) {
             // Optionally handle scan errors
