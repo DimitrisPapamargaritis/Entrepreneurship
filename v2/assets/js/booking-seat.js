@@ -4,7 +4,7 @@
     // Wait for config to be set by the page
     document.addEventListener("DOMContentLoaded", function () {
         // Check if user is logged in (sessionStorage)
-        const registeredAccount = sessionStorage.getItem('registeredAccount');
+        const registeredAccount = localStorage.getItem('registeredAccount');
         if (!registeredAccount) {
             alert('You must be logged in to book a seat.');
             window.location.href = "../auth/login.html";
