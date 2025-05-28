@@ -91,14 +91,28 @@
                             </div>
                         </div>
                     </div>
+                    <!-- Optionally add reviews section here -->
+                    <div class="boxed narrow align-center" style="margin-bottom: 2rem; display:none;" id="available-spaces-section">
+                        <h3>Available Spaces</h3>
+                        <div id="available-spaces" style="font-size: 1.2rem; margin-bottom: 1rem;">
+                            <span id="spaces-count">Loading...</span> seats available
+                        </div>
+                    </div>
 
                     <div class="boxed narrow align-center" style="margin-bottom: 2rem;">
                         <h3>Book a Seat</h3>
                         <button id="book-seat-btn" class="btn">Book a Seat</button>
+                        <div id="calendar-container" style="display:none; margin-top:1rem;">
+                            <label for="booking-date" style="font-weight:bold;">Select Date:</label>
+                            <input type="date" id="booking-date" style="margin-bottom:1rem;">
+                            <br>
+                            <label for="booking-hour" style="font-weight:bold;">Select Hour:</label>
+                            <input type="time" id="booking-hour" style="margin-bottom:1rem;">
+                            <button id="confirm-booking-btn" class="btn" style="margin-left:0.5rem;">Confirm</button>
+                        </div>
                         <div id="qrcode"></div>
                     </div>
 
-                    <!-- Optionally add reviews section here -->
                 </main>
             </div>
         </div>
@@ -106,6 +120,17 @@
 
     <script src="../assets/js/jquery.min.js"></script>
     <script src="../assets/js/fadeElement.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+    <!-- Set config FIRST -->
+    <script>
+        window.bookingSeatConfig = {
+            spaceId: 1,
+            spaceName: "Wisedog",
+            hoursStr: "Δε-Κυρ 10:00πμ - 12:30πμ"
+        };
+    </script>
+    <!-- THEN load the booking logic -->
+    <script src="../assets/js/booking-seat.js"></script>
     <footer>
         <div class="row boxed">
             <div class="column col-30 align-center">
@@ -136,20 +161,6 @@
     <script src="../assets/js/navbarEvents.js"></script>
     <script src="../assets/js/getYear.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
-    <script>
-        document.getElementById('book-seat-btn').onclick = function () {
-            document.getElementById('qrcode').innerHTML = "";
-            const bookingData = {
-                spaceId: 1,
-                spaceName: "Wisedog",
-                timestamp: new Date().toISOString()
-            };
-            new QRCode(document.getElementById('qrcode'), {
-                text: JSON.stringify(bookingData),
-                width: 180,
-                height: 180
-            });
-        };
-    </script>
+   
 </body>
 </html>

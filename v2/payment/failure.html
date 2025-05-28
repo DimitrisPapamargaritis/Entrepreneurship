@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- Primary Meta Tags -->
+    <link rel="shortcut icon" type="image/x-icon" href="../assets/media/branding/collabrew_icon_128x128.png" />
+    <meta name="title" content="Collabrew Payment Failed">
+    <meta name="description" content="Your payment was not successful. Please try again.">
+    <meta name="keywords" content="Collabrew, Payment, Co-Working Space, Workplace, Failed">
+    <meta name="theme-color" content="#302728">
+
+    <!-- Open Graph / Facebook Meta Properties -->
+    <meta property="og:title" content="Collabrew Payment Failed" />
+    <meta property="og:description" content="Your payment was not successful. Please try again." />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://example.com/payment/failure.html" />
+    <meta property="og:image"
+        content="https://dimitrispapamargaritis.github.io/Entrepreneurship/v2/assets/media/branding/collabrew_logo_bg.png" />
+
+    <!-- Twitter Meta Properties -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://example.com/payment/failure.html">
+    <meta property="twitter:title" content="Collabrew Payment Failed">
+    <meta property="twitter:description" content="Your payment was not successful. Please try again.">
+    <meta property="twitter:image"
+        content="https://dimitrispapamargaritis.github.io/Entrepreneurship/v2/assets/media/branding/collabrew_logo_bg.png">
+
+    <!-- Title -->
+    <title>Payment Failed | Collabrew</title>
+
+    <!-- CSS Stylesheets -->
+    <link rel="stylesheet" type="text/css" href="../assets/css/style.css" />
+    <link rel="stylesheet" type="text/css" href="../assets/fontawsome/css/fontawesome.min.css" />
+    <link rel="stylesheet" type="text/css" href="../assets/fontawsome/css/all.min.css" />
+
+    <style>
+        body {
+            min-height: 100vh;
+            background: url(/Entrepreneurship/v2/assets/media/background.png) no-repeat center center fixed;
+            background-size: cover;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        .failure-container {
+            max-width: 400px;
+            margin: 4rem auto;
+            padding: 2.5rem 2rem 2rem 2rem;
+            background: #fff;
+            border-radius: 16px;
+            box-shadow: 0 2px 16px rgba(0,0,0,0.10);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+        .failure-container img {
+            width: 90px;
+            margin-bottom: 1rem;
+        }
+        .failure-container .xmark {
+            color: #e74c3c;
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+        .failure-container h2 {
+            margin-bottom: 0.5rem;
+            color: var(--primary, #302728);
+        }
+        .failure-container p {
+            margin-bottom: 1.5rem;
+            color: #444;
+        }
+        .failure-container a.btn {
+            display: inline-block;
+            padding: 0.7rem 1.5rem;
+            background: var(--primary, #302728);
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            font-size: 1rem;
+            text-decoration: none;
+            margin-top: 1rem;
+            transition: background 0.2s;
+        }
+        .failure-container a.btn:hover {
+            background: #4a393a;
+        }
+        @media (max-width: 600px) {
+            .failure-container {
+                margin: 2rem 0.5rem;
+                padding: 1.5rem 0.5rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="failure-container">
+        <a href="../index.html">
+            <img src="../assets/media/branding/collabrew_icon_128x128.png" alt="Collabrew Logo" />
+        </a>
+        <div class="xmark">
+            <i class="fa-solid fa-circle-xmark"></i>
+        </div>
+        <h2>Payment Failed</h2>
+        <p>Your payment was not successful.<br>Please try again or use a different payment method.</p>
+        <a href="payment.html" class="btn"><i class="fa-solid fa-rotate-left"></i> Try Again</a>
+        <a href="../index.html" class="btn" style="margin-left: 0.5rem;"><i class="fa-solid fa-house"></i> Back to Home</a>
+    </div>
+</body>
+</html>

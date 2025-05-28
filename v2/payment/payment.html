@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- Primary Meta Tags -->
+    <link rel="shortcut icon" type="image/x-icon" href="../assets/media/branding/collabrew_icon_128x128.png" />
+    <meta name="title" content="Collabrew Payment">
+    <meta name="description" content="Complete your payment for your co-working space booking.">
+    <meta name="keywords" content="Collabrew, Payment, Co-Working Space, Workplace">
+    <meta name="theme-color" content="#302728">
+
+    <!-- Open Graph / Facebook Meta Properties -->
+    <meta property="og:title" content="Collabrew Payment" />
+    <meta property="og:description" content="Complete your payment for your co-working space booking." />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://example.com/payment.html" />
+    <meta property="og:image"
+        content="https://dimitrispapamargaritis.github.io/Entrepreneurship/v2/assets/media/branding/collabrew_logo_bg.png" />
+
+    <!-- Twitter Meta Properties -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://example.com/payment.html">
+    <meta property="twitter:title" content="Collabrew Payment">
+    <meta property="twitter:description" content="Complete your payment for your co-working space booking.">
+    <meta property="twitter:image"
+        content="https://dimitrispapamargaritis.github.io/Entrepreneurship/v2/assets/media/branding/collabrew_logo_bg.png">
+
+    <!-- Title -->
+    <title>Collabrew - Payment</title>
+
+    <!-- CSS Stylesheets -->
+    <link rel="stylesheet" type="text/css" href="../assets/css/style.css" />
+    <link rel="stylesheet" type="text/css" href="../assets/fontawsome/css/fontawesome.min.css" />
+    <link rel="stylesheet" type="text/css" href="../assets/fontawsome/css/all.min.css" />
+
+    <style>
+        body {
+            min-height: 100vh;
+            background: url(/Entrepreneurship/v2/assets/media/background.png) no-repeat center center fixed;
+            background-size: cover;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        .payment-container {
+            max-width: 400px;
+            margin: 4rem auto;
+            padding: 2.5rem 2rem 2rem 2rem;
+            background: #fff;
+            border-radius: 16px;
+            box-shadow: 0 2px 16px rgba(0,0,0,0.10);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .payment-container img {
+            width: 90px;
+            margin-bottom: 1rem;
+        }
+        .payment-container h2 {
+            margin-bottom: 0.5rem;
+            color: var(--primary, #302728);
+        }
+        .payment-container p {
+            margin-bottom: 1.5rem;
+            color: #444;
+        }
+        .payment-form {
+            width: 100%;
+        }
+        .payment-form label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+        .payment-form input {
+            width: 100%;
+            padding: 0.5rem;
+            margin-bottom: 1.2rem;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background: #f8f8f8;
+        }
+        .payment-form button {
+            width: 100%;
+            padding: 0.7rem;
+            background: var(--primary, #302728);
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            font-size: 1rem;
+            cursor: pointer;
+            margin-top: 0.5rem;
+        }
+        .payment-form button:hover {
+            background: #4a393a;
+        }
+        @media (max-width: 600px) {
+            .payment-container {
+                margin: 2rem 0.5rem;
+                padding: 1.5rem 0.5rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="payment-container">
+        <a href="../index.html">
+            <img src="../assets/media/branding/collabrew_icon_128x128.png" alt="Collabrew Logo" />
+        </a>
+        <h2>Payment</h2>
+        <p>Complete your payment for your booking below.</p>
+        <form class="payment-form" action="#" method="POST" autocomplete="off" id="payment-form">
+            <label for="card-name">Cardholder Name</label>
+            <input type="text" id="card-name" name="card-name" placeholder="Name on card" required>
+
+            <label for="card-number">Card Number</label>
+            <input type="text" id="card-number" name="card-number" placeholder="1234 5678 9012 3456" maxlength="19" required>
+
+            <label for="expiry">Expiry Date</label>
+            <input type="text" id="expiry" name="expiry" placeholder="MM/YY" maxlength="5" required>
+
+            <label for="cvc">CVC</label>
+            <input type="text" id="cvc" name="cvc" placeholder="123" maxlength="4" required>
+
+            <button type="submit">Pay Now</button>
+        </form>
+    </div>
+    <script>
+        document.getElementById('payment-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            // 50% chance to go to complete.html or failure.html
+            if (Math.random() < 0.5) {
+                window.location.href = "complete.html";
+            } else {
+                window.location.href = "failure.html";
+            }
+        });
+    </script>
+</body>
+</html>

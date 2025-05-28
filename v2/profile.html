@@ -35,13 +35,9 @@
     <link rel="stylesheet" type="text/css" href="./assets/css/style.css" />
     <link rel="stylesheet" type="text/css" href="./assets/fontawsome/css/fontawesome.min.css" />
     <link rel="stylesheet" type="text/css" href="./assets/fontawsome/css/all.min.css" />
-
-    <!-- Scripts -->
-    <script src="./assets/js/homePagePopular.js"></script>
 </head>
 
 <body>
-
     <nav class="border">
         <div class="content">
             <header>
@@ -50,7 +46,6 @@
                 </a>
                 <h1>Collabrew</h1>
                 <h3>Find the best co-working space near you!</h3>
-
                 <ul class="menu">
                     <li><a href="./index.html">Home</a></li>
                     <li><a href="./explore.html">Explore</a></li>
@@ -60,7 +55,6 @@
                         <a href="./auth.html">Log-in / Register</a>
                     </li>
                 </ul>
-
             </header>
             <!-- Mobile Menu Toggle Icon -->
             <div class="toggle-box">
@@ -73,60 +67,19 @@
         </div>
     </nav>
 
+    <!-- Place the background image div here -->
     <div class="background"></div>
 
-    <div class="page">
-        <div class="container">
-            <div class="content">
-                <main>
-
-                    <div class="header">
-                        <div class="boxed transparent align-center">
-                            <img src="./assets/media/branding/collabrew_logo_800x800.png" alt="Collabrew Logo"
-                                rel="preload" width="220px" height="220px">
-                            <h3>Find the best co-working space near you!</h3>
-
-                            <form action="#">
-                                <input type="text" id="search" name="search" class="search-box" aria-label="Search"
-                                    placeholder="Where are you going next?">
-                                <span class="btn"><i class="fa-solid fa-magnifying-glass"></i>
-                                    <input type="submit" value="Search"></span>
-                            </form>
-                        </div>
-                    </div>
-
-                    <div class="boxed light transparent align-center">
-                        <h3>Popular Places</h3>
-                        <!-- Top-rated places will be inserted here by JavaScript -->
-                        <div class="row" id="popular-places">
-
-                            <!--
-                            <div class="column col-30">
-                                <div class="col-element hover-opacity" style="cursor: pointer;" onclick="window.location.href='./explore.html?space=123'">
-                                    <img src="./images/place1.jpg" alt="Central Park Image">
-                                    <h3>Central Park</h3>
-                                    <div class="star-review">
-                                        <i class="fa fa-solid fa-star"></i>
-                                        <i class="fa fa-solid fa-star"></i>
-                                        <i class="fa fa-solid fa-star"></i>
-                                        <i class="fa fa-solid fa-star"></i>
-                                        <i class="fa fa-solid fa-star-half-alt"></i>
-                                    </div>
-                                    <p>2.5 kilometers away</p>
-                                </div>
-                            </div>
-                            -->
-
-                        </div>
-                    </div>
-
-                </main>
+    <main>
+        <div class="container align-center">
+            <div class="boxed" style="max-width: 400px; margin: 0 auto;">
+                <h2><i class="fas fa-user"></i> Your Profile</h2>
+                <div id="profile-info">
+                    <!-- Profile info will be loaded here -->
+                </div>
             </div>
         </div>
-    </div>
-
-    <script src="./assets/js/jquery.min.js"></script>
-    <script src="./assets/js/fadeElement.js"></script>
+    </main>
 
     <footer>
         <div class="row boxed">
@@ -161,9 +114,44 @@
         </p>
     </footer>
 
-    <script src="./assets/js/navbarEvents.js"></script>
     <script src="./assets/js/getYear.js"></script>
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const account = localStorage.getItem('registeredAccount');
+        if (!account) {
+            // Not logged in, redirect to login page
+            window.location.href = "./auth/login.html";
+            return;
+        }
+        // If logged in, show profile info
+        const profileInfo = document.getElementById('profile-info');
+        const user = JSON.parse(account);
+        profileInfo.innerHTML = `
+            <p><strong>Full Name:</strong> ${user.fullname}</p>
+            <p><strong>Username:</strong> ${user.username}</p>
+            <p><strong>Email:</strong> ${user.email}</p>
+        `;
+    });
+    </script>
     <script src="./assets/js/login.js"></script>
 </body>
+<style>
+/* Sticky footer and centered profile info for profile.html */
+body {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
 
+main {
+    flex: 1 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+footer {
+    flex-shrink: 0;
+}
+</style>
 </html>

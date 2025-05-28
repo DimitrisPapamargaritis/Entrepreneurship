@@ -125,6 +125,49 @@
 
     <script src="../assets/js/jquery.min.js"></script>
     <script src="../assets/js/fadeElement.js"></script>
+    <script>
+// Simple login handler using sessionStorage (matches register.html logic)
+document.getElementById('form_login').addEventListener('submit', function(e) {
+    e.preventDefault();
+
+    const username = document.getElementById('username').value.trim();
+    const password = document.getElementById('password').value;
+
+    // Get registered account from sessionStorage
+    const accountStr = sessionStorage.getItem('registeredAccount');
+    if (!accountStr) {
+        alert('No registered account found. Please register first.');
+        window.location.href = "./register.html";
+        return;
+    }
+    const account = JSON.parse(accountStr);
+
+    // Check credentials
+    if (username === account.username && password === account.password) {
+        // Successful login, keep user "logged in" for this session
+        // (already in sessionStorage, so just redirect)
+        window.location.href = "../index.html";
+    } else {
+        alert('Invalid username or password.');
+    }
+});
+
+// Replace Log-in/Register button if user is logged in (on every page load)
+window.addEventListener('DOMContentLoaded', function() {
+    const account = sessionStorage.getItem('registeredAccount');
+    if (account) {
+        const user = JSON.parse(account);
+        const menu = document.querySelector('.menu');
+        if (menu) {
+            const loginBtn = menu.querySelector('.btn');
+            if (loginBtn) {
+                // Replace with user button
+                loginBtn.innerHTML = `<a href="../profile.html"><i class="fas fa-user"></i> ${user.username}</a>`;
+            }
+        }
+    }
+});
+    </script>
 
     <footer>
         <div class="row boxed">

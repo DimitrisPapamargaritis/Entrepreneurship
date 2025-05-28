@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- Primary Meta Tags -->
+    <link rel="shortcut icon" type="image/x-icon" href="../assets/media/branding/collabrew_icon_128x128.png" />
+    <meta name="title" content="Collabrew Payment Complete">
+    <meta name="description" content="Your payment was successful. Thank you for booking with Collabrew!">
+    <meta name="keywords" content="Collabrew, Payment, Co-Working Space, Workplace">
+    <meta name="theme-color" content="#302728">
+
+    <!-- Open Graph / Facebook Meta Properties -->
+    <meta property="og:title" content="Collabrew Payment Complete" />
+    <meta property="og:description" content="Your payment was successful. Thank you for booking with Collabrew!" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://example.com/payment/complete.html" />
+    <meta property="og:image"
+        content="https://dimitrispapamargaritis.github.io/Entrepreneurship/v2/assets/media/branding/collabrew_logo_bg.png" />
+
+    <!-- Twitter Meta Properties -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://example.com/payment/complete.html">
+    <meta property="twitter:title" content="Collabrew Payment Complete">
+    <meta property="twitter:description" content="Your payment was successful. Thank you for booking with Collabrew!">
+    <meta property="twitter:image"
+        content="https://dimitrispapamargaritis.github.io/Entrepreneurship/v2/assets/media/branding/collabrew_logo_bg.png">
+
+    <!-- Title -->
+    <title>Payment Complete | Collabrew</title>
+
+    <!-- CSS Stylesheets -->
+    <link rel="stylesheet" type="text/css" href="../assets/css/style.css" />
+    <link rel="stylesheet" type="text/css" href="../assets/fontawsome/css/fontawesome.min.css" />
+    <link rel="stylesheet" type="text/css" href="../assets/fontawsome/css/all.min.css" />
+
+    <style>
+        body {
+            min-height: 100vh;
+            background: url(/Entrepreneurship/v2/assets/media/background.png) no-repeat center center fixed;
+            background-size: cover;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        .complete-container {
+            max-width: 400px;
+            margin: 4rem auto;
+            padding: 2.5rem 2rem 2rem 2rem;
+            background: #fff;
+            border-radius: 16px;
+            box-shadow: 0 2px 16px rgba(0,0,0,0.10);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+        .complete-container img {
+            width: 90px;
+            margin-bottom: 1rem;
+        }
+        .complete-container .checkmark {
+            color: #27ae60;
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+        .complete-container h2 {
+            margin-bottom: 0.5rem;
+            color: var(--primary, #302728);
+        }
+        .complete-container p {
+            margin-bottom: 1.5rem;
+            color: #444;
+        }
+        #qrcode {
+            margin: 1.5rem auto 0 auto;
+            display: flex;
+            justify-content: center;
+        }
+        .complete-container a.btn {
+            display: inline-block;
+            padding: 0.7rem 1.5rem;
+            background: var(--primary, #302728);
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            font-size: 1rem;
+            text-decoration: none;
+            margin-top: 1rem;
+            transition: background 0.2s;
+        }
+        .complete-container a.btn:hover {
+            background: #4a393a;
+        }
+        @media (max-width: 600px) {
+            .complete-container {
+                margin: 2rem 0.5rem;
+                padding: 1.5rem 0.5rem;
+            }
+        }
+    </style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+</head>
+
+<body>
+    <div class="complete-container">
+        <a href="../index.html">
+            <img src="../assets/media/branding/collabrew_icon_128x128.png" alt="Collabrew Logo" />
+        </a>
+        <div class="checkmark">
+            <i class="fa-solid fa-circle-check"></i>
+        </div>
+        <h2>Payment Complete</h2>
+        <p>Your payment was successful.<br>Thank you for booking with Collabrew!</p>
+        <div id="qrcode"></div>
+        <a href="../index.html" class="btn"><i class="fa-solid fa-house"></i> Back to Home</a>
+        <a href="../explore.html" class="btn" style="margin-left: 0.5rem;"><i class="fa-solid fa-magnifying-glass"></i> Explore More Spaces</a>
+    </div>
+    <script>
+        // Get booking info from localStorage or fallback
+        let booking = null;
+        try {
+            booking = JSON.parse(localStorage.getItem('collabrew_booking'));
+        } catch (e) {}
+        if (!booking) {
+            booking = {
+                spaceId: 1,
+                spaceName: "Default Space",
+                date: "",
+                hour: "",
+                timestamp: new Date().toISOString()
+            };
+        }
+        // Show QR code with place, date, and hour included
+        new QRCode(document.getElementById('qrcode'), {
+            text: JSON.stringify({
+                spaceId: booking.spaceId,
+                spaceName: booking.spaceName,
+                date: booking.date,
+                hour: booking.hour,
+                timestamp: booking.timestamp
+            }),
+            width: 180,
+            height: 180
+        });
+    </script>
+</body>
+</html>

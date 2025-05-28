@@ -179,6 +179,42 @@
     <script src="../assets/js/navbarEvents.js"></script>
     <script src="../assets/js/getYear.js"></script>
 
-</body>
+    <script>
+// Simple registration handler for session-only storage
+document.getElementById('form_register').addEventListener('submit', function(e) {
+    e.preventDefault(); // Prevent form from submitting
 
+    // Collect form data
+    const account = {
+        fullname: document.getElementById('fullname').value,
+        username: document.getElementById('username').value,
+        email: document.getElementById('email').value,
+        // Never store passwords in production like this!
+        password: document.getElementById('password').value
+    };
+
+    // Store account in sessionStorage
+    localStorage.setItem('registeredAccount', JSON.stringify(account));
+
+    // Redirect to main page
+    window.location.href = "../index.html";
+});
+
+// Replace Log-in/Register button if user is registered (on every page load)
+window.addEventListener('DOMContentLoaded', function() {
+    const account = sessionStorage.getItem('registeredAccount');
+    if (account) {
+        const user = JSON.parse(account);
+        const menu = document.querySelector('.menu');
+        if (menu) {
+            const loginBtn = menu.querySelector('.btn');
+            if (loginBtn) {
+                // Replace with user button
+                loginBtn.innerHTML = `<a href="../profile.html"><i class="fas fa-user"></i> ${user.username}</a>`;
+            }
+        }
+    }
+});
+</script>
+</body>
 </html>
