@@ -120,10 +120,7 @@
     </div>
     <script>
         function onScanSuccess(decodedText, decodedResult) {
-            // Optionally, stop scanning after success:
             qrScanner.clear();
-
-            // Pass the QR data to scanned.html via query string (URL-encoded)
             window.location.href = `scanned.html?data=${encodeURIComponent(decodedText)}`;
         }
         function onScanFailure(error) {
