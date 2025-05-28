@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="shortcut icon" type="image/x-icon" href="../assets/media/branding/collabrew_icon_128x128.png" />
+    <meta name="title" content="Collabrew QR Scanned">
+    <meta name="description" content="Your QR code was scanned successfully!">
+    <meta name="theme-color" content="#302728">
+
+    <title>QR Scanned | Collabrew</title>
+
+    <link rel="stylesheet" type="text/css" href="../assets/css/style.css" />
+    <link rel="stylesheet" type="text/css" href="../assets/fontawsome/css/fontawesome.min.css" />
+    <link rel="stylesheet" type="text/css" href="../assets/fontawsome/css/all.min.css" />
+
+    <style>
+        body {
+            min-height: 100vh;
+            background: url(/Entrepreneurship/v2/assets/media/background.png) no-repeat center center fixed;
+            background-size: cover;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        .scanned-container {
+            max-width: 400px;
+            margin: 4rem auto;
+            padding: 2.5rem 2rem 2rem 2rem;
+            background: #fff;
+            border-radius: 16px;
+            box-shadow: 0 2px 16px rgba(0,0,0,0.10);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+        .scanned-container img {
+            width: 90px;
+            margin-bottom: 1rem;
+        }
+        .scanned-container .checkmark {
+            color: #27ae60;
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+        .scanned-container h2 {
+            margin-bottom: 0.5rem;
+            color: var(--primary, #302728);
+        }
+        .scanned-container p {
+            margin-bottom: 1.5rem;
+            color: #444;
+        }
+        .scanned-container .qr-data {
+            background: #f6f6f6;
+            color: #222;
+            border-radius: 8px;
+            padding: 0.7rem 1rem;
+            margin-bottom: 1.2rem;
+            font-size: 0.97rem;
+            word-break: break-all;
+        }
+        .scanned-container a.btn {
+            display: inline-block;
+            padding: 0.7rem 1.5rem;
+            background: var(--primary, #302728);
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            font-size: 1rem;
+            text-decoration: none;
+            margin-top: 1rem;
+            transition: background 0.2s;
+        }
+        .scanned-container a.btn:hover {
+            background: #4a393a;
+        }
+        @media (max-width: 600px) {
+            .scanned-container {
+                margin: 2rem 0.5rem;
+                padding: 1.5rem 0.5rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="scanned-container">
+        <a href="../index.html">
+            <img src="../assets/media/branding/collabrew_icon_128x128.png" alt="Collabrew Logo" />
+        </a>
+        <div class="checkmark">
+            <i class="fa-solid fa-circle-check"></i>
+        </div>
+        <h2>Scan Successful!</h2>
+        <p>Your QR code was scanned successfully.</p>
+        <div id="qr-data" class="qr-data"></div>
+        <a href="../index.html" class="btn"><i class="fa-solid fa-house"></i> Back to Home</a>
+    </div>
+    <script>
+        // Get QR data from URL
+        function getQueryParam(name) {
+            const urlParams = new URLSearchParams(window.location.search);
+            return urlParams.get(name);
+        }
+        const qrData = getQueryParam('data');
+        const qrDataDiv = document.getElementById('qr-data');
+        if (qrData) {
+            // Try to pretty-print JSON if possible
+            let display = qrData;
+            try {
+                const obj = JSON.parse(qrData);
+                display = `<pre style="text-align:left;white-space:pre-wrap;">${JSON.stringify(obj, null, 2)}</pre>`;
+            } catch (e) {
+                display = `<span>${qrData}</span>`;
+            }
+            qrDataDiv.innerHTML = display;
+        } else {
+            qrDataDiv.innerHTML = "<em>No QR data found.</em>";
+        }
+    </script>
+</body>
+</html>

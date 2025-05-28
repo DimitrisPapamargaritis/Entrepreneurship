@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- Primary Meta Tags -->
+    <link rel="shortcut icon" type="image/x-icon" href="../assets/media/branding/collabrew_icon_128x128.png" />
+    <meta name="title" content="Collabrew QR Scanner">
+    <meta name="description" content="Scan your booking QR code at Collabrew!">
+    <meta name="keywords" content="Collabrew, QR, Scanner, Co-Working Space, Workplace">
+    <meta name="theme-color" content="#302728">
+
+    <!-- Open Graph / Facebook Meta Properties -->
+    <meta property="og:title" content="Collabrew QR Scanner" />
+    <meta property="og:description" content="Scan your booking QR code at Collabrew!" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://example.com/auth/scan.html" />
+    <meta property="og:image"
+        content="https://dimitrispapamargaritis.github.io/Entrepreneurship/v2/assets/media/branding/collabrew_logo_bg.png" />
+
+    <!-- Twitter Meta Properties -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://example.com/auth/scan.html">
+    <meta property="twitter:title" content="Collabrew QR Scanner">
+    <meta property="twitter:description" content="Scan your booking QR code at Collabrew!">
+    <meta property="twitter:image"
+        content="https://dimitrispapamargaritis.github.io/Entrepreneurship/v2/assets/media/branding/collabrew_logo_bg.png">
+
+    <title>QR Scanner | Collabrew</title>
+
+    <!-- CSS Stylesheets -->
+    <link rel="stylesheet" type="text/css" href="../assets/css/style.css" />
+    <link rel="stylesheet" type="text/css" href="../assets/fontawsome/css/fontawesome.min.css" />
+    <link rel="stylesheet" type="text/css" href="../assets/fontawsome/css/all.min.css" />
+
+    <!-- html5-qrcode library -->
+    <script src="https://unpkg.com/html5-qrcode" type="text/javascript"></script>
+
+    <style>
+        body {
+            min-height: 100vh;
+            background: url(/Entrepreneurship/v2/assets/media/background.png) no-repeat center center fixed;
+            background-size: cover;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        .scanner-container {
+            max-width: 400px;
+            margin: 4rem auto;
+            padding: 2.5rem 2rem 2rem 2rem;
+            background: #fff;
+            border-radius: 16px;
+            box-shadow: 0 2px 16px rgba(0,0,0,0.10);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+        .scanner-container img {
+            width: 90px;
+            margin-bottom: 1rem;
+        }
+        .scanner-container h2 {
+            margin-bottom: 0.5rem;
+            color: var(--primary, #302728);
+        }
+        .scanner-container p {
+            margin-bottom: 1.5rem;
+            color: #444;
+        }
+        #qr-reader {
+            width: 100%;
+            min-height: 300px;
+            margin: 0 auto 1rem auto;
+        }
+        #scan-result {
+            margin-top: 1rem;
+            color: #27ae60;
+            font-weight: bold;
+            word-break: break-all;
+        }
+        .scanner-container a.btn {
+            display: inline-block;
+            padding: 0.7rem 1.5rem;
+            background: var(--primary, #302728);
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            font-size: 1rem;
+            text-decoration: none;
+            margin-top: 1rem;
+            transition: background 0.2s;
+        }
+        .scanner-container a.btn:hover {
+            background: #4a393a;
+        }
+        @media (max-width: 600px) {
+            .scanner-container {
+                margin: 2rem 0.5rem;
+                padding: 1.5rem 0.5rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="scanner-container">
+        <a href="../index.html">
+            <img src="../assets/media/branding/collabrew_icon_128x128.png" alt="Collabrew Logo" />
+        </a>
+        <h2>Scan Your Booking QR</h2>
+        <p>Show your QR code to the camera to check in.</p>
+        <div id="qr-reader"></div>
+        <div id="scan-result"></div>
+        <a href="../index.html" class="btn"><i class="fa-solid fa-house"></i> Back to Home</a>
+    </div>
+    <script>
+        function onScanSuccess(decodedText, decodedResult) {
+            // Optionally, stop scanning after success:
+            qrScanner.clear();
+
+            // Pass the QR data to scanned.html via query string (URL-encoded)
+            window.location.href = `scanned.html?data=${encodeURIComponent(decodedText)}`;
+        }
+        function onScanFailure(error) {
+            // Optionally handle scan errors
+        }
+        const qrScanner = new Html5Qrcode("qr-reader");
+        qrScanner.start(
+            { facingMode: "environment" },
+            {
+                fps: 10,
+                qrbox: 250
+            },
+            onScanSuccess,
+            onScanFailure
+        );
+    </script>
+</body>
+</html>

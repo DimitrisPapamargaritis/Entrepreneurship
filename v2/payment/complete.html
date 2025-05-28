@@ -134,15 +134,28 @@
                 timestamp: new Date().toISOString()
             };
         }
-        // Show QR code with place, date, and hour included
+
+        // Get username from registeredAccount in localStorage
+        let username = "";
+        try {
+            const account = JSON.parse(localStorage.getItem('registeredAccount'));
+            if (account && account.username) {
+                username = account.username;
+            }
+        } catch (e) {}
+
+        // Show QR code with a URL to scanned.html and booking data as a query parameter
+        const qrData = JSON.stringify({
+            spaceId: booking.spaceId,
+            spaceName: booking.spaceName,
+            date: booking.date,
+            hour: booking.hour,
+            timestamp: booking.timestamp,
+            username: username
+        });
+        const qrUrl = `${window.location.origin}/auth/scanned.html?data=${encodeURIComponent(qrData)}`;
         new QRCode(document.getElementById('qrcode'), {
-            text: JSON.stringify({
-                spaceId: booking.spaceId,
-                spaceName: booking.spaceName,
-                date: booking.date,
-                hour: booking.hour,
-                timestamp: booking.timestamp
-            }),
+            text: qrUrl,
             width: 180,
             height: 180
         });
