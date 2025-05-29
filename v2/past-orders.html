@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>My Orders | Collabrew</title>
+    <link rel="shortcut icon" type="image/x-icon" href="./assets/media/branding/collabrew_icon_128x128.png" />
+    <link rel="stylesheet" type="text/css" href="./assets/css/style.css" />
+    <link rel="stylesheet" type="text/css" href="./assets/fontawsome/css/fontawesome.min.css" />
+    <link rel="stylesheet" type="text/css" href="./assets/fontawsome/css/all.min.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+    <style>
+        .orders-section {
+            max-width: 700px;
+            margin: 3rem auto 2rem auto;
+            background: var(--dark, #302728);
+            border-radius: 16px;
+            box-shadow: 0 2px 16px rgba(0,0,0,0.10);
+            padding: 2.5rem 2rem;
+        }
+        .orders-section h2 {
+            color: var(--white, #fff);
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+        .order-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .order-item {
+            display: flex;
+            align-items: center;
+            gap: 1.2rem;
+            background: var(--darker, #181a1b);
+            border-radius: 10px;
+            margin-bottom: 1.2rem;
+            padding: 1rem 1.2rem;
+            box-shadow: 0 1px 6px rgba(0,0,0,0.08);
+        }
+        .order-item img {
+            width: 70px;
+            height: 70px;
+            border-radius: 8px;
+            object-fit: cover;
+            background: #fff;
+        }
+        .order-details {
+            flex: 1 1 0;
+        }
+        .order-details h4 {
+            margin: 0 0 0.2rem 0;
+            color: var(--white, #fff);
+        }
+        .order-details .order-date {
+            color: #bbb;
+            font-size: 0.98rem;
+        }
+        .order-details .order-status {
+            font-size: 0.98rem;
+            font-weight: bold;
+        }
+        .order-details .order-status.upcoming {
+            color: #27ae60;
+        }
+        .order-details .order-status.past {
+            color: #e74c3c;
+        }
+        .order-actions {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+        .order-actions a.btn, .order-actions button.btn {
+            padding: 0.4rem 1rem;
+            font-size: 0.95rem;
+            border-radius: 5px;
+        }
+        @media (max-width: 700px) {
+            .orders-section { padding: 1.2rem 0.5rem; }
+            .order-item { flex-direction: column; align-items: flex-start; }
+            .order-actions { flex-direction: row; gap: 0.7rem; }
+        }
+    </style>
+</head>
+<body>
+    <nav class="border">
+        <div class="content">
+            <header>
+                <a class="logo" href="./">
+                    <img src="./assets/media/branding/collabrew_icon_128x128.png" alt="Collabrew Logo" />
+                </a>
+                <h1>Collabrew</h1>
+                <h3>Find the best co-working space near you!</h3>
+                <ul class="menu">
+                    <li><a href="./index.html">Home</a></li>
+                    <li><a href="./explore.html">Explore</a></li>
+                    <li><a href="./about.html">About</a></li>
+                    <li><a href="./contact.html">Contact</a></li>
+                    <li class="btn">
+                        <a href="./auth.html">Log-in / Register</a>
+                    </li>
+                </ul>
+            </header>
+            <div class="toggle-box">
+                <div class="toggle">
+                    <div class="toggle-bar"></div>
+                    <div class="toggle-bar"></div>
+                    <div class="toggle-bar"></div>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <div class="background"></div>
+    <div class="page">
+        <div class="container center">
+            <div class="content">
+                <main>
+                    <section class="orders-section">
+                        <h2>My Orders</h2>
+                        <h3>Upcoming Orders</h3>
+                        <ul class="order-list" id="upcoming-orders"></ul>
+                        <hr class="split-line white">
+                        <h3>Past Orders</h3>
+                        <ul class="order-list" id="past-orders"></ul>
+                    </section>
+                </main>
+            </div>
+        </div>
+    </div>
+    <footer>
+        <div class="row boxed">
+            <div class="column col-30 align-center">
+                <img src="./assets/media/branding/collabrew_logo_800x800.png" alt="Collabrew Logo" width="180px" />
+                <p>Our mission is help people discover their new workplace.</p>
+            </div>
+            <div class="column col-30 align-center">
+                <h4>Get in Touch</h4>
+                <p>
+                    Email: collabr3w@gmail.com<br>
+                    Phone: +30 2101234567<br>
+                    Address: Larisis 1, Larissa, Greece
+                </p>
+            </div>
+            <div class="column col-30 align-center">
+                <h4>Info</h4>
+                <p>
+                    <a href="./legal/terms.html">Terms of Service</a><br>
+                    <a href="./legal/privacy.html">Privacy Policy</a><br>
+                    <a href="./about.html">Company</a>
+                </p>
+            </div>
+        </div>
+        <p>
+            <br>&copy <span id="CurrentYear"></span> Collabrew - All rights reserved. <br>
+        </p>
+    </footer>
+    <script src="./assets/js/getYear.js"></script>
+    <script src="./assets/js/login.js"></script>
+    <script>
+    // Helper: fetch spaces info from XML
+    function getSpacesMap(callback) {
+        fetch('./assets/spaces/spaces.xml')
+            .then(res => res.text())
+            .then(xmlText => {
+                const parser = new DOMParser();
+                const xml = parser.parseFromString(xmlText, "text/xml");
+                const spaces = xml.getElementsByTagName("space");
+                const map = {};
+                for (let i = 0; i < spaces.length; i++) {
+                    const id = spaces[i].getElementsByTagName("id")[0].textContent;
+                    map[id] = {
+                        name: spaces[i].getElementsByTagName("name")[0].textContent,
+                        image: spaces[i].getElementsByTagName("image")[0].textContent.replace('./', './'),
+                        address: spaces[i].getElementsByTagName("address")[0]?.textContent || "",
+                        page: `./space/${id}.html`
+                    };
+                }
+                callback(map);
+            });
+    }
+
+    // Helper: get all orders for the logged-in user
+    function getUserOrders() {
+        let orders = [];
+        try {
+            orders = JSON.parse(localStorage.getItem('collabrew_orders')) || [];
+        } catch (e) {}
+        let user = null;
+        try {
+            user = JSON.parse(localStorage.getItem('registeredAccount'));
+        } catch (e) {}
+        if (!user) return [];
+        return orders.filter(o => o.username === user.username);
+    }
+
+    function formatDate(dateStr) {
+        const d = new Date(dateStr);
+        if (isNaN(d.getTime())) return dateStr;
+        return d.toLocaleDateString(undefined, { year: 'numeric', month: 'long', day: 'numeric' });
+    }
+    function formatTime(timeStr) {
+        if (!timeStr) return '';
+        const d = new Date('1970-01-01T' + timeStr);
+        if (isNaN(d.getTime())) return timeStr;
+        return d.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+    }
+
+    // Check if user is logged in before rendering orders
+    document.addEventListener('DOMContentLoaded', function() {
+        let user = null;
+        try {
+            user = JSON.parse(localStorage.getItem('registeredAccount'));
+        } catch (e) {}
+        if (!user) {
+            window.location.href = "./auth/login.html";
+            return;
+        }
+        renderOrders();
+    });
+
+    // Render orders
+    function renderOrders() {
+        getSpacesMap(function(spacesMap) {
+            const orders = getUserOrders();
+            const now = new Date();
+            const upcoming = [];
+            const past = [];
+            orders.forEach(order => {
+                const orderDate = new Date(order.date + 'T' + order.hour);
+                if (orderDate >= now) {
+                    upcoming.push(order);
+                } else {
+                    past.push(order);
+                }
+            });
+            upcoming.sort((a, b) => new Date(a.date + 'T' + a.hour) - new Date(b.date + 'T' + b.hour));
+            past.sort((a, b) => new Date(b.date + 'T' + b.hour) - new Date(a.date + 'T' + a.hour));
+
+            function createOrderItem(order, status, idx) {
+                const space = spacesMap[order.spaceId] || {};
+                const qrData = JSON.stringify({
+                    spaceId: order.spaceId,
+                    spaceName: space.name || order.spaceName || "",
+                    date: order.date,
+                    hour: order.hour,
+                    username: order.username
+                });
+                let scannedMsg = '';
+                if (order.status === 'completed') {
+                    scannedMsg = `<div style="color:#27ae60;font-weight:bold;margin-top:0.5rem;">Scanned by ${order.username} successfully</div>`;
+                }
+                return `
+                <li class="order-item">
+                    <img src="${space.image || './assets/media/branding/collabrew_icon_128x128.png'}" alt="${space.name || 'Space'}" />
+                    <div class="order-details">
+                        <h4>${space.name || 'Space'}</h4>
+                        <div class="order-date"><i class="fa-regular fa-calendar"></i> ${formatDate(order.date)} &nbsp; <i class="fa-regular fa-clock"></i> ${formatTime(order.hour)}</div>
+                        <div class="order-status ${status}">${status === 'upcoming' ? 'Upcoming' : 'Past'}</div>
+                        ${scannedMsg}
+                    </div>
+                    <div class="order-actions">
+                        <a class="btn" href="${space.page || '#'}" target="_blank"><i class="fa-solid fa-circle-info"></i> Details</a>
+                        ${
+                            status === 'upcoming'
+                            ? `<button class="btn checkin-btn" data-qr='${qrData}'><i class="fa-solid fa-qrcode"></i> Check-in</button>`
+                            : ''
+                        }
+                    </div>
+                </li>
+                `;
+            }
+
+            // Render HTML
+            document.getElementById('upcoming-orders').innerHTML = upcoming.length
+                ? upcoming.map((o, i) => createOrderItem(o, 'upcoming', i)).join('')
+                : '<li style="color:#bbb;text-align:center;">No upcoming orders.</li>';
+            document.getElementById('past-orders').innerHTML = past.length
+                ? past.map((o, i) => createOrderItem(o, 'past', i)).join('')
+                : '<li style="color:#bbb;text-align:center;">No past orders.</li>';
+
+            // Add event listeners for check-in buttons
+            document.querySelectorAll('.checkin-btn').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const qrData = btn.getAttribute('data-qr');
+                    // Create overlay
+                    let overlay = document.createElement('div');
+                    overlay.style.position = 'fixed';
+                    overlay.style.top = 0;
+                    overlay.style.left = 0;
+                    overlay.style.width = '100vw';
+                    overlay.style.height = '100vh';
+                    overlay.style.background = 'rgba(0,0,0,0.85)';
+                    overlay.style.display = 'flex';
+                    overlay.style.alignItems = 'center';
+                    overlay.style.justifyContent = 'center';
+                    overlay.style.zIndex = 9999;
+
+                    // Prevent background scroll
+                    document.body.style.overflow = 'hidden';
+
+                    // Create QR container
+                    let qrContainer = document.createElement('div');
+                    qrContainer.style.background = '#181a1b';
+                    qrContainer.style.padding = '2.5rem 2rem 1.5rem 2rem';
+                    qrContainer.style.borderRadius = '18px';
+                    qrContainer.style.boxShadow = '0 2px 24px rgba(0,0,0,0.18)';
+                    qrContainer.style.display = 'flex';
+                    qrContainer.style.flexDirection = 'column';
+                    qrContainer.style.alignItems = 'center';
+
+                    let title = document.createElement('h2');
+                    title.textContent = 'Show this QR code to check in';
+                    title.style.color = '#fff';
+                    title.style.marginBottom = '1.5rem';
+                    qrContainer.appendChild(title);
+
+                    let qrDiv = document.createElement('div');
+                    qrContainer.appendChild(qrDiv);
+
+                    // Generate QR code
+                    new QRCode(qrDiv, {
+                        text: qrData,
+                        width: 340,
+                        height: 340
+                    });
+
+                    // Close button
+                    let closeBtn = document.createElement('button');
+                    closeBtn.textContent = 'Close';
+                    closeBtn.className = 'btn';
+                    closeBtn.style.marginTop = '2rem';
+                    closeBtn.onclick = function() {
+                        document.body.removeChild(overlay);
+                        document.body.style.overflow = ''; // Restore scroll
+                    };
+                    qrContainer.appendChild(closeBtn);
+
+                    overlay.appendChild(qrContainer);
+                    document.body.appendChild(overlay);
+                });
+            });
+        });
+    }
+
+    document.addEventListener('DOMContentLoaded', renderOrders);
+    </script>
+</body>
+</html>

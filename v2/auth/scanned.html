@@ -5,10 +5,28 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
+    <!-- Primary Meta Tags -->
     <link rel="shortcut icon" type="image/x-icon" href="../assets/media/branding/collabrew_icon_128x128.png" />
-    <meta name="title" content="Collabrew QR Scanned">
-    <meta name="description" content="Your QR code was scanned successfully!">
+    <meta name="title" content="Collabrew QR Scanner">
+    <meta name="description" content="Scan your booking QR code at Collabrew!">
+    <meta name="keywords" content="Collabrew, QR, Scanner, Co-Working Space, Workplace">
     <meta name="theme-color" content="#302728">
+
+    <!-- Open Graph / Facebook Meta Properties -->
+    <meta property="og:title" content="Collabrew QR Scanner" />
+    <meta property="og:description" content="Scan your booking QR code at Collabrew!" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://example.com/auth/scan.html" />
+    <meta property="og:image"
+        content="https://dimitrispapamargaritis.github.io/Entrepreneurship/v2/assets/media/branding/collabrew_logo_bg.png" />
+
+    <!-- Twitter Meta Properties -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://example.com/auth/scan.html">
+    <meta property="twitter:title" content="Collabrew QR Scanner">
+    <meta property="twitter:description" content="Scan your booking QR code at Collabrew!">
+    <meta property="twitter:image"
+        content="https://dimitrispapamargaritis.github.io/Entrepreneurship/v2/assets/media/branding/collabrew_logo_bg.png">
 
     <title>QR Scanned | Collabrew</title>
 
@@ -19,7 +37,7 @@
     <style>
         body {
             min-height: 100vh;
-            background: url(/Entrepreneurship/v2/assets/media/background.png) no-repeat center center fixed;
+            background: url("../assets/media/background.png") no-repeat center center fixed;
             background-size: cover;
             display: flex;
             flex-direction: column;
@@ -38,12 +56,26 @@
             align-items: center;
             text-align: center;
         }
-        .scanned-container img {
+        .scanned-container img.store-img {
+            width: 90%;
+            max-width: 350px;
+            height: auto;
+            object-fit: cover;
+            border-radius: 12px;
+            margin-bottom: 0.7rem;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        }
+        .scanned-container img.logo {
             width: 90px;
             margin-bottom: 1rem;
         }
         .scanned-container .checkmark {
             color: #27ae60;
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+        .scanned-container .failmark {
+            color: #e74c3c;
             font-size: 3rem;
             margin-bottom: 1rem;
         }
@@ -54,6 +86,12 @@
         .scanned-container p {
             margin-bottom: 1.5rem;
             color: #444;
+        }
+        .store-name {
+            font-size: 1.3rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+            color: #302728;
         }
         .scanned-container .qr-data {
             background: #f6f6f6;
@@ -91,36 +129,168 @@
 <body>
     <div class="scanned-container">
         <a href="../index.html">
-            <img src="../assets/media/branding/collabrew_icon_128x128.png" alt="Collabrew Logo" />
+            <img class="logo" src="../assets/media/branding/collabrew_icon_128x128.png" alt="Collabrew Logo" />
         </a>
-        <div class="checkmark">
-            <i class="fa-solid fa-circle-check"></i>
-        </div>
-        <h2>Scan Successful!</h2>
-        <p>Your QR code was scanned successfully.</p>
-        <div id="qr-data" class="qr-data"></div>
+        <div id="scan-status"></div>
+        <div id="store-img"></div>
+        <div class="store-name" id="store-name"></div>
+        <div id="scan-message"></div>
         <a href="../index.html" class="btn"><i class="fa-solid fa-house"></i> Back to Home</a>
     </div>
     <script>
-        // Get QR data from URL
+        // Helper to get query param
         function getQueryParam(name) {
             const urlParams = new URLSearchParams(window.location.search);
             return urlParams.get(name);
         }
+        // Helper to pluralize
+        function pluralize(num, singular, plural) {
+            return num === 1 ? singular : plural;
+        }
+
+        // Helper to get space image from XML (sync, since XML is small)
+        function getSpaceImage(spaceId, callback) {
+            fetch("../assets/spaces/spaces.xml")
+                .then(res => res.text())
+                .then(xmlText => {
+                    const parser = new DOMParser();
+                    const xml = parser.parseFromString(xmlText, "text/xml");
+                    const spaces = xml.getElementsByTagName("space");
+                    for (let i = 0; i < spaces.length; i++) {
+                        const id = spaces[i].getElementsByTagName("id")[0].textContent;
+                        if (id == spaceId) {
+                            const image = spaces[i].getElementsByTagName("image")[0].textContent;
+                            const name = spaces[i].getElementsByTagName("name")[0].textContent;
+                            callback(image, name);
+                            return;
+                        }
+                    }
+                    callback(null, null);
+                })
+                .catch(() => callback(null, null));
+        }
+
         const qrData = getQueryParam('data');
-        const qrDataDiv = document.getElementById('qr-data');
+        let data;
+        let scanStatus = document.getElementById('scan-status');
+        let storeNameDiv = document.getElementById('store-name');
+        let scanMessage = document.getElementById('scan-message');
+        let storeImgDiv = document.getElementById('store-img');
+
         if (qrData) {
-            // Try to pretty-print JSON if possible
-            let display = qrData;
             try {
-                const obj = JSON.parse(qrData);
-                display = `<pre style="text-align:left;white-space:pre-wrap;">${JSON.stringify(obj, null, 2)}</pre>`;
+                data = JSON.parse(qrData);
             } catch (e) {
-                display = `<span>${qrData}</span>`;
+                scanStatus.innerHTML = `<div class="failmark"><i class="fa-solid fa-circle-xmark"></i></div>`;
+                scanMessage.innerHTML = `<span>Invalid QR data.</span>`;
             }
-            qrDataDiv.innerHTML = display;
         } else {
-            qrDataDiv.innerHTML = "<em>No QR data found.</em>";
+            scanStatus.innerHTML = `<div class="failmark"><i class="fa-solid fa-circle-xmark"></i></div>`;
+            scanMessage.innerHTML = `<span>No QR data found.</span>`;
+        }
+
+        function showResult(storeImage, storeNameFromXml) {
+            // Store name
+            storeNameDiv.textContent = data.spaceName ? data.spaceName : (storeNameFromXml || "Unknown Store");
+
+            // Store image
+            if (storeImage) {
+                storeImgDiv.innerHTML = `<img class="store-img" src="${storeImage.replace('./', '../')}" alt="Store Image" />`;
+            } else {
+                storeImgDiv.innerHTML = `<i class="fa-solid fa-store store-icon" style="font-size:2.5rem;color:#302728;margin-bottom:0.5rem;"></i>`;
+            }
+
+            // Username
+            const username = data.username ? data.username : "Unknown User";
+
+            // Date and hour
+            let bookingDateTime = null;
+            if (data.date && data.hour) {
+                bookingDateTime = new Date(`${data.date}T${data.hour}`);
+            }
+
+            // Now
+            const now = new Date();
+
+            if (bookingDateTime && !isNaN(bookingDateTime.getTime())) {
+                // Calculate difference
+                const diffMs = bookingDateTime - now;
+                if (Math.abs(diffMs) < 15 * 60 * 1000) {
+                    // Within 15 minutes window: mark as completed
+                    scanStatus.innerHTML = `<div class="checkmark"><i class="fa-solid fa-circle-check"></i></div>`;
+                    scanMessage.innerHTML = `
+                        <p>User <strong>${username}</strong>, your booking is <strong>completed</strong>!</p>
+                        <p><i class="fa-regular fa-calendar"></i> <strong>${bookingDateTime.toLocaleDateString(undefined, { year: 'numeric', month: 'long', day: 'numeric' })}</strong>
+                        <br><i class="fa-regular fa-clock"></i> <strong>${bookingDateTime.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}</strong></p>
+                    `;
+                    // Mark order as completed in localStorage
+                    updateOrderStatus(data, "completed");
+                } else if (diffMs > 0) {
+                    // Booking is in the future
+                    // Calculate days, hours, minutes
+                    const diffSec = Math.floor(diffMs / 1000);
+                    const days = Math.floor(diffSec / (3600 * 24));
+                    const hours = Math.floor((diffSec % (3600 * 24)) / 3600);
+                    const minutes = Math.floor((diffSec % 3600) / 60);
+
+                    // Build time string
+                    let timeStr = [];
+                    if (days > 0) timeStr.push(`${days} ${pluralize(days, "day", "days")}`);
+                    if (hours > 0) timeStr.push(`${hours} ${pluralize(hours, "hour", "hours")}`);
+                    if (minutes > 0) timeStr.push(`${minutes} ${pluralize(minutes, "minute", "minutes")}`);
+                    if (timeStr.length === 0) timeStr.push("less than a minute");
+
+                    scanStatus.innerHTML = `<div class="checkmark"><i class="fa-solid fa-circle-check"></i></div>`;
+                    scanMessage.innerHTML = `
+                        <p>User <strong>${username}</strong>, your booking is in ${timeStr.join(", ")}.</p>
+                        <p><i class="fa-regular fa-calendar"></i> <strong>${bookingDateTime.toLocaleDateString(undefined, { year: 'numeric', month: 'long', day: 'numeric' })}</strong>
+                        <br><i class="fa-regular fa-clock"></i> <strong>${bookingDateTime.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}</strong></p>
+                    `;
+                } else {
+                    // Booking has passed and not within 15 minutes window: failed
+                    scanStatus.innerHTML = `<div class="failmark"><i class="fa-solid fa-circle-xmark"></i></div>`;
+                    scanMessage.innerHTML = `
+                        <p>Scan was <strong>unsuccessful</strong>.<br>
+                        The booking for user <strong>${username}</strong> has failed (past due).</p>
+                        <p><i class="fa-regular fa-calendar"></i> <strong>${bookingDateTime.toLocaleDateString(undefined, { year: 'numeric', month: 'long', day: 'numeric' })}</strong>
+                        <br><i class="fa-regular fa-clock"></i> <strong>${bookingDateTime.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}</strong></p>
+                    `;
+                    // Mark order as failed in localStorage
+                    updateOrderStatus(data, "failed");
+                }
+            } else {
+                scanStatus.innerHTML = `<div class="failmark"><i class="fa-solid fa-circle-xmark"></i></div>`;
+                scanMessage.innerHTML = `<span>Invalid booking date or hour.</span>`;
+            }
+        }
+
+        // Update order status in localStorage
+        function updateOrderStatus(orderData, status) {
+            let orders = [];
+            try {
+                orders = JSON.parse(localStorage.getItem('collabrew_orders')) || [];
+            } catch (e) {}
+            let updated = false;
+            for (let i = 0; i < orders.length; i++) {
+                if (
+                    orders[i].spaceId == orderData.spaceId &&
+                    orders[i].date == orderData.date &&
+                    orders[i].hour == orderData.hour &&
+                    orders[i].username == orderData.username
+                ) {
+                    orders[i].status = status;
+                    updated = true;
+                }
+            }
+            if (updated) {
+                localStorage.setItem('collabrew_orders', JSON.stringify(orders));
+            }
+        }
+
+        if (data && data.spaceId) {
+            getSpaceImage(data.spaceId, showResult);
+        } else if (data) {
+            showResult(null, null);
         }
     </script>
 </body>

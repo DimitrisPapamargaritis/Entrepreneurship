@@ -98,6 +98,15 @@
         .scanner-container a.btn:hover {
             background: #4a393a;
         }
+        /* Add a visible frame/guide for the QR scanner */
+        #reader__scan_region {
+            border: 3px solid #302728;
+            border-radius: 18px;
+            box-shadow: 0 0 0 4px rgba(48,39,40,0.15);
+            position: relative;
+        }
+
+        
         @media (max-width: 600px) {
             .scanner-container {
                 margin: 2rem 0.5rem;
@@ -114,30 +123,77 @@
         </a>
         <h2>Scan Your Booking QR</h2>
         <p>Show your QR code to the camera to check in.</p>
-        <div id="reader"></div>
+        <p style="color:#888;font-size:0.98rem;margin-bottom:0.5rem;">
+            Align the QR code inside the green box for best results.
+        </p>
+        <div style="position:relative;">
+            <div class="qr-guide"></div>
+            <div id="reader"></div>
+        </div>
+        <input type="file" accept="image/*" id="qr-upload" style="display:none;">
+        <button class="btn" id="upload-btn" style="margin-top:1rem;">
+            <i class="fa-solid fa-camera"></i> Upload QR Photo
+        </button>
         <div id="result"></div>
         <a href="../index.html" class="btn"><i class="fa-solid fa-house"></i> Back to Home</a>
     </div>
+    <div id="qr-upload-temp" style="display:none"></div>
     <script>
         function success(result) {
-            // Redirect to scanned.html with the QR data
             window.location.href = `scanned.html?data=${encodeURIComponent(result)}`;
         }
 
         function error(err) {
-            // Optionally handle scan errors
-            // console.error(err);
+            document.getElementById('result').textContent = "Could not detect a QR code in the image.";
         }
 
-        const scanner = new Html5QrcodeScanner('reader', { 
-            qrbox: {
-                width: 250,
-                height: 250,
-            },
-            fps: 20,
-        });
+        // Detect if on mobile
+        function isMobile() {
+            return /Android|iPhone|iPad|iPod|Opera Mini|IEMobile|WPDesktop/i.test(navigator.userAgent);
+        }
 
+        // Improved scanner options
+        const scannerConfig = { 
+            qrbox: {
+                width: 320,
+                height: 320
+            },
+            fps: 30,
+            aspectRatio: 1.0,
+            rememberLastUsedCamera: true,
+            supportedScanTypes: [Html5QrcodeScanType.SCAN_TYPE_CAMERA],
+            experimentalFeatures: {
+                useBarCodeDetectorIfSupported: true
+            }
+        };
+
+        // Prefer rear (environment) camera on mobile
+        if (isMobile()) {
+            scannerConfig.videoConstraints = {
+                facingMode: { exact: "environment" }
+            };
+        }
+
+        const scanner = new Html5QrcodeScanner('reader', scannerConfig);
         scanner.render(success, error);
+
+        // Upload QR Photo functionality
+        document.getElementById('upload-btn').onclick = function() {
+            document.getElementById('qr-upload').click();
+        };
+        document.getElementById('qr-upload').onchange = function(e) {
+            const file = e.target.files[0];
+            if (!file) return;
+            // Always clear the temp element before scanning
+            const tempDiv = document.getElementById('qr-upload-temp');
+            tempDiv.innerHTML = '';
+            const html5QrCode = new Html5Qrcode('qr-upload-temp');
+            html5QrCode.scanFile(file, true)
+                .then(success)
+                .catch(function(err) {
+                    document.getElementById('result').textContent = "Could not detect a QR code in the image.";
+                });
+        };
     </script>
 </body>
 </html>

@@ -14,6 +14,7 @@ window.addEventListener('DOMContentLoaded', function() {
                         </button>
                         <div class="user-dropdown-content">
                             <a href="./profile.html">Profile</a>
+                            <a href="./past-orders.html">Orders</a>
                             <button id="logout-btn">Log out</button>
                         </div>
                     </div>

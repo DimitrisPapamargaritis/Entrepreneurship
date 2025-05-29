@@ -17,8 +17,8 @@
     <meta property="og:description" content="Find the best co-working space near you!" />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://example.com" />
-    <meta property="og:image" cont
-        ent="https://dimitrispapamargaritis.github.io/Entrepreneurship/v2/assets/media/branding/collabrew_logo_bg.png" />
+    <meta property="og:image"
+        content="https://dimitrispapamargaritis.github.io/Entrepreneurship/v2/assets/media/branding/collabrew_logo_bg.png" />
 
     <!-- Twitter Meta Properties -->
     <meta property="twitter:card" content="summary_large_image">
@@ -29,12 +29,124 @@
         content="https://dimitrispapamargaritis.github.io/Entrepreneurship/v2/assets/media/branding/collabrew_logo_bg.png">
 
     <!-- Title -->
-    <title>Collabrew - Find the best co-working space near you!"</title>
+    <title>Collabrew - Profile</title>
 
     <!-- CSS Stylesheets -->
     <link rel="stylesheet" type="text/css" href="./assets/css/style.css" />
     <link rel="stylesheet" type="text/css" href="./assets/fontawsome/css/fontawesome.min.css" />
     <link rel="stylesheet" type="text/css" href="./assets/fontawsome/css/all.min.css" />
+    <style>
+        body {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            background: var(--darker, #181a1b);
+        }
+        main {
+            flex: 1 0 auto;
+            display: flex;
+            align-items: stretch;
+            justify-content: center;
+            padding-top: 96px;
+            padding-bottom: 48px;
+            min-height: 0;
+        }
+        .profile-card {
+            display: flex;
+            flex-direction: row;
+            max-width: 900px;
+            width: 100%;
+            background: var(--dark, #302728);
+            border-radius: 18px;
+            box-shadow: 0 2px 24px rgba(0,0,0,0.18);
+            padding: 2.5rem 2rem;
+            gap: 2.5rem;
+            margin: auto 0;
+            align-items: center;
+        }
+        .profile-left {
+            flex: 0 0 260px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background: var(--darker, #181a1b);
+            border-radius: 14px;
+            padding: 2rem 1.2rem;
+            min-width: 220px;
+            height: 100%;
+        }
+        .profile-img-box img {
+            width: 140px;
+            height: 140px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid #fff;
+            background: #eee;
+        }
+        .profile-img-edit {
+            margin-top: 0.7rem;
+            cursor: pointer;
+            color: #888;
+            font-size: 1.3rem;
+            transition: color 0.2s;
+        }
+        .profile-img-edit:hover { color: #302728; }
+        .profile-left h2 {
+            margin: 1.2rem 0 0.2rem 0;
+            font-size: 1.4rem;
+            color: #fff;
+        }
+        .profile-username {
+            color: #bbb;
+            font-size: 1.1rem;
+            margin-bottom: 0.7rem;
+            margin-top: 0.2rem;
+            word-break: break-all;
+        }
+        .profile-right {
+            flex: 1 1 0;
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+            justify-content: flex-start;
+            padding-top: 1.5rem;
+        }
+        .profile-detail-row {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 0.7rem;
+        }
+        .profile-detail-label {
+            min-width: 110px;
+            font-weight: bold;
+            color: #fff;
+        }
+        .profile-detail-value {
+            color: #eee;
+            font-size: 1.1rem;
+            padding: 2px 8px;
+            border-radius: 4px;
+            min-width: 120px;
+            background: transparent;
+            border: none;
+        }
+        .profile-edit-btn {
+            background: none;
+            border: none;
+            color: #888;
+            cursor: pointer;
+            font-size: 1.1rem;
+            margin-left: 4px;
+            transition: color 0.2s;
+        }
+        .profile-edit-btn:hover { color: #302728; }
+        @media (max-width: 900px) {
+            main { padding-top: 32px; padding-bottom: 16px; }
+            .profile-card { flex-direction: column; padding: 1.5rem 0.5rem; gap: 1.5rem; }
+            .profile-left { min-width: unset; width: 100%; }
+        }
+    </style>
 </head>
 
 <body>
@@ -67,28 +179,53 @@
         </div>
     </nav>
 
-    <!-- Place the background image div here -->
     <div class="background"></div>
 
-    <main>
-        <div class="container align-center">
-            <div class="boxed" style="max-width: 400px; margin: 0 auto;">
-                <h2><i class="fas fa-user"></i> Your Profile</h2>
-                <div id="profile-info">
-                    <!-- Profile info will be loaded here -->
-                </div>
+    <div class="page">
+        <div class="container center">
+            <div class="content">
+                <main>
+                    <div class="profile-card">
+                        <div class="profile-left">
+                            <div class="profile-img-box">
+                                <img id="profile-img" src="./assets/media/branding/collabrew_icon_128x128.png" alt="Profile Image" />
+                                <label class="profile-img-edit" for="profile-img-input" title="Change profile picture">
+                                    <i class="fa-solid fa-pen"></i>
+                                </label>
+                                <input type="file" id="profile-img-input" accept="image/*" style="display:none;">
+                            </div>
+                            <h2 id="profile-fullname">Full Name</h2>
+                            <div id="profile-username" class="profile-username"></div>
+                        </div>
+                        <div class="profile-right">
+                            <div class="profile-detail-row">
+                                <span class="profile-detail-label">Full Name:</span>
+                                <span class="profile-detail-value" id="detail-fullname"></span>
+                                <button class="profile-edit-btn" data-edit="fullname"><i class="fa-solid fa-pen"></i></button>
+                            </div>
+                            <div class="profile-detail-row">
+                                <span class="profile-detail-label">Username:</span>
+                                <span class="profile-detail-value" id="detail-username"></span>
+                                <button class="profile-edit-btn" data-edit="username"><i class="fa-solid fa-pen"></i></button>
+                            </div>
+                            <div class="profile-detail-row">
+                                <span class="profile-detail-label">Email:</span>
+                                <span class="profile-detail-value" id="detail-email"></span>
+                                <button class="profile-edit-btn" data-edit="email"><i class="fa-solid fa-pen"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                </main>
             </div>
         </div>
-    </main>
+    </div>
 
     <footer>
         <div class="row boxed">
             <div class="column col-30 align-center">
                 <img src="./assets/media/branding/collabrew_logo_800x800.png" alt="Collabrew Logo" width="180px" />
                 <p>Our mission is help people discover their new workplace.</p>
-
             </div>
-
             <div class="column col-30 align-center">
                 <h4>Get in Touch</h4>
                 <p>
@@ -97,7 +234,6 @@
                     Address: Larisis 1, Larissa, Greece
                 </p>
             </div>
-
             <div class="column col-30 align-center">
                 <h4>Info</h4>
                 <p>
@@ -107,8 +243,6 @@
                 </p>
             </div>
         </div>
-
-        </div>
         <p>
             <br>&copy <span id="CurrentYear"></span> Collabrew - All rights reserved. <br>
         </p>
@@ -117,41 +251,91 @@
     <script src="./assets/js/getYear.js"></script>
     <script>
     document.addEventListener('DOMContentLoaded', function() {
-        const account = localStorage.getItem('registeredAccount');
-        if (!account) {
-            // Not logged in, redirect to login page
+        // Load user data from localStorage
+        const accountStr = localStorage.getItem('registeredAccount');
+        if (!accountStr) {
             window.location.href = "./auth/login.html";
             return;
         }
-        // If logged in, show profile info
-        const profileInfo = document.getElementById('profile-info');
-        const user = JSON.parse(account);
-        profileInfo.innerHTML = `
-            <p><strong>Full Name:</strong> ${user.fullname}</p>
-            <p><strong>Username:</strong> ${user.username}</p>
-            <p><strong>Email:</strong> ${user.email}</p>
-        `;
+        const user = JSON.parse(accountStr);
+
+        // Fill left column
+        document.getElementById('profile-fullname').textContent = user.fullname || '';
+        document.getElementById('profile-username').textContent = user.username || '';
+
+        // Fill right column
+        document.getElementById('detail-fullname').textContent = user.fullname || '';
+        document.getElementById('detail-username').textContent = user.username || '';
+        document.getElementById('detail-email').textContent = user.email || '';
+
+        // Profile image
+        const imgData = localStorage.getItem('profileImage');
+        if (imgData) {
+            document.getElementById('profile-img').src = imgData;
+        }
+
+        // Edit logic
+        document.querySelectorAll('.profile-edit-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                const key = btn.getAttribute('data-edit');
+                const valueSpan = document.getElementById('detail-' + key);
+                const oldValue = valueSpan.textContent;
+                const input = document.createElement('input');
+                input.type = key === 'email' ? 'email' : 'text';
+                input.value = oldValue;
+                input.className = 'profile-detail-value';
+                valueSpan.replaceWith(input);
+
+                btn.style.display = 'none';
+                // Save/Cancel buttons
+                const saveBtn = document.createElement('button');
+                saveBtn.textContent = 'Save';
+                saveBtn.className = 'profile-save-btn';
+                saveBtn.onclick = function() {
+                    user[key] = input.value.trim();
+                    localStorage.setItem('registeredAccount', JSON.stringify(user));
+                    // Update both right and left username/fullname instantly
+                    if (key === 'username') {
+                        document.getElementById('profile-username').textContent = user.username || '';
+                    }
+                    if (key === 'fullname') {
+                        document.getElementById('profile-fullname').textContent = user.fullname || '';
+                    }
+                    // Update right column
+                    input.replaceWith(document.createTextNode(user[key] || ''));
+                    btn.style.display = '';
+                    saveBtn.remove();
+                    cancelBtn.remove();
+                };
+                btn.parentNode.appendChild(saveBtn);
+
+                const cancelBtn = document.createElement('button');
+                cancelBtn.textContent = 'Cancel';
+                cancelBtn.className = 'profile-cancel-btn';
+                cancelBtn.onclick = function() { location.reload(); };
+                btn.parentNode.appendChild(cancelBtn);
+            });
+        });
+
+        // Profile image upload
+        const imgInput = document.getElementById('profile-img-input');
+        imgInput.addEventListener('change', function(e) {
+            const file = e.target.files[0];
+            if (!file) return;
+            const reader = new FileReader();
+            reader.onload = function(evt) {
+                document.getElementById('profile-img').src = evt.target.result;
+                localStorage.setItem('profileImage', evt.target.result);
+                // Reset input value so the same file can be selected again if needed
+                imgInput.value = '';
+            };
+            reader.readAsDataURL(file);
+        });
+        document.querySelector('.profile-img-edit').addEventListener('click', function() {
+            document.getElementById('profile-img-input').click();
+        });
     });
     </script>
     <script src="./assets/js/login.js"></script>
 </body>
-<style>
-/* Sticky footer and centered profile info for profile.html */
-body {
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-}
-
-main {
-    flex: 1 0 auto;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-footer {
-    flex-shrink: 0;
-}
-</style>
 </html>

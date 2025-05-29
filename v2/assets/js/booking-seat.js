@@ -151,6 +151,16 @@
                     hour: hour,
                     timestamp: new Date().toISOString()
                 }));
+                // Add this after a successful booking/payment
+                let orders = JSON.parse(localStorage.getItem('collabrew_orders') || '[]');
+                orders.push({
+                    spaceId: config.spaceId,      // or the correct property
+                    date: date,
+                    hour: hour,
+                    username: registeredAccount     // or get from logged-in user
+                    // add other properties if needed
+                });
+                localStorage.setItem('collabrew_orders', JSON.stringify(orders));
                 window.location.href = "../payment/payment.html";
             };
 

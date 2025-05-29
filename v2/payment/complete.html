@@ -144,6 +144,32 @@
             }
         } catch (e) {}
 
+        // --- SAVE ORDER TO LOCALSTORAGE ---
+        if (booking && username) {
+            let orders = [];
+            try {
+                orders = JSON.parse(localStorage.getItem('collabrew_orders')) || [];
+            } catch (e) {}
+            // Prevent duplicate orders for the same booking (optional)
+            const exists = orders.some(o =>
+                o.spaceId == booking.spaceId &&
+                o.date == booking.date &&
+                o.hour == booking.hour &&
+                o.username == username
+            );
+            if (!exists) {
+                orders.push({
+                    spaceId: booking.spaceId,
+                    spaceName: booking.spaceName,
+                    date: booking.date,
+                    hour: booking.hour,
+                    timestamp: booking.timestamp,
+                    username: username
+                });
+                localStorage.setItem('collabrew_orders', JSON.stringify(orders));
+            }
+        }
+
         // Show QR code with a URL to scanned.html and booking data as a query parameter
         const qrData = JSON.stringify({
             spaceId: booking.spaceId,
@@ -156,8 +182,9 @@
         const qrUrl = `${window.location.origin}/Entrepreneurship/v2/auth/scanned.html?data=${encodeURIComponent(qrData)}`;
         new QRCode(document.getElementById('qrcode'), {
             text: qrUrl,
-            width: 180,
-            height: 180
+            width: 320,              // Increased size for better quality
+            height: 320,             // Increased size for better quality
+            correctLevel: QRCode.CorrectLevel.H // Highest error correction
         });
     </script>
 </body>
