@@ -127,7 +127,7 @@ function generateLocationList(xmlDoc) {
             const id = space.getElementsByTagName("id")[0].textContent;
             const name = space.getElementsByTagName("name")[0].textContent;
             const image = space.getElementsByTagName("image")[0].textContent;
-            const rating = parseInt(space.getElementsByTagName("rating")[0].textContent, 10);
+            const rating = parseFloat(space.getElementsByTagName("rating")[0].textContent); // Use float for half stars
             const distance = space.distance !== undefined ? space.distance.toFixed(2) : "N/A";
 
             const link = document.createElement("a");
@@ -157,14 +157,27 @@ function generateLocationList(xmlDoc) {
             distanceElement.textContent = `Distance: ${distance} km`;
             textCol.appendChild(distanceElement);
 
+            // --- Half-star rating logic ---
             const ratingElement = document.createElement("p");
             ratingElement.textContent = "Rating: ";
-            for (let j = 0; j < rating; j++) {
+            const fullStars = Math.floor(rating);
+            const halfStar = rating - fullStars >= 0.25 && rating - fullStars < 0.75;
+            const solidStars = halfStar ? fullStars : Math.round(rating);
+            // Full stars
+            for (let j = 0; j < fullStars; j++) {
                 const solidStar = document.createElement("i");
                 solidStar.className = "fa fa-solid fa-star";
                 ratingElement.appendChild(solidStar);
             }
-            for (let j = rating; j < 5; j++) {
+            // Half star
+            if (halfStar) {
+                const halfStarIcon = document.createElement("i");
+                halfStarIcon.className = "fa fa-solid fa-star-half-alt";
+                ratingElement.appendChild(halfStarIcon);
+            }
+            // Empty stars
+            const emptyStars = 5 - fullStars - (halfStar ? 1 : 0);
+            for (let j = 0; j < emptyStars; j++) {
                 const regularStar = document.createElement("i");
                 regularStar.className = "fa fa-regular fa-star";
                 ratingElement.appendChild(regularStar);

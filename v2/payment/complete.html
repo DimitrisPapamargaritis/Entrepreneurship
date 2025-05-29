@@ -179,9 +179,8 @@
             timestamp: booking.timestamp,
             username: username
         });
-        const qrUrl = `${window.location.origin}/Entrepreneurship/v2/auth/scanned.html?data=${encodeURIComponent(qrData)}`;
         new QRCode(document.getElementById('qrcode'), {
-            text: qrUrl,
+            text: qrData,
             width: 320,              // Increased size for better quality
             height: 320,             // Increased size for better quality
             correctLevel: QRCode.CorrectLevel.H // Highest error correction

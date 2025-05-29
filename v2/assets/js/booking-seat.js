@@ -51,6 +51,22 @@
                 close = (parseInt(h2, 10) + 12) + ':' + m2;
                 return { open, close };
             }
+            // Try for "μμ - πμ" (afternoon to midnight)
+            const match4 = hoursStr.match(/(\d{1,2}:\d{2})μμ\s*-\s*(\d{1,2}:\d{2})πμ/);
+            if (match4) {
+                let open = match4[1];
+                let close = match4[2];
+                let [h1, m1] = open.split(':');
+                let [h2, m2] = close.split(':');
+                open = (parseInt(h1, 10) + 12) + ':' + m1;
+                // If close is 12:xxπμ, treat as 00:xx (midnight)
+                if (h2 === "12") {
+                    close = "00:" + m2;
+                } else {
+                    close = close; // or handle as needed
+                }
+                return { open, close };
+            }
             // Fallback
             return { open: "10:00", close: "00:30" };
         }
