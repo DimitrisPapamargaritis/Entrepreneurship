@@ -13,8 +13,8 @@ window.addEventListener('DOMContentLoaded', function() {
                             <i class="fas fa-user"></i> ${user.username} <i class="fas fa-caret-down"></i>
                         </button>
                         <div class="user-dropdown-content">
-                            <a href="../profile.html">Profile</a>
-                            <a href="../past-orders.html">Orders</a>
+                            <a href="./v2/profile.html">Profile</a>
+                            <a href="./v2/past-orders.html">Orders</a>
                             <button id="logout-btn">Log out</button>
                         </div>
                     </div>
