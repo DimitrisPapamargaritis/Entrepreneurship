@@ -380,3 +380,11 @@ header {
     }
 
 }
+
+/* Add at the end of the file */
+nav .menu .btn.user-logged-in {
+    border: none !important;
+    background: var(--dark);
+    color: var(--light);
+    box-shadow: none;
+}

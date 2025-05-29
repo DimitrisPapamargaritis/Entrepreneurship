@@ -125,8 +125,12 @@
         </div>
     </div>
 
+    <!-- Notification Toast -->
+    <div id="notification-toast" style="display:none;position:fixed;bottom:30px;right:30px;z-index:9999;min-width:220px;padding:1rem 1.5rem;background:#302728;color:#fff;border-radius:8px;box-shadow:0 2px 12px rgba(0,0,0,0.15);font-size:1.1rem;"></div>
+
     <script src="./assets/js/jquery.min.js"></script>
     <script src="./assets/js/fadeElement.js"></script>
+    <script src="./assets/js/notifications.js"></script>
 
     <footer>
         <div class="row boxed">
@@ -167,3 +171,21 @@
 </body>
 
 </html>
+
+<style>
+    /* Add to your main CSS or style.css */
+    /* filepath: c:\Users\const\Desktop\Enterpreneurship\Entrepreneurship\v2\assets\css\style.css */
+    #notification-toast {
+        background: rgba(48, 39, 40, 0.5);
+        /* semi-transparent */
+        backdrop-filter: blur(2px);
+        transition: transform 0.5s cubic-bezier(.4, 2, .6, 1), opacity 0.5s;
+        transform: translateX(120%);
+        opacity: 0;
+    }
+
+    #notification-toast.show {
+        transform: translateX(0);
+        opacity: 1;
+    }
+</style>

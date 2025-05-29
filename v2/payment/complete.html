@@ -116,7 +116,7 @@
         <h2>Payment Complete</h2>
         <p>Your payment was successful.<br>Thank you for booking with Collabrew!</p>
         <div id="qrcode"></div>
-        <a href="../index.html" class="btn"><i class="fa-solid fa-house"></i> Back to Home</a>
+        <a href="../index.html?from=complete" class="btn">Back to Home</a>
         <a href="../explore.html" class="btn" style="margin-left: 0.5rem;"><i class="fa-solid fa-magnifying-glass"></i> Explore More Spaces</a>
     </div>
     <script>
@@ -185,6 +185,11 @@
             height: 320,             // Increased size for better quality
             correctLevel: QRCode.CorrectLevel.H // Highest error correction
         });
+
+        // Redirect to home with query parameter after 3 seconds
+        setTimeout(() => {
+            window.location.href = "../index.html?from=complete";
+        }, 3000);
     </script>
 </body>
 </html>

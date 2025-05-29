@@ -150,148 +150,6 @@
                             You must be <a href="../auth/login.html">logged in</a> to leave a review.
                         </div>
                     </div>
-                    <script>
-                        // --- Review Section Logic ---
-                        const SPACE_ID = "5";
-                        const reviewsKey = "collabrew_reviews_" + SPACE_ID;
-                        const reviewsList = document.getElementById('reviews-list');
-                        const reviewForm = document.getElementById('review-form');
-                        const reviewLoginMsg = document.getElementById('review-login-msg');
-
-                        // Check login
-                        let user = null;
-                        try {
-                            user = JSON.parse(localStorage.getItem('registeredAccount'));
-                        } catch (e) {}
-                        if (user && user.username) {
-                            reviewForm.style.display = '';
-                            reviewLoginMsg.style.display = 'none';
-                        } else {
-                            reviewForm.style.display = 'none';
-                            reviewLoginMsg.style.display = '';
-                        }
-
-                        // Load reviews
-                        function loadReviews() {
-                            reviewsList.innerHTML = "";
-                            let reviews = [];
-                            try {
-                                reviews = JSON.parse(localStorage.getItem(reviewsKey)) || [];
-                            } catch (e) {}
-                            if (reviews.length === 0) {
-                                reviewsList.innerHTML = "<p>No reviews yet. Be the first to review!</p>";
-                                return;
-                            }
-                            reviews.slice().reverse().forEach(r => {
-                                const div = document.createElement('div');
-                                div.style.marginBottom = "1rem";
-                                div.style.borderBottom = "1px solid #eee";
-                                div.style.paddingBottom = "0.5rem";
-                                // Star rating
-                                let stars = "";
-                                const rating = parseFloat(r.rating);
-                                const fullStars = Math.floor(rating);
-                                const halfStar = rating - fullStars >= 0.5;
-                                for (let i = 0; i < fullStars; i++) stars += '<i class="fa-solid fa-star" style="color:#f5b50a"></i>';
-                                if (halfStar) stars += '<i class="fa-solid fa-star-half-stroke" style="color:#f5b50a"></i>';
-                                for (let i = fullStars + (halfStar ? 1 : 0); i < 5; i++) stars += '<i class="fa-regular fa-star" style="color:#f5b50a"></i>';
-                                div.innerHTML = `<div style="font-size:1.1rem;">${stars} <span style="color:#888;font-size:0.95rem;">by ${r.username}</span></div>
-                                    <div style="margin-top:0.3rem;">${r.text.replace(/</g,"&lt;")}</div>`;
-                                reviewsList.appendChild(div);
-                            });
-                        }
-                        loadReviews();
-
-                        // Handle review submit
-                        reviewForm.onsubmit = function(e) {
-                            e.preventDefault();
-                            if (!user || !user.username) {
-                                reviewForm.style.display = 'none';
-                                reviewLoginMsg.style.display = '';
-                                return;
-                            }
-                            const rating = document.getElementById('review-rating').value;
-                            const text = document.getElementById('review-text').value.trim();
-                            if (!rating || !text) return;
-                            let reviews = [];
-                            try {
-                                reviews = JSON.parse(localStorage.getItem(reviewsKey)) || [];
-                            } catch (e) {}
-                            reviews.push({
-                                username: user.username,
-                                rating: rating,
-                                text: text,
-                                timestamp: new Date().toISOString()
-                            });
-                            localStorage.setItem(reviewsKey, JSON.stringify(reviews));
-                            document.getElementById('review-text').value = "";
-                            document.getElementById('review-rating').value = "";
-                            loadReviews();
-                        };
-
-                        // Dynamic star rating selector
-                        (function() {
-                            const starContainer = document.getElementById('star-rating-select');
-                            const ratingInput = document.getElementById('review-rating');
-                            let selected = 0;
-
-                            // Render stars (5 stars, half-star steps)
-                            function renderStars(hoverValue = null) {
-                                starContainer.innerHTML = '';
-                                for (let i = 1; i <= 5; i++) {
-                                    let star = document.createElement('i');
-                                    let value = i;
-                                    if (hoverValue !== null) {
-                                        if (hoverValue >= i) {
-                                            star.className = 'fa-solid fa-star';
-                                        } else if (hoverValue >= i - 0.5) {
-                                            star.className = 'fa-solid fa-star-half-stroke';
-                                        } else {
-                                            star.className = 'fa-regular fa-star';
-                                        }
-                                    } else {
-                                        if (selected >= i) {
-                                            star.className = 'fa-solid fa-star';
-                                        } else if (selected >= i - 0.5) {
-                                            star.className = 'fa-solid fa-star-half-stroke';
-                                        } else {
-                                            star.className = 'fa-regular fa-star';
-                                        }
-                                    }
-                                    star.style.marginRight = "2px";
-                                    star.dataset.value = value;
-                                    // Mouse events for full star
-                                    star.addEventListener('mousemove', function(e) {
-                                        const rect = star.getBoundingClientRect();
-                                        const isHalf = (e.clientX - rect.left) < rect.width / 2;
-                                        renderStars(isHalf ? value - 0.5 : value);
-                                    });
-                                    star.addEventListener('mouseleave', function() {
-                                        renderStars();
-                                    });
-                                    star.addEventListener('click', function(e) {
-                                        const rect = star.getBoundingClientRect();
-                                        const isHalf = (e.clientX - rect.left) < rect.width / 2;
-                                        selected = isHalf ? value - 0.5 : value;
-                                        ratingInput.value = selected;
-                                        renderStars();
-                                    });
-                                    starContainer.appendChild(star);
-                                }
-                            }
-                            renderStars();
-
-                            // Prevent form submit if no rating selected
-                            if (ratingInput && ratingInput.form) {
-                                ratingInput.form.addEventListener('submit', function(e) {
-                                    if (!ratingInput.value) {
-                                        e.preventDefault();
-                                        alert('Please select a rating.');
-                                    }
-                                });
-                            }
-                        })();
-                    </script>
                 </main>
             </div>
         </div>
@@ -342,5 +200,14 @@
     <script src="../assets/js/navbarEvents.js"></script>
     <script src="../assets/js/getYear.js"></script>
     <script src="./assets/js/login.js"></script>
+    <script>
+        // Set up variables for rating.js
+        const SPACE_ID = "5";
+        const reviewsKey = "collabrew_reviews_" + SPACE_ID;
+        const reviewsList = document.getElementById('reviews-list');
+        const reviewForm = document.getElementById('review-form');
+        const reviewLoginMsg = document.getElementById('review-login-msg');
+    </script>
+    <script src="../assets/js/rating.js"></script>
 </body>
 </html>

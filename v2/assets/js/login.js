@@ -13,12 +13,13 @@ window.addEventListener('DOMContentLoaded', function() {
                             <i class="fas fa-user"></i> ${user.username} <i class="fas fa-caret-down"></i>
                         </button>
                         <div class="user-dropdown-content">
-                            <a href="./profile.html">Profile</a>
-                            <a href="./past-orders.html">Orders</a>
+                            <a href="../profile.html">Profile</a>
+                            <a href="../past-orders.html">Orders</a>
                             <button id="logout-btn">Log out</button>
                         </div>
                     </div>
                 `;
+                loginBtn.classList.add('user-logged-in'); // Add this line
                 // Add logout handler
                 const logoutBtn = loginBtn.querySelector('#logout-btn');
                 if (logoutBtn) {

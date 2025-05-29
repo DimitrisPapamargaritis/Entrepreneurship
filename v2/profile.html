@@ -109,7 +109,35 @@
             flex-direction: column;
             gap: 1.5rem;
             justify-content: flex-start;
-            padding-top: 1.5rem;
+            padding-top: 0; /* Remove extra top padding */
+            height: 100%;
+        }
+        .profile-tabs {
+            display: flex;
+            gap: 1rem;
+            margin-top: 0; /* Remove any top margin */
+            margin-bottom: 1.5rem;
+        }
+        .profile-tab-btn {
+            background: #222;
+            color: #fff;
+            border: none;
+            border-radius: 6px 6px 0 0;
+            padding: 0.7rem 1.5rem;
+            cursor: pointer;
+            font-size: 1.1rem;
+            transition: background 0.2s, color 0.2s;
+        }
+        .profile-tab-btn.active,
+        .profile-tab-btn:hover {
+            background: var(--blue, #3a6ea5);
+            color: #fff;
+        }
+        .profile-tab-content {
+            background: none;
+            border-radius: 0 0 8px 8px;
+            margin-top: 0; /* Remove any top margin */
+            padding-top: 0;
         }
         .profile-detail-row {
             display: flex;
@@ -141,10 +169,27 @@
             transition: color 0.2s;
         }
         .profile-edit-btn:hover { color: #302728; }
+        #user-reviews-list > div,
+        #user-booking-stats > div {
+            display: block;
+            margin-bottom: 1.2rem;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 0.7rem;
+        }
+        #user-reviews-list > div:last-child,
+        #user-booking-stats > div:last-child {
+            border-bottom: none;
+        }
         @media (max-width: 900px) {
             main { padding-top: 32px; padding-bottom: 16px; }
             .profile-card { flex-direction: column; padding: 1.5rem 0.5rem; gap: 1.5rem; }
             .profile-left { min-width: unset; width: 100%; }
+        }
+        /* Add this for better vertical alignment on desktop */
+        @media (min-width: 901px) {
+            .profile-card {
+                align-items: flex-start; /* Align left and right at the top */
+            }
         }
     </style>
 </head>
@@ -198,20 +243,70 @@
                             <div id="profile-username" class="profile-username"></div>
                         </div>
                         <div class="profile-right">
-                            <div class="profile-detail-row">
-                                <span class="profile-detail-label">Full Name:</span>
-                                <span class="profile-detail-value" id="detail-fullname"></span>
-                                <button class="profile-edit-btn" data-edit="fullname"><i class="fa-solid fa-pen"></i></button>
+                            <!-- Tab Navigation -->
+                            <div class="profile-tabs">
+                                <button class="profile-tab-btn active" data-tab="details">Profile</button>
+                                <button class="profile-tab-btn" data-tab="reviews">My Reviews</button>
+                                <button class="profile-tab-btn" data-tab="stats">My Booking Stats</button>
                             </div>
-                            <div class="profile-detail-row">
-                                <span class="profile-detail-label">Username:</span>
-                                <span class="profile-detail-value" id="detail-username"></span>
-                                <button class="profile-edit-btn" data-edit="username"><i class="fa-solid fa-pen"></i></button>
+                            <!-- Tab Content -->
+                            <div class="profile-tab-content active" id="tab-details">
+                                <div class="profile-detail-row">
+                                    <span class="profile-detail-label">Full Name:</span>
+                                    <span class="profile-detail-value" id="detail-fullname"></span>
+                                    <button class="profile-edit-btn" data-edit="fullname"><i class="fa-solid fa-pen"></i></button>
+                                </div>
+                                <div class="profile-detail-row">
+                                    <span class="profile-detail-label">Username:</span>
+                                    <span class="profile-detail-value" id="detail-username"></span>
+                                    <button class="profile-edit-btn" data-edit="username"><i class="fa-solid fa-pen"></i></button>
+                                </div>
+                                <div class="profile-detail-row">
+                                    <span class="profile-detail-label">Email:</span>
+                                    <span class="profile-detail-value" id="detail-email"></span>
+                                    <button class="profile-edit-btn" data-edit="email"><i class="fa-solid fa-pen"></i></button>
+                                </div>
+                                <div class="profile-detail-row">
+                                    <span class="profile-detail-label">Password:</span>
+                                    <span class="profile-detail-value" id="detail-password">********</span>
+                                    <button class="profile-edit-btn" data-edit="password"><i class="fa-solid fa-pen"></i></button>
+                                </div>
+                                <div class="profile-detail-row">
+                                    <span class="profile-detail-label">Referral Code:</span>
+                                    <input type="text" id="detail-referral" class="profile-detail-value" placeholder="Your referral code" maxlength="32" style="min-width:120px;" readonly>
+                                    <button class="profile-edit-btn" id="generate-referral-btn" style="margin-left:8px;"><i class="fa-solid fa-wand-magic-sparkles"></i> Generate</button>
+                                </div>
+                                <div class="profile-detail-row" style="margin-top:-0.5rem;">
+                                    <span></span>
+                                    <span id="referral-generated" style="color:#27ae60; font-size:0.98rem; margin-left:0.5rem;"></span>
+                                </div>
+                                <div class="profile-detail-row">
+                                    <span class="profile-detail-label">Add Referral:</span>
+                                    <input type="text" id="add-referral-input" class="profile-detail-value" placeholder="Enter referral code" maxlength="32" style="min-width:120px;">
+                                    <button class="profile-edit-btn" id="add-referral-btn" style="margin-left:8px;"><i class="fa-solid fa-plus"></i> Add</button>
+                                    <span id="add-referral-msg" style="margin-left:10px; color:#27ae60; font-size:0.98rem; display:none;">Added!</span>
+                                </div>
+                                <div class="profile-detail-row">
+                                    <span class="profile-detail-label">Bio:</span>
+                                    <span class="profile-detail-value" id="detail-bio"></span>
+                                    <button class="profile-edit-btn" data-edit="bio"><i class="fa-solid fa-pen"></i></button>
+                                </div>
+                                <div class="profile-detail-row">
+                                    <span class="profile-detail-label">Referral Count:</span>
+                                    <span class="profile-detail-value" id="detail-referral-count">0</span>
+                                </div>
                             </div>
-                            <div class="profile-detail-row">
-                                <span class="profile-detail-label">Email:</span>
-                                <span class="profile-detail-value" id="detail-email"></span>
-                                <button class="profile-edit-btn" data-edit="email"><i class="fa-solid fa-pen"></i></button>
+                            <div class="profile-tab-content" id="tab-reviews" style="display:none;">
+                                <div class="boxed align-center" style="margin:0;max-width:100%;">
+                                    <h3>My Reviews</h3>
+                                    <div id="user-reviews-list"></div>
+                                </div>
+                            </div>
+                            <div class="profile-tab-content" id="tab-stats" style="display:none;">
+                                <div class="boxed align-center" style="margin:0;max-width:100%;">
+                                    <h3>My Booking Stats</h3>
+                                    <div id="user-booking-stats"></div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -267,22 +362,30 @@
         document.getElementById('detail-fullname').textContent = user.fullname || '';
         document.getElementById('detail-username').textContent = user.username || '';
         document.getElementById('detail-email').textContent = user.email || '';
+        document.getElementById('detail-password').textContent = '********';
+        document.getElementById('detail-bio').textContent = user.bio || '';
 
-        // Profile image
-        const imgData = localStorage.getItem('profileImage');
-        if (imgData) {
-            document.getElementById('profile-img').src = imgData;
-        }
+        // Count how many users have this user's referral code as their addedReferral
+        let referralCount = 0;
+        try {
+            for (let key in localStorage) {
+                if (key === 'registeredAccount') continue;
+                let acc = null;
+                try { acc = JSON.parse(localStorage.getItem(key)); } catch (e) {}
+                if (acc && acc.addedReferral === user.referral) referralCount++;
+            }
+        } catch (e) {}
+        document.getElementById('detail-referral-count').textContent = referralCount;
 
         // Edit logic
         document.querySelectorAll('.profile-edit-btn').forEach(btn => {
             btn.addEventListener('click', function() {
                 const key = btn.getAttribute('data-edit');
                 const valueSpan = document.getElementById('detail-' + key);
-                const oldValue = valueSpan.textContent;
-                const input = document.createElement('input');
-                input.type = key === 'email' ? 'email' : 'text';
-                input.value = oldValue;
+                let oldValue = valueSpan.textContent;
+                let input = document.createElement('input');
+                input.type = key === 'email' ? 'email' : (key === 'password' ? 'password' : 'text');
+                input.value = key === 'password' ? '' : oldValue;
                 input.className = 'profile-detail-value';
                 valueSpan.replaceWith(input);
 
@@ -292,17 +395,18 @@
                 saveBtn.textContent = 'Save';
                 saveBtn.className = 'profile-save-btn';
                 saveBtn.onclick = function() {
-                    user[key] = input.value.trim();
+                    if (key === 'password') {
+                        if (input.value.length < 4) {
+                            alert('Password must be at least 4 characters.');
+                            return;
+                        }
+                        user.password = input.value;
+                        input.replaceWith(document.createTextNode('********'));
+                    } else {
+                        user[key] = input.value.trim();
+                        input.replaceWith(document.createTextNode(user[key] || ''));
+                    }
                     localStorage.setItem('registeredAccount', JSON.stringify(user));
-                    // Update both right and left username/fullname instantly
-                    if (key === 'username') {
-                        document.getElementById('profile-username').textContent = user.username || '';
-                    }
-                    if (key === 'fullname') {
-                        document.getElementById('profile-fullname').textContent = user.fullname || '';
-                    }
-                    // Update right column
-                    input.replaceWith(document.createTextNode(user[key] || ''));
                     btn.style.display = '';
                     saveBtn.remove();
                     cancelBtn.remove();
@@ -334,8 +438,23 @@
         document.querySelector('.profile-img-edit').addEventListener('click', function() {
             document.getElementById('profile-img-input').click();
         });
+
+        // Tab navigation
+        document.querySelectorAll('.profile-tab-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                const tab = btn.getAttribute('data-tab');
+                // Activate the clicked tab
+                document.querySelectorAll('.profile-tab-btn').forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+
+                // Show the corresponding tab content
+                document.querySelectorAll('.profile-tab-content').forEach(c => c.classList.remove('active'));
+                document.getElementById('tab-' + tab).classList.add('active');
+            });
+        });
     });
     </script>
     <script src="./assets/js/login.js"></script>
+    <script src="./assets/js/user.js"></script>
 </body>
 </html>
