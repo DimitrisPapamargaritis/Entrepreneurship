@@ -134,12 +134,7 @@
     <script>
         document.getElementById('payment-form').addEventListener('submit', function(e) {
             e.preventDefault();
-            // 50% chance to go to complete.html or failure.html
-            if (Math.random() < 0.5) {
-                window.location.href = "complete.html";
-            } else {
-                window.location.href = "failure.html";
-            }
+            window.location.href = "complete.html";
         });
     </script>
 </body>
