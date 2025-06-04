@@ -347,4 +347,31 @@ document.addEventListener('DOMContentLoaded', function () {
         } 
         };
     }
+
+    // --- USER ORDERS ---
+    function renderOrders() {
+        getSpacesMap(function(spacesMap) {
+            const orders = getUserOrders();
+            const active = [];
+            const past = [];
+            orders.forEach(order => {
+                // If QR is scanned (status 'completed'), it's active
+                if (order.status === 'completed') {
+                    active.push(order);
+                } else {
+                    // Not scanned or cancelled goes to past
+                    past.push(order);
+                }
+            });
+
+            // ...sort and render as before...
+
+            document.getElementById('active-orders').innerHTML = active.length
+                ? active.map((o, i) => createOrderItem(o, 'active', i)).join('')
+                : '<li style="color:#bbb;text-align:center;">No active orders.</li>';
+            document.getElementById('past-orders').innerHTML = past.length
+                ? past.map((o, i) => createOrderItem(o, 'past', i)).join('')
+                : '<li style="color:#bbb;text-align:center;">No past orders.</li>';
+        });
+    }
 });

@@ -164,7 +164,8 @@
                     date: booking.date,
                     hour: booking.hour,
                     timestamp: booking.timestamp,
-                    username: username
+                    username: username,
+                    status: "upcoming" // <-- correct!
                 });
                 localStorage.setItem('collabrew_orders', JSON.stringify(orders));
             }

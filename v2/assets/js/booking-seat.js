@@ -170,11 +170,12 @@
                 // Add this after a successful booking/payment
                 let orders = JSON.parse(localStorage.getItem('collabrew_orders') || '[]');
                 orders.push({
-                    spaceId: config.spaceId,      // or the correct property
+                    spaceId: config.spaceId,
+                    spaceName: config.spaceName,
                     date: date,
                     hour: hour,
-                    username: registeredAccount     // or get from logged-in user
-                    // add other properties if needed
+                    username: JSON.parse(registeredAccount).username,
+                    status: "upcoming" // <-- add this
                 });
                 localStorage.setItem('collabrew_orders', JSON.stringify(orders));
                 window.location.href = "../payment/payment.html";
